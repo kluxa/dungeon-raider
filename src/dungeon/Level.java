@@ -37,4 +37,10 @@ public class Level {
 	public String showLevel() {
 		return maze.showMaze();
 	}
+
+
+
+	public Player getPlayer () {
+		return this.player;
+	}
 }

@@ -13,7 +13,7 @@ public enum SampleMaze {
 	LEVEL01 {
 		@Override
 		public char[][] getMaze() {
-			char[][] maze = {
+			char[][] maze = {   //[5][5]
 					{'S', ' ', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', ' '},
