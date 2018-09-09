@@ -69,20 +69,20 @@ public class Level {
 	}
 	
 	/**
-	 * Checks if the player has a particular amount of
-	 * a certain item
+	 * Return the amount that the player has of a 
+	 * particular item
 	 * @param i an item
-	 * @param quantity a quantity
-	 * @return true if the player has a certain amount
-	 *         of a particular item in their inventory
+	 * @return the amount of i that the player has
 	 */
-	public boolean playerHas(Item item, int quantity) {
+	public int playerHas(Item i) {
 		// TODO: This is a stub implementation
 	}
 	
 	/**
 	 * Returns how many of a particular entity there
 	 * are in the maze
+	 * Entities include: walls, boulders, doors,
+	 *                   specific enemies
 	 * @param e an entity
 	 * @return the amount of a particular entity
 	 */
@@ -93,8 +93,6 @@ public class Level {
 	
 	/**
 	 * Checks if there is a certain entity e at (y, x)
-	 * Entities include: walls, boulders, doors,
-	 *                   specific enemies
 	 * @param e an entity
 	 * @param y y-coordinate
 	 * @param x x-coordinate
