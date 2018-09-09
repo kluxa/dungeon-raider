@@ -1,85 +1,74 @@
 package dungeon;
 
+import java.util.ArrayList;
+
 public class Maze {
-	private char[][] grid;
-	private Player player;
-	private int startX;
-	private int startY;
+	private Tile[][] grid;
+	private int height;
+	private int width;
+	private Tile start;
 	
-	public Maze(SampleMaze sampleMaze, Player p) {
-		readMaze(sampleMaze);
-		player = p;
-	}
+	private ArrayList<LivingEntity> enemies;
+	private ArrayList<NonLivingEntity> things;
 	
 	/**
-	 * 
-	 * @return the length of the maze
+	 * Create a maze of given height and width.
+	 * Sets the border of the maze to walls.
+	 * @param height the height of the maze
+	 * @param width the width of the maze
 	 */
-	public int getLength() {
-		return grid[0].length;
+	public Maze(int height, int width) {
+		this.height = height;
+		this.width = width;
+		grid = new Tile[height][width];
+		this.resetMaze();
 	}
 	
-	/**
-	 * 
-	 * @return the height of the maze
-	 */
-	public int getHeight() {
-		return grid.length;
-	}
-	
-	/**
-	 * 
-	 * @return the x-coordinate of the starting square
-	 */
-	public int getStartingX() {
-		return startX;
-	}
-	
-	/**
-	 * 
-	 * @return the y-coordinate of the starting square
-	 */
-	public int getStartingY() {
-		return startY;
-	}
-	
-	/**
-	 * We need to add more functionality to this
-	 * Currently, it only checks whether the square
-	 * that the player is moving to is within the maze
-	 * @param p the player
-	 * @param move the player's move
-	 * @return true if the move is legal
-	 */
-	public boolean isLegalMove(Player p, Direction move) {
-		int x = p.getX() + move.getDX();
-		int y = p.getY() + move.getDY();
-		return (x >= 0 && x < getLength() &&
-				y >= 0 && y < getHeight() );
-	}
-	
-	/**
-	 * Reads the maze representation into the Maze
-	 * @param maze the maze object
-	 */
-	private void readMaze(SampleMaze maze) {
-		grid = maze.getMaze();
-		for (int y = 0; y < grid.length; y++) {
-			for (int x = 0; x < grid[0].length; x++) {
-				switch (grid[y][x]) {
-				// Starting tile is indicated by an 'S'
-				case 'S':
-					// Set the maze's starting location
-					// and clear the 'S' from the grid
-					startX = x; startY = y;
-					grid[y][x] = ' ';
-					break;
-				
-				// Add cases for other entities here...
-				
-				}
-			}
+	private void resetMaze() {
+		enemies = new ArrayList<LivingEntity>();
+		things = new ArrayList<NonLivingEntity>();
+		
+		// Sets all tiles to normal paths
+		for (int i = 0; i < this.height; i++)
+			for (int j = 0; j < this.width; j++)
+				grid[i][j] = new Path(j, i);
+		
+		// Create a border
+		for (int i = 0; i < width; i++) {
+			things.add(new Wall(grid[0][i]));
+			things.add(new Wall(grid[height - 1][i]));
+			things.add(new Wall(grid[i][width -  1]));
+			things.add(new Wall(grid[i][0]));
 		}
+	}
+	
+	public Tile getStartTile() {
+		return start;
+	}
+	
+	public void setStart(int row, int col) {
+		grid[row][col] = new Path(row, col);
+		start = grid[row][col];
+	}
+	
+	public void setTile(int row, int col, Tile t) {
+		grid[row][col] = t;
+	}
+	
+	public void addEntity(Entity e) {
+		if (e instanceof LivingEntity) {
+			enemies.add((Enemy) e);
+		} else {
+			things.add((NonLivingEntity) e);
+		}
+	}
+	
+	public Tile getTile(int row, int col) {
+		return grid[row][col];
+	}
+	
+	public void addItem(int row, int col, Item i) {
+		grid[row][col].deposit(i);
 	}
 	
 	/**
@@ -88,37 +77,49 @@ public class Maze {
 	 * @return an string representation of the
 	 *         maze for printing to the terminal
 	 */
-	public String showMaze() {
-		char[][] maze = cloneArray(grid);
-
-		// Draw the player onto the maze
-		maze[player.getY()][player.getX()] = '@';
-		
-		// ...
-		
-		// Finally convert the maze into
-		// a string
-		StringBuilder sb = new StringBuilder();
-		for (char[] row: maze) {
-			sb.append(row); sb.append('\n');
-		}
-		return sb.toString();
-	}
 	
-	/**
-	 * 
-	 * @param the character array to be copied
-	 * @return a copy of the array
-	 */
-	private char[][] cloneArray(char[][] array) {
-		int height = array.length;
-		int length = array[0].length;
-		char[][] copy = new char[height][length];
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < length; j++) {
-				copy[i][j] = array[i][j];
+	public char[][] showMaze() {
+		char[][] maze = new char[2 * height + 1][3 * width + 1];
+		for (Entity e: things) {
+			maze[2 * e.getY() + 1][3 * e.getX() + 1] = e.toChar();
+		}
+		for (Entity e: enemies) {
+			maze[2 * e.getY() + 1][3 * e.getX() + 1] = e.toChar();
+		}
+		for (int row = 0; row < height; row++) {
+			for (int col = 0; col < width; col++) {
+				for (Item i: grid[row][col].getItems()) {
+					maze[2 * row + 1][3 * col + 2] = i.toChar();
+				}
 			}
 		}
-		return copy;
+		
+		return maze;
 	}
+
+	public void moveEntity(Entity entity, Direction move) {
+		Tile newTile = this.getTile(entity.getY() + move.getDY(),
+				                    entity.getX() + move.getDX());
+		Entity e = getOccupant(newTile);
+		if (e != null) {
+			e.collide(entity);
+		} else {
+			newTile.arrive(entity);
+		}
+	}
+	
+	public Entity getOccupant(Tile t) {
+		for (Entity e: enemies) {
+			if (e.getX() == t.getX() && e.getY() == t.getY()) {
+				return e;
+			}
+		}
+		for (Entity e: things) {
+			if (e.getX() == t.getX() && e.getY() == t.getY()) {
+				return e;
+			}
+		}
+		return null;
+	}
+	
 }

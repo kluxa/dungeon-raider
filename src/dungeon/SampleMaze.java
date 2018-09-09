@@ -43,8 +43,12 @@ public enum SampleMaze {
 	
 	/**
 	 * Simple level with walls around the outside.
+	 * No items.
 	 */
 	LEVEL01 {
+		public int getWidth() { return 5; }
+		public int getHeight() { return 5; }
+		
 		public char[][] getTiles() {
 			char[][] tiles = {    // [5][5]
 					{' ', ' ', ' ', ' ', ' '},
@@ -77,14 +81,55 @@ public enum SampleMaze {
 			};
 			return items;
 		}
+	},
+	
+	/**
+	 * Simple level with some treasure
+	 */
+	LEVEL02 {
+		public int getWidth() { return 5; }
+		public int getHeight() { return 5; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {    // [5][5]
+					{' ', ' ', ' ', ' ', ' '},
+					{' ', 'S', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W'},
+					{'W', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', 'T', ' '},
+					{' ', 'T', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
 	};
 	
 	// Add more sample levels to test...
 	// Add a comment to the top of each level to
 	// describe what that level is testing
 	
-	
-	
+	public abstract int getHeight();
+	public abstract int getWidth();
 	public abstract char[][] getTiles();
 	public abstract char[][] getEntities();
 	public abstract char[][] getItems();

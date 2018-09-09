@@ -7,42 +7,64 @@ public class TestDungeonGame {
 	// NOT JUnit tests.
 	public static void main(String[] args) {
 		TestDungeonGame test = new TestDungeonGame();
-		test.testLevel01();
+		test.testLevel02();
 		
 		
 		
 	}
 	
-	
-	
-	
-	
-	
-	/**
-	 * Testing that the player does not go outside the
-	 * bounds of the level.
-	 */
-	public void testLevel01() {
-		Level level01 = new Level(SampleMaze.LEVEL01);
-		System.out.println(level01.showLevel());
+	public void testLevel02() {
+		Level level = new Level(SampleMaze.LEVEL02);
+		System.out.println(level.showLevel());
 		
 		Direction[] moves = {
-				Direction.UP,    Direction.DOWN,  Direction.DOWN,
-				Direction.DOWN,  Direction.DOWN,  Direction.DOWN,
-				Direction.RIGHT, Direction.RIGHT, Direction.RIGHT,
-				Direction.RIGHT, Direction.RIGHT, Direction.UP,
-				Direction.UP,    Direction.UP,    Direction.UP,
-				Direction.UP,    Direction.LEFT,  Direction.LEFT,
-				Direction.LEFT,  Direction.LEFT,  Direction.LEFT,
-				Direction.DOWN,  Direction.RIGHT, Direction.RIGHT,
-				Direction.RIGHT, Direction.DOWN,  Direction.DOWN,
-				Direction.LEFT,  Direction.LEFT,  Direction.UP,
-				Direction.UP,    Direction.RIGHT, Direction.DOWN
+				Direction.DOWN, Direction.DOWN, Direction.RIGHT, Direction.RIGHT,
+				Direction.UP
 		};
 		
 		for (Direction move: moves) {
-			level01.move(move);
-			System.out.println(level01.showLevel());
+			level.move(move);
+			System.out.print(level.showLevel());
+			System.out.println(level.showPlayer());
+		}
+	}
+	
+	/**
+	 * Testing that the player does not walk into walls
+	 */
+	public void testLevel01b() {
+		Level level = new Level(SampleMaze.LEVEL01);
+		System.out.println(level.showLevel());
+		
+		Direction[] moves = {
+				Direction.RIGHT, Direction.UP,   Direction.RIGHT, Direction.UP,
+				Direction.RIGHT, Direction.DOWN, Direction.RIGHT, Direction.DOWN,
+				Direction.RIGHT, Direction.DOWN, Direction.LEFT,  Direction.DOWN,
+				Direction.LEFT,  Direction.DOWN, Direction.LEFT,  Direction.UP,
+				Direction.LEFT,  Direction.UP,   Direction.LEFT,  Direction.UP
+		};
+		
+		for (Direction move: moves) {
+			level.move(move);
+			System.out.println(level.showLevel());
+		}
+	}
+	
+	/**
+	 * Testing simple movement
+	 */
+	public void testLevel01a() {
+		Level level = new Level(SampleMaze.LEVEL01);
+		System.out.println(level.showLevel());
+		
+		Direction[] moves = {
+				Direction.RIGHT, Direction.RIGHT, Direction.DOWN, Direction.DOWN,
+				Direction.LEFT,  Direction.LEFT,  Direction.UP,   Direction.UP
+		};
+		
+		for (Direction move: moves) {
+			level.move(move);
+			System.out.println(level.showLevel());
 		}
 	}
 }

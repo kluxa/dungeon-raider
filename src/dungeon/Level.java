@@ -5,10 +5,9 @@ public class Level {
 	private Maze maze;
 	
 	public Level(SampleMaze sampleMaze) {
-		player = new Player();
-		this.maze = new Maze(sampleMaze, player);
-		player.setX(maze.getStartingX());
-		player.setY(maze.getStartingY());		
+		MazeReader reader = new MazeReader();
+		maze = reader.readMaze(sampleMaze);
+		player = new Player(maze);
 	}
 	
 	/**
@@ -17,16 +16,11 @@ public class Level {
 	 * enemies make their move.
 	 */
 	private void nextMove(Direction move) {
-		player.move(maze, move);
+		player.setDirection(move);
+		player.move();
 	}
 	
-	/**
-	 * 
-	 * @return a string representation of the level
-	 */
-	public String showLevel() {
-		return maze.showMaze();
-	}
+	
 	
 	public Player getPlayer () {
 		return this.player;
@@ -54,6 +48,27 @@ public class Level {
 		System.out.printf("Firing an arrow %s\n",
 				move.toString());
 		// TODO: This is a stub implementation
+	}
+	
+	////////////////////////////////////////////////////////////////////
+	// METHODS FOR SHOWING
+	
+	/**
+	 * 
+	 * @return an ASCII representation of the level
+	 */
+	public String showLevel() {
+		char[][] rep = maze.showMaze();
+		rep[2 * player.getY() + 1][3 * player.getX() + 1] = '@';
+		StringBuilder sb = new StringBuilder();
+		for (char[] row: rep) {
+			sb.append(row); sb.append('\n');
+		}
+		return sb.toString();
+	}
+	
+	public String showPlayer() {
+		return player.toString();
 	}
 	
 	////////////////////////////////////////////////////////////////////
@@ -88,6 +103,7 @@ public class Level {
 	 */
 	public int playerHas(Item i) {
 		// TODO: This is a stub implementation
+		return 0;
 	}
 	
 	/**

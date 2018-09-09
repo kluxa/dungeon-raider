@@ -1,30 +1,48 @@
 package dungeon;
 
-public class Player {
+public class Player extends LivingEntity {
+	private Maze maze;
+	private Inventory inventory;
+	private Direction move;
 	
-	private int x;
-	private int y;
-	
-	public int getX() {
-		return x;
+	public Player(Maze maze) {
+		super(maze.getStartTile());
+		inventory = new Inventory();
+		this.maze = maze;
 	}
 	
-	public int getY() {
-		return y;
+	@Override
+	public void collide(Entity entity) {
+		// If anything collides with the
+		// player, the player dies.
+		this.die();
+	}
+
+	@Override
+	public void getBlownUp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public char toChar() {
+		return '@';
+	}
+
+	public void setDirection(Direction move) {
+		this.move = move;
 	}
 	
-	public void setX(int x) {
-		this.x = x;
+	public void move() {
+		maze.moveEntity(this, move);
 	}
 	
-	public void setY(int y) {
-		this.y = y;
+	public void pickUp(Item i) {
+		inventory.addItem(i);
 	}
 	
-	public void move(Maze maze, Direction move) {
-		if (maze.isLegalMove(this, move)) {
-			x += move.getDX();
-			y += move.getDY();
-		}
+	@Override
+	public String toString() {
+		return inventory.toString();
 	}
 }
