@@ -48,11 +48,13 @@ public class Maze {
 	}
 	
 	public void addEntity(Entity e) {
+		Tile t = e.getLocation();
 		if (e instanceof LivingEntity) {
 			enemies.add((Enemy) e);
 		} else {
 			things.add((NonLivingEntity) e);
 		}
+		t.arrive(e);
 	}
 	
 	public Tile getTile(int row, int col) {
@@ -71,17 +73,18 @@ public class Maze {
 	 */
 	
 	public char[][] showMaze() {
-		char[][] maze = new char[2 * height + 1][3 * width + 1];
+		char[][] maze = new char[2 * height + 1][4 * width + 1];
 		for (Entity e: things) {
-			maze[2 * e.getY() + 1][3 * e.getX() + 1] = e.toChar();
+			maze[2 * e.getY() + 1][4 * e.getX() + 2] = e.toChar();
 		}
 		for (Entity e: enemies) {
-			maze[2 * e.getY() + 1][3 * e.getX() + 1] = e.toChar();
+			maze[2 * e.getY() + 1][4 * e.getX() + 2] = e.toChar();
 		}
 		for (int row = 0; row < height; row++) {
 			for (int col = 0; col < width; col++) {
+				maze[2 * row + 1][4 * col + 1] = grid[row][col].toChar();
 				for (Item i: grid[row][col].getItems()) {
-					maze[2 * row + 1][3 * col + 2] = i.toChar();
+					maze[2 * row + 1][4 * col + 3] = i.toChar();
 				}
 			}
 		}
@@ -90,12 +93,14 @@ public class Maze {
 	}
 	
 	public void moveEntity(Entity entity, Direction move) {
+		Tile oldTile = entity.getLocation();
 		Tile newTile = this.getTile(entity.getY() + move.getDY(),
 				                    entity.getX() + move.getDX());
 		Entity e = getOccupant(newTile);
 		if (e != null) {
 			e.collide(entity);
 		} else {
+			oldTile.depart(entity);
 			newTile.arrive(entity);
 		}
 	}
@@ -112,5 +117,10 @@ public class Maze {
 			}
 		}
 		return null;
+	}
+	
+	public void cleanUp() {
+		enemies.removeIf(e-> e.isAlive() == false);
+		things.removeIf(e-> e.getLocation() == null);
 	}
 }

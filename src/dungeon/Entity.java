@@ -11,6 +11,8 @@ public abstract class Entity {
 	
 	public abstract void getBlownUp();
 	
+	public abstract void fall();
+	
 	public int getX() {
 		return location.getX();
 	}

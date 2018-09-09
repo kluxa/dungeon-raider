@@ -12,11 +12,9 @@ public class Exit extends Tile {
 		// TODO Auto-generated method stub
 
 	}
-
+	
 	@Override
-	public void depart(Entity entity) {
-		// TODO Auto-generated method stub
-
+	public char toChar() {
+		return 'E';
 	}
-
 }

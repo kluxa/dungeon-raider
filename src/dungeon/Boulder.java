@@ -9,7 +9,9 @@ public class Boulder extends NonLivingEntity {
 	@Override
 	public void collide(Entity entity) {
 		if (entity instanceof Player) {
-			// TODO
+			Player p = (Player)entity;
+			Direction move = p.getDirection();
+			p.getMaze().moveEntity(this, move);
 		}
 	}
 
@@ -21,6 +23,6 @@ public class Boulder extends NonLivingEntity {
 
 	@Override
 	public char toChar() {
-		return 'B';
+		return 'O';
 	}
 }

@@ -25,7 +25,9 @@ public abstract class Tile {
 		}
 	}
 	
-	public abstract void depart(Entity entity);
+	public void depart(Entity entity) {
+		// Do nothing
+	}
 	
 	public void deposit(Item item) {
 		items.add(item);
@@ -61,4 +63,6 @@ public abstract class Tile {
 	public ArrayList<Item> getItems() {
 		return items;
 	}
+	
+	public abstract char toChar();
 }

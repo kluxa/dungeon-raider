@@ -9,14 +9,16 @@ public class Pit extends Tile {
 	@Override
 	public void arrive(Entity entity) {
 		super.arrive(entity);
-		// TODO Auto-generated method stub
-		// When an entity lands on this
-		// square, make them fall
+		entity.fall();
 	}
 	
 	@Override
 	public void depart(Entity entity) {
 		// Do nothing
 	}
-	
+
+	@Override
+	public char toChar() {
+		return 'P';
+	}
 }

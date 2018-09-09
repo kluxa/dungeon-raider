@@ -20,7 +20,6 @@ public class Door extends NonLivingEntity {
 			Player p = (Player)entity;
 			Key matchingKey = new Key(color);
 			if (p.hasItem(matchingKey)) {
-				System.out.println("Unlocked!");
 				isOpen = true;
 				p.consumeItem(matchingKey);
 			}

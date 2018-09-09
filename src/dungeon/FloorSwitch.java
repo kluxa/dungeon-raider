@@ -11,18 +11,26 @@ public class FloorSwitch extends Tile {
 	@Override
 	public void arrive(Entity entity) {
 		super.arrive(entity);
-		// TODO Auto-generated method stub
-
+		if (entity instanceof Boulder) {
+			// System.out.println("Triggered!");
+			isTriggered = true;
+		}
 	}
-
+	
 	@Override
 	public void depart(Entity entity) {
-		// TODO Auto-generated method stub
-
+		if (entity instanceof Boulder) {
+			// System.out.println("Untriggered!");
+			isTriggered = false;
+		}
 	}
 	
 	public boolean isTriggered() {
 		return this.isTriggered;
 	}
-	
+
+	@Override
+	public char toChar() {
+		return 'F';
+	}
 }

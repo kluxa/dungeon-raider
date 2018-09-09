@@ -10,4 +10,9 @@ public class Path extends Tile {
 	public void depart(Entity entity) {
 		// Do nothing
 	}
+
+	@Override
+	public char toChar() {
+		return ' ';
+	}
 }

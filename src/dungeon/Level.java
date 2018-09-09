@@ -18,6 +18,7 @@ public class Level {
 	private void nextMove(Direction move) {
 		player.setDirection(move);
 		player.move();
+		maze.cleanUp();
 	}
 	
 	
@@ -59,7 +60,7 @@ public class Level {
 	 */
 	public String showLevel() {
 		char[][] rep = maze.showMaze();
-		rep[2 * player.getY() + 1][3 * player.getX() + 1] = '@';
+		rep[2 * player.getY() + 1][4 * player.getX() + 2] = '@';
 		StringBuilder sb = new StringBuilder();
 		for (char[] row: rep) {
 			sb.append(row); sb.append('\n');

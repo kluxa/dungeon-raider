@@ -211,6 +211,177 @@ public enum SampleMaze {
 			};
 			return items;
 		}
+	},
+	
+	/**
+	 * Testing boulder pushing
+	 * Testing that players can't push more than one boulder at
+	 * once and that players can't push boulders into walls
+	 */
+	LEVEL05 {
+		public int getWidth() { return 9; }
+		public int getHeight() { return 5; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {    // [5][9]
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', 'S', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
+					{'W', ' ', ' ', 'O', ' ', 'O', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', 'O', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', 'O', ' ', 'O', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
+	},
+	
+	/**
+	 * Testing boulder pushing
+	 * Testing that pushing a boulder onto a switch triggers it,
+	 * and that pushing a boulder off a switch untriggers it.
+	 */
+	LEVEL06 {
+		public int getWidth() { return 9; }
+		public int getHeight() { return 5; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {    // [5][9]
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', 'S', ' ', ' ', 'F', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', 'F', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', 'F', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
+					{'W', ' ', ' ', 'O', ' ', 'O', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', 'O', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', 'O', ' ', 'O', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
+	},
+	
+	/**
+	 * Testing boulders starting on switches
+	 * If a boulder starts on a switch, the switch should already
+	 * be triggered...
+	 */
+	LEVEL07 {
+		public int getWidth() { return 9; }
+		public int getHeight() { return 5; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {    // [5][9]
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', 'S', ' ', ' ', 'F', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', 'F', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', 'F', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
+					{'W', ' ', ' ', ' ', 'O', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', ' ', 'O', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', ' ', 'O', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
+	},
+	
+	/**
+	 * Pits - testing that the player dies when they
+	 * walk onto a pit tile
+	 */
+	LEVEL08 {
+		public int getWidth() { return 6; }
+		public int getHeight() { return 5; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {    // [5][5]
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', 'S', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', 'P', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W', 'W'},
+					{'W', ' ', ' ', ' ', ' ', 'W'},
+					{'W', ' ', 'O', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
 	};
 	
 	// Add more sample levels to test...

@@ -4,10 +4,12 @@ public class Player extends LivingEntity {
 	private Maze maze;
 	private Inventory inventory;
 	private Direction move;
+	private boolean isFlying;
 	
 	public Player(Maze maze) {
 		super(maze.getStartTile());
 		inventory = new Inventory();
+		this.isFlying = false;
 		this.maze = maze;
 	}
 	
@@ -25,8 +27,23 @@ public class Player extends LivingEntity {
 	}
 	
 	@Override
+	public void fall() {
+		if (!this.isFlying) {
+			die();
+		}
+	}
+	
+	@Override
 	public char toChar() {
 		return '@';
+	}
+	
+	public Maze getMaze() {
+		return maze;
+	}
+	
+	public Direction getDirection() {
+		return move;
 	}
 	
 	public void setDirection(Direction move) {
