@@ -1,31 +1,87 @@
 package dungeon;
 
 public enum SampleMaze {
-	// The top-left cell of a maze is (0, 0).
-	// Character codes:
-	// S = starting square
-	// E = exit square
-	// # = wall
+	/**
+	 * MAZE CREATION CODES
+	 * 
+	 * Tile character codes:
+	 * 'S' = starting tile
+	 * 'E' = exit tile
+	 * 'P' = pit tile
+	 * 'F' = floor switch tile
+	 * ' ' = normal path tile
+	 * NOTE: Most of our test mazes won't need an exit tile,
+	 *       as in most cases, that won't be what we are
+	 *       testing.
+	 * 
+	 * Entity character codes:
+	 * 'W' = wall - All levels should be surrounded by walls
+	 * 'D' = door
+	 * 'B' = boulder
+	 * 'H' = hunter
+	 * 'S' = strategist
+	 * 'U' = hound
+	 * 'C' = coward
+	 * ' ' = no entity
+	 * 
+	 * Item character codes:
+	 * 'H' = hover potion
+	 * 'I' = invincibility potion
+	 * 'S' = sword
+	 * 'T' = treasure
+	 * 'B' = unlit bomb
+	 * 'A' = arrow
+	 * 'b' = blue key
+	 * 'g' = green key
+	 * 'r' = red key
+	 * 'y' = yellow key
+	 * ' ' = no item
+	 * NOTE: This assumes we will have only one item in each
+	 *       tile, which might not be the case later, but it
+	 *       will suffice for now.
+	 */
 	
 	/**
-	 * Simple level with no walls.
+	 * Simple level with walls around the outside.
 	 */
 	LEVEL01 {
-		@Override
-		public char[][] getMaze() {
-			char[][] maze = {   //[5][5]
-					{'S', ' ', ' ', ' ', ' '},
+		public char[][] getTiles() {
+			char[][] tiles = {    // [5][5]
+					{' ', ' ', ' ', ' ', ' '},
+					{' ', 'S', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', ' '},
-					{' ', ' ', ' ', ' ', ' '},
-					{' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' '}
 			};
-			return maze;
+			return tiles;
+		}
+		
+		public char[][] getEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W'},
+					{'W', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
 		}
 	};
 	
 	// Add more sample levels to test...
 	
-	
-	public abstract char[][] getMaze();
+	public abstract char[][] getTiles();
+	public abstract char[][] getEntities();
+	public abstract char[][] getItems();
 }
