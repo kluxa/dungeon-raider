@@ -43,4 +43,92 @@ public class Level {
 	public Player getPlayer () {
 		return this.player;
 	}
+	
+	////////////////////////////////////////////////////////////////////
+	// METHODS FOR TESTING
+	
+	/**
+	 * Checks if the player is alive
+	 * @return true if the player is alive
+	 */
+	public boolean playerIsAlive() {
+		// TODO: This is a stub implementation
+		return true;
+	}
+	
+	/**
+	 * Checks if the player is at a certain coordinate
+	 * NOTE: The top-left cell of the maze is (0, 0)
+	 * @param y y-coordinate
+	 * @param x x-coordinate
+	 * @return true if the player is at (y, x)
+	 */
+	public boolean playerIsAt(int y, int x) {
+		// TODO: This is a stub implementation
+		return true;
+	}
+	
+	/**
+	 * Checks if the player has a particular amount of
+	 * a certain item
+	 * @param i an item
+	 * @param quantity a quantity
+	 * @return true if the player has a certain amount
+	 *         of a particular item in their inventory
+	 */
+	public boolean playerHas(Item item, int quantity) {
+		// TODO: This is a stub implementation
+	}
+	
+	/**
+	 * Returns how many of a particular entity there
+	 * are in the maze
+	 * @param e an entity
+	 * @return the amount of a particular entity
+	 */
+	public int getNumOfEntity(Entity e) {
+		// TODO: This is a stub implementation
+		return 0;
+	}
+	
+	/**
+	 * Checks if there is a certain entity e at (y, x)
+	 * Entities include: walls, boulders, doors,
+	 *                   specific enemies
+	 * @param e an entity
+	 * @param y y-coordinate
+	 * @param x x-coordinate
+	 * @return true if there is an entity e at (y, x)
+	 */
+	public boolean entityIsAt(Entity e, int y, int x) {
+		// TODO: This is a stub implementation
+		return true;
+	}
+	
+	/**
+	 * Gets the number of triggered floor switches
+	 * @return the number of triggered floor switches
+	 */
+	public boolean numTriggeredFloorSwitches() {
+		// TODO: This is a stub implementation
+		return true;
+	}
+	
+	/**
+	 * Checks if the level is complete
+	 * @return true if the level is complete
+	 */
+	public boolean levelIsComplete() {
+		// TODO: This is a stub implementation
+		return false;
+	}
+	
+	/**
+	 * Returns the number of enemies in the maze
+	 * @return the number of (alive) enemies
+	 */
+	public int numEnemies() {
+		// TODO: This is a stub implementation
+		return 0;
+	}
 }
