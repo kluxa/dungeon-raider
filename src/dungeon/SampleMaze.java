@@ -80,6 +80,10 @@ public enum SampleMaze {
 	};
 	
 	// Add more sample levels to test...
+	// Add a comment to the top of each level to
+	// describe what that level is testing
+	
+	
 	
 	public abstract char[][] getTiles();
 	public abstract char[][] getEntities();
