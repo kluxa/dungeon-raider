@@ -16,12 +16,15 @@ public enum SampleMaze {
 	 * 
 	 * Entity character codes:
 	 * 'W' = wall - All levels should be surrounded by walls
-	 * 'D' = door
-	 * 'B' = boulder
+	 * 'O' = boulder
 	 * 'H' = hunter
 	 * 'S' = strategist
 	 * 'U' = hound
 	 * 'C' = coward
+	 * 'B' = blue door
+	 * 'G' = green door
+	 * 'R' = red door
+	 * 'Y' = yellow door
 	 * ' ' = no entity
 	 * 
 	 * Item character codes:
@@ -119,6 +122,92 @@ public enum SampleMaze {
 					{' ', ' ', ' ', 'T', ' '},
 					{' ', 'T', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
+	},
+	
+	/**
+	 * Simple level with some keys, testing that the player
+	 * cannot hold more than one key at once
+	 */
+	LEVEL03 {
+		public int getWidth() { return 5; }
+		public int getHeight() { return 5; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {    // [5][5]
+					{' ', ' ', ' ', ' ', ' '},
+					{' ', 'S', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W'},
+					{'W', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', 'r', ' '},
+					{' ', 'g', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
+	},
+	
+	/**
+	 * Level with keys and doors, testing that the player can't
+	 * open a door with a non-matching key, but can open a door
+	 * with a matching key.
+	 * Testing that the key disappears after use.
+	 */
+	LEVEL04 {
+		public int getWidth() { return 9; }
+		public int getHeight() { return 5; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {    // [5][9]
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', 'S', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
+					{'W', ' ', ' ', ' ', 'W', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', 'R', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', 'W', ' ', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', 'r', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', 'g', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
 			};
 			return items;
 		}

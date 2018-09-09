@@ -53,12 +53,15 @@ public class MazeReader {
 	private Entity charToEntity(char code, Tile t) {
 		switch (code) {
 		case 'W': return new Wall(t);
-		case 'D': return new Door(t);
-		case 'B': return new Boulder(t);
+		case 'O': return new Boulder(t);
 		case 'H': return new Hunter(t);
 		case 'S': return new Strategist(t);
 		case 'U': return new Hound(t);
 		case 'C': return new Coward(t);
+		case 'R': return new Door(t, "red");
+		case 'Y': return new Door(t, "yellow");
+		case 'G': return new Door(t, "green");
+		case 'B': return new Door(t, "blue");
 		}
 		return null;
 	}

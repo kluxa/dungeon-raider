@@ -17,18 +17,18 @@ public class Player extends LivingEntity {
 		// player, the player dies.
 		this.die();
 	}
-
+	
 	@Override
 	public void getBlownUp() {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 	@Override
 	public char toChar() {
 		return '@';
 	}
-
+	
 	public void setDirection(Direction move) {
 		this.move = move;
 	}
@@ -37,8 +37,29 @@ public class Player extends LivingEntity {
 		maze.moveEntity(this, move);
 	}
 	
+	public boolean hasItem(Item i) {
+		return inventory.hasItem(i);
+	}
+	
 	public void pickUp(Item i) {
 		inventory.addItem(i);
+	}
+	
+	public int numItemsOfType(Item i) {
+		return inventory.numItemsOfType(i);
+	}
+	
+	public Item getItemOfType(Item i) {
+		return inventory.getItemOfType(i);
+	}
+	
+	public void dropItem(Item i) {
+		inventory.removeItem(i);
+		getLocation().drop(i);
+	}
+	
+	public void consumeItem(Item i) {
+		inventory.removeItem(i);
 	}
 	
 	@Override

@@ -7,12 +7,58 @@ public class TestDungeonGame {
 	// NOT JUnit tests.
 	public static void main(String[] args) {
 		TestDungeonGame test = new TestDungeonGame();
-		test.testLevel02();
+		test.testLevel04();
 		
 		
 		
 	}
 	
+	/**
+	 * Testing that the player picks up keys,
+	 * but not when they already have a key
+	 */
+	public void testLevel04() {
+		Level level = new Level(SampleMaze.LEVEL04);
+		System.out.println(level.showLevel());
+		
+		Direction[] moves = {
+				Direction.DOWN,  Direction.DOWN,  Direction.RIGHT, Direction.UP,
+				Direction.RIGHT, Direction.RIGHT, Direction.UP,    Direction.DOWN,
+				Direction.RIGHT, Direction.UP,    Direction.DOWN,  Direction.RIGHT,
+				Direction.RIGHT
+		};
+		
+		for (Direction move: moves) {
+			level.move(move);
+			System.out.print(level.showLevel());
+			System.out.println(level.showPlayer());
+		}
+	}
+	
+	/**
+	 * Testing that the player picks up keys,
+	 * but not when they already have a key
+	 */
+	public void testLevel03() {
+		Level level = new Level(SampleMaze.LEVEL03);
+		System.out.println(level.showLevel());
+		
+		Direction[] moves = {
+				Direction.DOWN, Direction.DOWN, Direction.RIGHT, Direction.RIGHT,
+				Direction.UP,   Direction.UP,   Direction.DOWN,  Direction.DOWN,
+				Direction.UP
+		};
+		
+		for (Direction move: moves) {
+			level.move(move);
+			System.out.print(level.showLevel());
+			System.out.println(level.showPlayer());
+		}
+	}
+	
+	/**
+	 * Testing that the player picks up treasure
+	 */
 	public void testLevel02() {
 		Level level = new Level(SampleMaze.LEVEL02);
 		System.out.println(level.showLevel());

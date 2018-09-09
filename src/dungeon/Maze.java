@@ -32,14 +32,6 @@ public class Maze {
 		for (int i = 0; i < this.height; i++)
 			for (int j = 0; j < this.width; j++)
 				grid[i][j] = new Path(j, i);
-		
-		// Create a border
-		for (int i = 0; i < width; i++) {
-			things.add(new Wall(grid[0][i]));
-			things.add(new Wall(grid[height - 1][i]));
-			things.add(new Wall(grid[i][width -  1]));
-			things.add(new Wall(grid[i][0]));
-		}
 	}
 	
 	public Tile getStartTile() {
@@ -96,7 +88,7 @@ public class Maze {
 		
 		return maze;
 	}
-
+	
 	public void moveEntity(Entity entity, Direction move) {
 		Tile newTile = this.getTile(entity.getY() + move.getDY(),
 				                    entity.getX() + move.getDX());
@@ -110,16 +102,15 @@ public class Maze {
 	
 	public Entity getOccupant(Tile t) {
 		for (Entity e: enemies) {
-			if (e.getX() == t.getX() && e.getY() == t.getY()) {
+			if (t.equals(e.getLocation()) && e.isCollidable()) {
 				return e;
 			}
 		}
 		for (Entity e: things) {
-			if (e.getX() == t.getX() && e.getY() == t.getY()) {
+			if (t.equals(e.getLocation()) && e.isCollidable()) {
 				return e;
 			}
 		}
 		return null;
 	}
-	
 }

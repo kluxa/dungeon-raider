@@ -19,8 +19,16 @@ public abstract class Entity {
 		return location.getY();
 	}
 	
+	public Tile getLocation() {
+		return location;
+	}
+	
 	public void setLocation(Tile t) {
 		location = t;
+	}
+	
+	public boolean isCollidable() {
+		return true;
 	}
 	
 	public abstract char toChar();

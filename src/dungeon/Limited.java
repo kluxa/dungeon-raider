@@ -10,8 +10,10 @@ public abstract class Limited extends Collectible {
 
 	@Override
 	public void pickUp(Player player) {
-		// TODO Auto-generated method stub
-
+		if (player.numItemsOfType(this) >= carryLimit) {
+			Item i = player.getItemOfType(this);
+			player.dropItem(i);
+		}
+		player.pickUp(this);
 	}
-	
 }

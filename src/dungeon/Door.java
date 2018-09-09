@@ -2,20 +2,34 @@ package dungeon;
 
 public class Door extends NonLivingEntity {
 	private boolean isOpen;
+	private String color;
 	
 	public Door(Tile tile) {
 		super(tile);
 		this.isOpen = false;
-		
+	}
+	
+	public Door(Tile tile, String color) {
+		super(tile);
+		this.color = color;
 	}
 	
 	@Override
 	public void collide(Entity entity) {
-		// TODO:
-		// If the door is closed, collide
-		// should do nothing
-		// If the door is open, the entity
-		// should be able to stand there
+		if (entity instanceof Player) {
+			Player p = (Player)entity;
+			Key matchingKey = new Key(color);
+			if (p.hasItem(matchingKey)) {
+				System.out.println("Unlocked!");
+				isOpen = true;
+				p.consumeItem(matchingKey);
+			}
+		}
+	}
+	
+	@Override
+	public boolean isCollidable() {
+		return !isOpen;
 	}
 	
 	@Override
@@ -25,6 +39,6 @@ public class Door extends NonLivingEntity {
 
 	@Override
 	public char toChar() {
-		return 'D';
+		return Character.toUpperCase(color.charAt(0));
 	}
 }
