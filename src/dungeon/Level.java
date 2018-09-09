@@ -21,6 +21,21 @@ public class Level {
 	}
 	
 	/**
+	 * 
+	 * @return a string representation of the level
+	 */
+	public String showLevel() {
+		return maze.showMaze();
+	}
+	
+	public Player getPlayer () {
+		return this.player;
+	}
+	
+	////////////////////////////////////////////////////////////////////
+	// METHODS FOR MAKING A MOVE
+	
+	/**
 	 * Plays out a turn with the given player move
 	 * @param the direction for the player to move
 	 */
@@ -30,18 +45,15 @@ public class Level {
 		nextMove(move);
 	}
 	
-	/**
-	 * 
-	 * @return a string representation of the level
-	 */
-	public String showLevel() {
-		return maze.showMaze();
+	public void dropBomb() {
+		System.out.println("Fire in the hole!");
+		// TODO: This is a stub implementation
 	}
-
-
-
-	public Player getPlayer () {
-		return this.player;
+	
+	public void fireArrow(Direction move) {
+		System.out.printf("Firing an arrow %s\n",
+				move.toString());
+		// TODO: This is a stub implementation
 	}
 	
 	////////////////////////////////////////////////////////////////////
