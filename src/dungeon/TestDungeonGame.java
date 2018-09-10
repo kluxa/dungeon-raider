@@ -7,7 +7,7 @@ public class TestDungeonGame {
 	// NOT JUnit tests.
 	public static void main(String[] args) {
 		TestDungeonGame test = new TestDungeonGame();
-		test.testLevel08();
+		test.testLevel05();
 		
 		
 		
@@ -95,7 +95,7 @@ public class TestDungeonGame {
 				Direction.DOWN,  Direction.DOWN,  Direction.RIGHT, Direction.RIGHT,
 				Direction.DOWN,  Direction.RIGHT, Direction.RIGHT, Direction.RIGHT,
 				Direction.RIGHT, Direction.UP,    Direction.LEFT,  Direction.LEFT,
-				Direction.LEFT,  Direction.LEFT,  Direction.LEFT
+				Direction.LEFT,  Direction.LEFT,  Direction.LEFT,  Direction.UP
 		};
 		
 		for (Direction move: moves) {
