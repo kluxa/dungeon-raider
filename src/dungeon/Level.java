@@ -40,15 +40,21 @@ public class Level {
 		nextMove(move);
 	}
 	
+	//STEPH: started implementing
 	public void dropBomb() {
 		System.out.println("Fire in the hole!");
-		// TODO: This is a stub implementation
+		//steph
+		if(player.hasItem(unlitBomb)) player.dropItem(unlitBomb);
+		//steph
 	}
 	
+	//STEPH: started implementing
 	public void fireArrow(Direction move) {
 		System.out.printf("Firing an arrow %s\n",
 				move.toString());
-		// TODO: This is a stub implementation
+		//steph
+		if(player.hasItem(arrow)) player.dropItem(arrow);
+		//steph
 	}
 	
 	////////////////////////////////////////////////////////////////////
@@ -75,15 +81,23 @@ public class Level {
 	////////////////////////////////////////////////////////////////////
 	// METHODS FOR TESTING
 	
+	//STEPH : implementing
 	/**
 	 * Checks if the player is alive
 	 * @return true if the player is alive
 	 */
 	public boolean playerIsAlive() {
 		// TODO: This is a stub implementation
-		return true;
+
+		//steph
+		if(player.isAlive) return true;
+
+		return false;
+		//steph
 	}
 	
+
+	//STEPH : implementing 
 	/**
 	 * Checks if the player is at a certain coordinate
 	 * NOTE: The top-left cell of the maze is (0, 0)
@@ -93,7 +107,12 @@ public class Level {
 	 */
 	public boolean playerIsAt(int y, int x) {
 		// TODO: This is a stub implementation
-		return true;
+
+		//steph
+		if(player.getX() == y && player.getY() == x) return true;
+
+		return false;
+		//steph
 	}
 	
 	/**
@@ -104,7 +123,11 @@ public class Level {
 	 */
 	public int playerHas(Item i) {
 		// TODO: This is a stub implementation
-		return 0;
+
+		//steph
+		return player.numItemsOfType(i);
+		//steph
+		//return 0;
 	}
 	
 	/**
@@ -117,7 +140,13 @@ public class Level {
 	 */
 	public int getNumOfEntity(Entity e) {
 		// TODO: This is a stub implementation
-		return 0;
+
+		//steph
+		//return 0;
+
+		return maze.getEntities(e);
+
+		//steph
 	}
 	
 	/**
@@ -129,16 +158,30 @@ public class Level {
 	 */
 	public boolean entityIsAt(Entity e, int y, int x) {
 		// TODO: This is a stub implementation
-		return true;
+		//return true;
+
+		//steph
+
+		if(e.getX() == y && e.getY() == x) return true;
+
+		return false;
+
+		//steph
+
 	}
 	
 	/**
 	 * Gets the number of triggered floor switches
 	 * @return the number of triggered floor switches
 	 */
-	public boolean numTriggeredFloorSwitches() {
+	public int numTriggeredFloorSwitches() {
 		// TODO: This is a stub implementation
-		return true;
+
+		//steph
+
+		return maze.numOfTriggeredSwitches();
+
+		//steph
 	}
 	
 	/**
