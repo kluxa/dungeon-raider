@@ -1,5 +1,8 @@
 package dungeon;
 
+import items.Item;
+import enemies.Enemy;
+
 public class Player extends LivingEntity {
 	private Maze maze;
 	private Inventory inventory;
@@ -14,10 +17,11 @@ public class Player extends LivingEntity {
 	}
 	
 	@Override
-	public void collide(Entity entity) {
+	public void collide(Entity e) {
 		// If anything collides with the
-		// player, the player dies.
-		this.die();
+		// player, the player should die
+		// unless they are invincible
+		
 	}
 	
 	@Override
@@ -36,6 +40,23 @@ public class Player extends LivingEntity {
 	@Override
 	public char toChar() {
 		return '@';
+	}
+	
+	public void fight(Enemy e) {
+		if (inventory.hasWeapon()) {
+			inventory.useWeapon();
+			e.die();
+		} else {
+			die();
+		}
+	}
+	
+	public void becomeInvincible() {
+		
+	}
+	
+	public void setFlying() {
+		isFlying = true;
 	}
 	
 	public Maze getMaze() {

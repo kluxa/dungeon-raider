@@ -1,9 +1,11 @@
-package dungeon;
+package items;
+
+import dungeon.*;
 
 public abstract class Item {
 	
 	public abstract void pickUp(Player player);
-
+	
 	public abstract char toChar();
 	
 	/**
@@ -22,4 +24,5 @@ public abstract class Item {
 	public String toString() {
 		return this.getClass().getSimpleName();
 	}
+	
 }

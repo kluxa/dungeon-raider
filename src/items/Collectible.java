@@ -1,4 +1,6 @@
-package dungeon;
+package items;
+
+import dungeon.*;
 
 public abstract class Collectible extends Item {
 	

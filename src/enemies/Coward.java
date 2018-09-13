@@ -1,10 +1,11 @@
-package dungeon;
+package enemies;
+
+import dungeon.Tile;
 
 public class Coward extends Enemy {
 
 	public Coward(Tile tile) {
 		super(tile);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

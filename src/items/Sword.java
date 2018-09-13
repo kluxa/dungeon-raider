@@ -1,4 +1,4 @@
-package dungeon;
+package items;
 
 public class Sword extends Limited {
 	private static final int USES = 5;
@@ -18,4 +18,13 @@ public class Sword extends Limited {
 	public char toChar() {
 		return 'S';
 	}
+	
+	public void use() {
+		usesLeft--;
+	}
+	
+	public int getUsesLeft() {
+		return usesLeft;
+	}
+	
 }

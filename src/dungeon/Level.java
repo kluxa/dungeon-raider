@@ -1,5 +1,7 @@
 package dungeon;
 
+import items.Item;
+
 public class Level {
 	private Player player;
 	private Maze maze;
@@ -59,7 +61,7 @@ public class Level {
 	 * @return an ASCII representation of the level
 	 */
 	public String showLevel() {
-		char[][] rep = maze.showMaze();
+		char[][] rep = maze.toCharArray();
 		rep[2 * player.getY() + 1][4 * player.getX() + 2] = '@';
 		StringBuilder sb = new StringBuilder();
 		for (char[] row: rep) {

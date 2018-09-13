@@ -2,6 +2,8 @@ package dungeon;
 
 import java.util.ArrayList;
 
+import items.Item;
+
 public abstract class Tile {
 	private int x;
 	private int y;
@@ -29,7 +31,7 @@ public abstract class Tile {
 		// Do nothing
 	}
 	
-	public void deposit(Item item) {
+	public void addItem(Item item) {
 		items.add(item);
 	}
 	

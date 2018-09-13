@@ -2,6 +2,8 @@ package dungeon;
 
 import java.util.ArrayList;
 
+import items.*;
+
 public class Inventory {
 	private ArrayList<Item> items;
 	
@@ -38,6 +40,30 @@ public class Inventory {
 			}
 		}
 		return null;
+	}
+	
+	public boolean hasWeapon() {
+		for (Item heldItem: items) {
+			if (heldItem instanceof Sword) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void useWeapon() {
+		Sword s = null;
+		for (Item heldItem: items) {
+			if (heldItem instanceof Sword) {
+				s = (Sword)heldItem;
+			}
+		}
+		if (s != null) {
+			s.use();
+			if (s.getUsesLeft() == 0) {
+				items.remove(s);
+			}
+		}
 	}
 	
 	@Override

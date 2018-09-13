@@ -1,7 +1,9 @@
-package dungeon;
+package items;
+
+import dungeon.*;
 
 public abstract class Potion extends Item {
-
+	
 	public Potion() {
 		// TODO Auto-generated constructor stub
 	}

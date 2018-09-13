@@ -1,4 +1,6 @@
-package dungeon;
+package items;
+
+import dungeon.*;
 
 public abstract class Limited extends Collectible {
 	private int carryLimit;
@@ -7,7 +9,7 @@ public abstract class Limited extends Collectible {
 		super();
 		carryLimit = limit;
 	}
-
+	
 	@Override
 	public void pickUp(Player player) {
 		if (player.numItemsOfType(this) >= carryLimit) {
@@ -16,4 +18,5 @@ public abstract class Limited extends Collectible {
 		}
 		player.pickUp(this);
 	}
+	
 }

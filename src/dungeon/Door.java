@@ -1,5 +1,7 @@
 package dungeon;
 
+import items.Key;
+
 public class Door extends NonLivingEntity {
 	private boolean isOpen;
 	private String color;

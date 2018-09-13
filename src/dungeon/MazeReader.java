@@ -1,5 +1,8 @@
 package dungeon;
 
+import enemies.*;
+import items.*;
+
 public class MazeReader {
 	
 	public Maze readMaze(SampleMaze sampleMaze) {

@@ -1,4 +1,4 @@
-package dungeon;
+package items;
 
 public class Key extends Limited {
 	private static final int CARRY_LIMIT = 1;
@@ -31,4 +31,5 @@ public class Key extends Limited {
 	public String toString() {
 		return String.format("Key (%s)", color);
 	}
+	
 }

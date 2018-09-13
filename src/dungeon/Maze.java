@@ -2,6 +2,9 @@ package dungeon;
 
 import java.util.ArrayList;
 
+import enemies.Enemy;
+import items.Item;
+
 public class Maze {
 	private Tile[][] grid;
 	private int height;
@@ -62,7 +65,7 @@ public class Maze {
 	}
 	
 	public void addItem(int row, int col, Item i) {
-		grid[row][col].deposit(i);
+		grid[row][col].addItem(i);
 	}
 	
 	/**
@@ -72,7 +75,7 @@ public class Maze {
 	 *         maze for printing to the terminal
 	 */
 	
-	public char[][] showMaze() {
+	public char[][] toCharArray() {
 		char[][] maze = new char[2 * height + 1][4 * width + 1];
 		for (Entity e: things) {
 			maze[2 * e.getY() + 1][4 * e.getX() + 2] = e.toChar();
@@ -92,16 +95,16 @@ public class Maze {
 		return maze;
 	}
 	
-	public void moveEntity(Entity entity, Direction move) {
-		Tile oldTile = entity.getLocation();
-		Tile newTile = this.getTile(entity.getY() + move.getDY(),
-				                    entity.getX() + move.getDX());
-		Entity e = getOccupant(newTile);
-		if (e != null) {
-			e.collide(entity);
+	public void moveEntity(Entity e, Direction move) {
+		Tile oldTile = e.getLocation();
+		Tile newTile = this.getTile(e.getY() + move.getDY(),
+				                    e.getX() + move.getDX());
+		Entity occupant = getOccupant(newTile);
+		if (occupant != null) {
+			occupant.collide(e);
 		} else {
-			oldTile.depart(entity);
-			newTile.arrive(entity);
+			oldTile.depart(e);
+			newTile.arrive(e);
 		}
 	}
 	
