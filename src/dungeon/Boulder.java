@@ -1,5 +1,7 @@
 package dungeon;
 
+import player.Player;
+
 public class Boulder extends NonLivingEntity {
 
 	public Boulder(Tile tile) {
@@ -17,8 +19,8 @@ public class Boulder extends NonLivingEntity {
 
 	@Override
 	public void getBlownUp() {
-		// TODO Auto-generated method stub
-
+		getLocation().depart(this);
+		setLocation(null);
 	}
 
 	@Override

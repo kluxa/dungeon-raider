@@ -13,7 +13,7 @@ public class Wall extends NonLivingEntity {
 	
 	@Override
 	public void getBlownUp() {
-		// Do nothing
+		System.out.println("Walls don't get blown up.");
 	}
 
 	@Override

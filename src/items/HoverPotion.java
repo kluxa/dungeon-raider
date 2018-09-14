@@ -1,12 +1,8 @@
 package items;
 
-import dungeon.*;
+import player.Player;
 
 public class HoverPotion extends Potion {
-	
-	public HoverPotion() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	@Override
 	public void applyEffect(Player player) {

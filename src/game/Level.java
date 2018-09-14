@@ -1,31 +1,31 @@
-package dungeon;
+package game;
 
-import items.Item;
+import java.util.ArrayList;
+
+import dungeon.*;
+import items.*;
+import player.*;
 
 public class Level {
 	private Player player;
 	private Maze maze;
 	
-	public Level(SampleMaze sampleMaze) {
+	public Level(TestMaze sampleMaze) {
 		MazeReader reader = new MazeReader();
 		maze = reader.readMaze(sampleMaze);
 		player = new Player(maze);
+		maze.setPlayer(player);
 	}
 	
-	/**
-	 * The game is turn-based - the player
-	 * first makes their move, then all
-	 * enemies make their move.
-	 */
-	private void nextMove(Direction move) {
-		player.setDirection(move);
-		player.move();
-		maze.cleanUp();
+	private void update() {
+		maze.updateBombs();
+		
+		// Enemies update here
+		
+		player.updateState();
 	}
 	
-	
-	
-	public Player getPlayer () {
+	public Player getPlayer() {
 		return this.player;
 	}
 	
@@ -39,15 +39,17 @@ public class Level {
 	public void move(Direction move) {
 		System.out.printf("Moving %s\n",
 				move.toString());
-		nextMove(move);
+		player.setDirection(move);
+		player.move();
+		maze.cleanUp();
+		update();
 	}
 	
-	//STEPH: started implementing
 	public void dropBomb() {
 		System.out.println("Fire in the hole!");
-		//steph
-		if(player.hasItem(unlitBomb)) player.dropItem(unlitBomb);
-		//steph
+		player.consumeItem(new UnlitBomb());
+		maze.addEntity(new LitBomb(player.getLocation(), maze));
+		update();
 	}
 	
 	//STEPH: started implementing
@@ -55,7 +57,7 @@ public class Level {
 		System.out.printf("Firing an arrow %s\n",
 				move.toString());
 		//steph
-		if(player.hasItem(arrow)) player.dropItem(arrow);
+		// if(player.hasItem(arrow)) player.dropItem(arrow);
 		//steph
 	}
 	
@@ -89,17 +91,9 @@ public class Level {
 	 * @return true if the player is alive
 	 */
 	public boolean playerIsAlive() {
-		// TODO: This is a stub implementation
-
-		//steph
-		if(player.isAlive) return true;
-
-		return false;
-		//steph
+		return player.isAlive();
 	}
 	
-
-	//STEPH : implementing 
 	/**
 	 * Checks if the player is at a certain coordinate
 	 * NOTE: The top-left cell of the maze is (0, 0)
@@ -108,13 +102,7 @@ public class Level {
 	 * @return true if the player is at (y, x)
 	 */
 	public boolean playerIsAt(int y, int x) {
-		// TODO: This is a stub implementation
-
-		//steph
-		if(player.getX() == y && player.getY() == x) return true;
-
-		return false;
-		//steph
+		return (player.getY() == y && player.getX() == x);
 	}
 	
 	/**
@@ -124,12 +112,7 @@ public class Level {
 	 * @return the amount of i that the player has
 	 */
 	public int playerHas(Item i) {
-		// TODO: This is a stub implementation
-
-		//steph
 		return player.numItemsOfType(i);
-		//steph
-		//return 0;
 	}
 	
 	/**
@@ -141,14 +124,21 @@ public class Level {
 	 * @return the amount of a particular entity
 	 */
 	public int getNumOfEntity(Entity e) {
+		return 0;
 		// TODO: This is a stub implementation
 
 		//steph
 		//return 0;
 
-		return maze.getEntities(e);
+		// return maze.getEntities(e);
 
 		//steph
+	}
+	
+	
+	public boolean itemIsAt(Item i, int y, int x) {
+		// TODO: This is a stub implementation
+		return false;
 	}
 	
 	/**
@@ -159,17 +149,12 @@ public class Level {
 	 * @return true if there is an entity e at (y, x)
 	 */
 	public boolean entityIsAt(Entity e, int y, int x) {
-		// TODO: This is a stub implementation
-		//return true;
-
-		//steph
-
-		if(e.getX() == y && e.getY() == x) return true;
-
+		Tile t = maze.getTile(y, x);
+		ArrayList<Entity> occupants = maze.getOccupants(t);
+		for (Entity o: occupants) {
+			if (o.getClass() == e.getClass()) return true;
+		}
 		return false;
-
-		//steph
-
 	}
 	
 	/**
@@ -178,10 +163,10 @@ public class Level {
 	 */
 	public int numTriggeredFloorSwitches() {
 		// TODO: This is a stub implementation
-
+		return 0;
 		//steph
 
-		return maze.numOfTriggeredSwitches();
+		// return maze.numOfTriggeredSwitches();
 
 		//steph
 	}

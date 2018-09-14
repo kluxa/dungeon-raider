@@ -1,6 +1,7 @@
 package dungeon;
 
 import items.Key;
+import player.Player;
 
 public class Door extends NonLivingEntity {
 	private boolean isOpen;
@@ -22,6 +23,7 @@ public class Door extends NonLivingEntity {
 			Player p = (Player)entity;
 			Key matchingKey = new Key(color);
 			if (p.hasItem(matchingKey)) {
+				System.out.println("Unlocked!");
 				isOpen = true;
 				p.consumeItem(matchingKey);
 			}
@@ -35,7 +37,7 @@ public class Door extends NonLivingEntity {
 	
 	@Override
 	public void getBlownUp() {
-		// Do nothing
+		System.out.println("Doors don't get blown up.");
 	}
 
 	@Override

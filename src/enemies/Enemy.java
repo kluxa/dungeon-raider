@@ -1,6 +1,7 @@
 package enemies;
 
 import dungeon.*;
+import player.Player;
 
 public abstract class Enemy extends LivingEntity {
 	private int awareDistance;

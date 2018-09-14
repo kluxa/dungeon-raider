@@ -1,6 +1,6 @@
-package dungeon;
+package game;
 
-public enum SampleMaze {
+public enum TestMaze {
 	/**
 	 * MAZE CREATION CODES
 	 * 
@@ -25,6 +25,7 @@ public enum SampleMaze {
 	 * 'G' = green door
 	 * 'R' = red door
 	 * 'Y' = yellow door
+	 * '*' = lit bomb - lit bombs don't actually appear in the level
 	 * ' ' = no entity
 	 * 
 	 * Item character codes:
@@ -343,8 +344,10 @@ public enum SampleMaze {
 	},
 	
 	/**
-	 * Pits - testing that the player dies when they
-	 * walk onto a pit tile
+	 * Testing pushing boulders into pits and walking onto a
+	 * pit tile (and dying).
+	 * Testing pushing boulders into pits while hovering and
+	 * moving onto a pit tile while hovering.
 	 */
 	LEVEL08 {
 		public int getWidth() { return 6; }
@@ -377,12 +380,103 @@ public enum SampleMaze {
 					{' ', ' ', ' ', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', 'H', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
+	},
+	
+	/**
+	 * Bombs - testing collecting and dropping bombs.
+	 * Testing blowing up boulders. Testing a chain reaction explosion.
+	 * Testing that walls and doors don't get blown up. Testing the
+	 * player dying from a bomb.
+	 */
+	LEVEL09 {
+		public int getWidth() { return 10; }
+		public int getHeight() { return 5; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {    // [5][5]
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', 'S', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
+					{'W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', 'O', 'O', ' ', ' ', ' ', 'R', 'W'},
+					{'W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', 'B', ' ', ' ', ' ', ' '},
+					{' ', 'B', 'B', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', 'B', 'B', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
+	},
+	
+	/**
+	 * Testing the player surviving blasts with an invincibility
+	 * potion. Testing that the player dies when landing on a pit
+	 * tile, even with an invincibility potion. Testing that the
+	 * player survives with both potions.
+	 */
+	LEVEL10 {
+		public int getWidth() { return 6; }
+		public int getHeight() { return 5; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {    // [5][5]
 					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', 'S', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', 'P', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W', 'W'},
+					{'W', ' ', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', 'B', 'I', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', 'H', ' ', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', ' ', ' '}
 			};
 			return items;
 		}
 	};
+	
+	
+	
 	
 	// Add more sample levels to test...
 	// Add a comment to the top of each level to

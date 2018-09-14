@@ -3,6 +3,7 @@ package dungeon;
 import java.util.ArrayList;
 
 import items.Item;
+import player.Player;
 
 public abstract class Tile {
 	private int x;

@@ -12,7 +12,7 @@ public class FloorSwitch extends Tile {
 	public void arrive(Entity entity) {
 		super.arrive(entity);
 		if (entity instanceof Boulder) {
-			// System.out.println("Triggered!");
+			System.out.println("Triggered!");
 			isTriggered = true;
 		}
 	}
@@ -20,7 +20,7 @@ public class FloorSwitch extends Tile {
 	@Override
 	public void depart(Entity entity) {
 		if (entity instanceof Boulder) {
-			// System.out.println("Untriggered!");
+			System.out.println("Untriggered!");
 			isTriggered = false;
 		}
 	}

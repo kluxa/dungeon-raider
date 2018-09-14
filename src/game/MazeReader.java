@@ -1,11 +1,21 @@
-package dungeon;
+package game;
 
+import dungeon.Boulder;
+import dungeon.Door;
+import dungeon.Entity;
+import dungeon.Exit;
+import dungeon.FloorSwitch;
+import dungeon.Maze;
+import dungeon.Path;
+import dungeon.Pit;
+import dungeon.Tile;
+import dungeon.Wall;
 import enemies.*;
 import items.*;
 
 public class MazeReader {
 	
-	public Maze readMaze(SampleMaze sampleMaze) {
+	public Maze readMaze(TestMaze sampleMaze) {
 		int height = sampleMaze.getHeight();
 		int width = sampleMaze.getWidth();
 		Maze maze = new Maze(height, width);

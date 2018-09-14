@@ -1,6 +1,10 @@
-package dungeon;
+package player;
 
 import items.Item;
+import dungeon.Direction;
+import dungeon.Entity;
+import dungeon.LivingEntity;
+import dungeon.Maze;
 import enemies.Enemy;
 
 public class Player extends LivingEntity {
@@ -8,26 +12,24 @@ public class Player extends LivingEntity {
 	private Inventory inventory;
 	private Direction move;
 	private boolean isFlying;
+	private PlayerState state;
 	
 	public Player(Maze maze) {
 		super(maze.getStartTile());
 		inventory = new Inventory();
+		state = new NormalState(this);
 		this.isFlying = false;
 		this.maze = maze;
 	}
 	
 	@Override
 	public void collide(Entity e) {
-		// If anything collides with the
-		// player, the player should die
-		// unless they are invincible
-		
+		state.collide(e);
 	}
 	
 	@Override
 	public void getBlownUp() {
-		// TODO Auto-generated method stub
-		
+		state.hitByBlast();
 	}
 	
 	@Override
@@ -37,25 +39,30 @@ public class Player extends LivingEntity {
 		}
 	}
 	
+	public void updateState() {
+		state.update();
+	}
+	
 	@Override
 	public char toChar() {
 		return '@';
 	}
 	
 	public void fight(Enemy e) {
-		if (inventory.hasWeapon()) {
-			inventory.useWeapon();
-			e.die();
-		} else {
-			die();
-		}
+		state.fight(e);
 	}
 	
 	public void becomeInvincible() {
-		
+		System.out.println("This... is to go... even further beyond!");
+		this.setState(new InvincibleState(this));
+	}
+	
+	public void setState(PlayerState state) {
+		this.state = state;
 	}
 	
 	public void setFlying() {
+		System.out.println("I believe I can fly...");
 		isFlying = true;
 	}
 	
@@ -98,6 +105,10 @@ public class Player extends LivingEntity {
 	
 	public void consumeItem(Item i) {
 		inventory.removeItem(i);
+	}
+	
+	public void useWeapon() {
+		inventory.useWeapon();
 	}
 	
 	@Override

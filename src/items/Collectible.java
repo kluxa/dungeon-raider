@@ -1,6 +1,6 @@
 package items;
 
-import dungeon.*;
+import player.Player;
 
 public abstract class Collectible extends Item {
 	

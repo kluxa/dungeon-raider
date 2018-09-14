@@ -20,7 +20,7 @@ public abstract class LivingEntity extends Entity {
 	 * causes the entity to die
 	 */
 	public void die() {
-		System.out.println("Someone has died, FeelsBadMan");
+		System.out.println("Someone died");
 		isAlive = false;
 	}
 	

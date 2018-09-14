@@ -4,15 +4,18 @@ import java.util.ArrayList;
 
 import enemies.Enemy;
 import items.Item;
+import player.Player;
 
 public class Maze {
 	private Tile[][] grid;
 	private int height;
 	private int width;
 	private Tile start;
+	private Player player;
 	
 	private ArrayList<LivingEntity> enemies;
 	private ArrayList<NonLivingEntity> things;
+	private ArrayList<LitBomb> bombs;
 	
 	/**
 	 * Create a maze of given height and width.
@@ -30,6 +33,7 @@ public class Maze {
 	private void resetMaze() {
 		enemies = new ArrayList<LivingEntity>();
 		things = new ArrayList<NonLivingEntity>();
+		bombs = new ArrayList<LitBomb>();
 		
 		// Sets all tiles to normal paths
 		for (int i = 0; i < this.height; i++)
@@ -52,12 +56,18 @@ public class Maze {
 	
 	public void addEntity(Entity e) {
 		Tile t = e.getLocation();
-		if (e instanceof LivingEntity) {
+		if (e instanceof LitBomb) {
+			bombs.add((LitBomb)e);
+		} else if (e instanceof LivingEntity) {
 			enemies.add((Enemy) e);
 		} else {
 			things.add((NonLivingEntity) e);
 		}
 		t.arrive(e);
+	}
+	
+	public void setPlayer(Player p) {
+		player = p;
 	}
 	
 	public Tile getTile(int row, int col) {
@@ -71,7 +81,7 @@ public class Maze {
 	/**
 	 * 
 	 * @param p the player
-	 * @return an string representation of the
+	 * @return a char[][] representation of the
 	 *         maze for printing to the terminal
 	 */
 	
@@ -81,6 +91,9 @@ public class Maze {
 			maze[2 * e.getY() + 1][4 * e.getX() + 2] = e.toChar();
 		}
 		for (Entity e: enemies) {
+			maze[2 * e.getY() + 1][4 * e.getX() + 2] = e.toChar();
+		}
+		for (Entity e: bombs) {
 			maze[2 * e.getY() + 1][4 * e.getX() + 2] = e.toChar();
 		}
 		for (int row = 0; row < height; row++) {
@@ -99,7 +112,7 @@ public class Maze {
 		Tile oldTile = e.getLocation();
 		Tile newTile = this.getTile(e.getY() + move.getDY(),
 				                    e.getX() + move.getDX());
-		Entity occupant = getOccupant(newTile);
+		Entity occupant = getCollidableOccupant(newTile);
 		if (occupant != null) {
 			occupant.collide(e);
 		} else {
@@ -108,7 +121,30 @@ public class Maze {
 		}
 	}
 	
-	public Entity getOccupant(Tile t) {
+	public ArrayList<Entity> getOccupants(Tile t) {
+		ArrayList<Entity> occupants = new ArrayList<Entity>();
+		for (Entity e: enemies) {
+			if (t.equals(e.getLocation())) {
+				occupants.add(e);
+			}
+		}
+		for (Entity e: things) {
+			if (t.equals(e.getLocation())) {
+				occupants.add(e);
+			}
+		}
+		for (Entity e: bombs) {
+			if (t.equals(e.getLocation())) {
+				occupants.add(e);
+			}
+		}
+		if (t.equals(player.getLocation())) {
+			occupants.add(player);
+		}
+		return occupants;
+	}
+	
+	public Entity getCollidableOccupant(Tile t) {
 		for (Entity e: enemies) {
 			if (t.equals(e.getLocation()) && e.isCollidable()) {
 				return e;
@@ -122,8 +158,15 @@ public class Maze {
 		return null;
 	}
 	
+	public void updateBombs() {
+		for (LitBomb b: bombs)
+			b.countdown();
+		cleanUp();
+	}
+	
 	public void cleanUp() {
 		enemies.removeIf(e-> e.isAlive() == false);
 		things.removeIf(e-> e.getLocation() == null);
+		bombs.removeIf(e-> e.getLocation() == null);
 	}
 }

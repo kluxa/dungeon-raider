@@ -1,12 +1,8 @@
 package items;
 
-import dungeon.*;
+import player.Player;
 
 public class InvincibilityPotion extends Potion {
-	
-	public InvincibilityPotion() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	@Override
 	public void applyEffect(Player player) {
@@ -16,12 +12,6 @@ public class InvincibilityPotion extends Potion {
 	@Override
 	public char toChar() {
 		return 'I';
-	}
-	
-	@Override
-	public void pickUp(Player player) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
