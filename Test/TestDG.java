@@ -77,6 +77,71 @@ public class TestDG {
 		assertFalse("player didn't move", x == player.getX());
 		assertFalse("player didn't move", y == player.getY());
 
+		//test maze isn't null
+		assertTrue(player.getMaze() != null);
+
+		//Test collision mode
+		Tile tile = new Tile(1,1);
+		Boulder b = new Boulder(tile);
+		Enemy e = new Enemy(tile);
+
+		//if player collides with boulder isAlive = true
+		player.collide(b);
+		assertTrue(player.isAlive());
+
+		//if player collides with enemy isAlive = false
+		player.collide(e);
+		assertFalse(player.isAlive());
+
+		//Test player blows up
+		player.getBlownUp();
+		assertFalse(player.isAlive());
+
+		//Test player dies after falling
+		player.fall();
+		assertFalse(player.isAlive());
+
+		//Test player doesn't die if player can fly
+		player.setFlying();
+		player.fall();
+		assertTrue(player.isAlive());
+
+		//Test player pick item
+		Sword sword = new Sword();
+		player.pickUp();
+		assertTrue(player.numItemOfType(sword) > 0);
+
+		Arrow arrow = new Arrow();
+		player.pickUp();
+		assertTrue(player.numItemOfType(arrow) > 0);
+
+		Bomb bomb = new Bomb();
+		player.pickUp();
+		assertTrue(player.numItemOfType(bomb) > 0);
+
+		//Test player item drop and consume
+		player.dropItem(arrow);
+		assertTrue(player.numItemOfType(arrow) == 0);	
+
+		//Test player fight with sword
+		player.fight(e);
+		assertTrue(player.isAlive());
+
+		//Test player fight without sword
+		player.fight(e);
+		assertFalse(player.isAlive());
+
+		//Test state updating and invincibility
+		InvincibilityPotion ip = new InvincibilityPotion(player);
+		player.consumeItem(ip);
+		ip.applyEffect(player);
+		assertEquals(player.getState(), ip);
+
+		//Test fly potion 
+		HoverPotion hp = new HoverPotion();
+		player.consumeItem(hp);
+		hp.applyEffect(player);
+		assertTrue(player.isFlying());
 	}
 
 	/**
@@ -210,13 +275,5 @@ public class TestDG {
 		//Test level is complete
 		assertFalse(level.levelIsComplete());
 	}
-
-
-
-
-
-
-
-
 	
 }
