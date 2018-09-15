@@ -64,7 +64,7 @@ public enum TestMaze {
 			return tiles;
 		}
 		
-		public char[][] getEntities() {
+		public char[][] getSolidEntities() {
 			char[][] entities = {
 					{'W', 'W', 'W', 'W', 'W'},
 					{'W', ' ', ' ', ' ', 'W'},
@@ -105,7 +105,7 @@ public enum TestMaze {
 			return tiles;
 		}
 		
-		public char[][] getEntities() {
+		public char[][] getSolidEntities() {
 			char[][] entities = {
 					{'W', 'W', 'W', 'W', 'W'},
 					{'W', ' ', ' ', ' ', 'W'},
@@ -147,7 +147,7 @@ public enum TestMaze {
 			return tiles;
 		}
 		
-		public char[][] getEntities() {
+		public char[][] getSolidEntities() {
 			char[][] entities = {
 					{'W', 'W', 'W', 'W', 'W'},
 					{'W', ' ', ' ', ' ', 'W'},
@@ -191,7 +191,7 @@ public enum TestMaze {
 			return tiles;
 		}
 		
-		public char[][] getEntities() {
+		public char[][] getSolidEntities() {
 			char[][] entities = {
 					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
 					{'W', ' ', ' ', ' ', 'W', ' ', ' ', ' ', 'W'},
@@ -234,7 +234,7 @@ public enum TestMaze {
 			return tiles;
 		}
 		
-		public char[][] getEntities() {
+		public char[][] getSolidEntities() {
 			char[][] entities = {
 					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
 					{'W', ' ', ' ', 'O', ' ', 'O', ' ', ' ', 'W'},
@@ -277,7 +277,7 @@ public enum TestMaze {
 			return tiles;
 		}
 		
-		public char[][] getEntities() {
+		public char[][] getSolidEntities() {
 			char[][] entities = {
 					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
 					{'W', ' ', ' ', 'O', ' ', 'O', ' ', ' ', 'W'},
@@ -320,7 +320,7 @@ public enum TestMaze {
 			return tiles;
 		}
 		
-		public char[][] getEntities() {
+		public char[][] getSolidEntities() {
 			char[][] entities = {
 					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
 					{'W', ' ', ' ', ' ', 'O', ' ', ' ', ' ', 'W'},
@@ -364,7 +364,7 @@ public enum TestMaze {
 			return tiles;
 		}
 		
-		public char[][] getEntities() {
+		public char[][] getSolidEntities() {
 			char[][] entities = {
 					{'W', 'W', 'W', 'W', 'W', 'W'},
 					{'W', ' ', ' ', ' ', ' ', 'W'},
@@ -408,7 +408,7 @@ public enum TestMaze {
 			return tiles;
 		}
 		
-		public char[][] getEntities() {
+		public char[][] getSolidEntities() {
 			char[][] entities = {
 					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
 					{'W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
@@ -452,7 +452,7 @@ public enum TestMaze {
 			return tiles;
 		}
 		
-		public char[][] getEntities() {
+		public char[][] getSolidEntities() {
 			char[][] entities = {
 					{'W', 'W', 'W', 'W', 'W', 'W'},
 					{'W', ' ', ' ', ' ', ' ', 'W'},
@@ -485,6 +485,6 @@ public enum TestMaze {
 	public abstract int getHeight();
 	public abstract int getWidth();
 	public abstract char[][] getTiles();
-	public abstract char[][] getEntities();
+	public abstract char[][] getSolidEntities();
 	public abstract char[][] getItems();
 }

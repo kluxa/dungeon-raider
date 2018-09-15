@@ -2,23 +2,26 @@ package game;
 
 import java.util.ArrayList;
 
+import enemies.*;
 import dungeon.*;
-import items.*;
 import player.*;
+import items.*;
+import game.*;
 
 public class Level {
 	private Player player;
 	private Maze maze;
 	
 	public Level(TestMaze sampleMaze) {
-		MazeReader reader = new MazeReader();
+		MazeLoader reader = new MazeLoader();
 		maze = reader.readMaze(sampleMaze);
+		maze.prepMaze();
 		player = new Player(maze);
 		maze.setPlayer(player);
 	}
 	
 	private void update() {
-		maze.updateBombs();
+		player.updateBombs();
 		
 		// Enemies update here
 		
@@ -39,16 +42,15 @@ public class Level {
 	public void move(Direction move) {
 		System.out.printf("Moving %s\n",
 				move.toString());
-		player.setDirection(move);
-		player.move();
-		maze.cleanUp();
+		player.move(move);
 		update();
 	}
 	
 	public void dropBomb() {
-		System.out.println("Fire in the hole!");
-		player.consumeItem(new UnlitBomb());
-		maze.addEntity(new LitBomb(player.getLocation(), maze));
+		if (player.hasItem(new UnlitBomb())) {
+			System.out.println("Fire in the hole!");
+			player.consumeItem(new UnlitBomb());
+		}
 		update();
 	}
 	
@@ -123,7 +125,7 @@ public class Level {
 	 * @param e an entity
 	 * @return the amount of a particular entity
 	 */
-	public int getNumOfEntity(Entity e) {
+	public int getNumOfEntity(SolidEntity e) {
 		return 0;
 		// TODO: This is a stub implementation
 
@@ -148,10 +150,10 @@ public class Level {
 	 * @param x x-coordinate
 	 * @return true if there is an entity e at (y, x)
 	 */
-	public boolean entityIsAt(Entity e, int y, int x) {
-		Tile t = maze.getTile(y, x);
-		ArrayList<Entity> occupants = maze.getOccupants(t);
-		for (Entity o: occupants) {
+	public boolean entityIsAt(SolidEntity e, int y, int x) {
+		Square s = maze.getSquare(y, x);
+		ArrayList<SolidEntity> occupants = s.getOccupants();
+		for (SolidEntity o: occupants) {
 			if (o.getClass() == e.getClass()) return true;
 		}
 		return false;

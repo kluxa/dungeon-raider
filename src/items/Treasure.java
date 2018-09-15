@@ -1,6 +1,6 @@
 package items;
 
-public class Treasure extends Unlimited {
+public class Treasure extends UnlimitedCollectible {
 
 	public Treasure() {
 		// TODO Auto-generated constructor stub

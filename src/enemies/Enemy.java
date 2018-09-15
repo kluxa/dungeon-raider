@@ -1,7 +1,9 @@
 package enemies;
 
 import dungeon.*;
-import player.Player;
+import player.*;
+import items.*;
+import game.*;
 
 public abstract class Enemy extends LivingEntity {
 	private int awareDistance;
@@ -9,16 +11,16 @@ public abstract class Enemy extends LivingEntity {
 	private MovementPattern pattern;
 	public Direction move;
 	
-	public Enemy(Tile tile) {
-		super(tile);
+	public Enemy(Square s) {
+		super(s);
 		awareOfPlayer = false;
 		pattern = new NoMovement();
 	}
-
+	
 	@Override
-	public void collide(Entity entity) {
-		if (entity instanceof Player) {
-			Player p = (Player)entity;
+	public void collide(SolidEntity e) {
+		if (e instanceof Player) {
+			Player p = (Player) e;
 			p.fight(this);
 		}
 	}

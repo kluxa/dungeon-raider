@@ -1,6 +1,6 @@
 package items;
 
-public class Sword extends Limited {
+public class Sword extends LimitedCollectible {
 	private static final int USES = 5;
 	private static final int CARRY_LIMIT = 1;
 	private int usesLeft;

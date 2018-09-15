@@ -2,10 +2,10 @@ package items;
 
 import player.Player;
 
-public abstract class Limited extends Collectible {
+public abstract class LimitedCollectible extends Collectible {
 	private int carryLimit;
 	
-	public Limited(int limit) {
+	public LimitedCollectible(int limit) {
 		super();
 		carryLimit = limit;
 	}

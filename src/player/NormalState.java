@@ -1,6 +1,6 @@
 package player;
 
-import dungeon.Entity;
+import dungeon.SolidEntity;
 import enemies.Enemy;
 import items.Sword;
 
@@ -17,7 +17,7 @@ public class NormalState implements PlayerState {
 	}
 	
 	@Override
-	public void collide(Entity e) {
+	public void collide(SolidEntity e) {
 		if (e instanceof Enemy) {
 			player.die();
 		}

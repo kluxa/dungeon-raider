@@ -1,26 +1,29 @@
 package dungeon;
 
-import items.Key;
-import player.Player;
+import enemies.*;
+import dungeon.*;
+import player.*;
+import items.*;
+import game.*;
 
 public class Door extends NonLivingEntity {
 	private boolean isOpen;
 	private String color;
 	
-	public Door(Tile tile) {
-		super(tile);
-		this.isOpen = false;
+	public Door(String color) {
+		this(null, color);
 	}
 	
-	public Door(Tile tile, String color) {
-		super(tile);
+	public Door(Square s, String color) {
+		super(s);
+		isOpen = false;
 		this.color = color;
 	}
 	
 	@Override
-	public void collide(Entity entity) {
-		if (entity instanceof Player) {
-			Player p = (Player)entity;
+	public void collide(SolidEntity e) {
+		if (e instanceof Player) {
+			Player p = (Player) e;
 			Key matchingKey = new Key(color);
 			if (p.hasItem(matchingKey)) {
 				System.out.println("Unlocked!");
@@ -44,4 +47,14 @@ public class Door extends NonLivingEntity {
 	public char toChar() {
 		return Character.toUpperCase(color.charAt(0));
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null) return false;
+		if (this.getClass() != o.getClass()) return false;
+		Door d = (Door) o;
+		return (this.color.equalsIgnoreCase(d.color));
+	}
+	
 }

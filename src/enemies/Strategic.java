@@ -1,9 +1,9 @@
 package enemies;
 
-import dungeon.Direction;
-import dungeon.Maze;
-import dungeon.Tile;
-
+import dungeon.*;
+import player.*;
+import items.*;
+import game.*;
 
 /**
  * 
@@ -14,11 +14,11 @@ import dungeon.Tile;
  * towards the player instead.
  */
 public class Strategic implements MovementPattern {
-
+	
 	@Override
-	public Direction chooseMove(Tile currentTile, Maze maze) {
+	public Direction chooseMove(Square s, Maze maze) {
 		// TODO Auto-generated method stub
 		return Direction.DOWN;
 	}
-
+	
 }

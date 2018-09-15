@@ -1,10 +1,21 @@
 package dungeon;
 
-public abstract class LivingEntity extends Entity {
+import enemies.*;
+import dungeon.*;
+import player.*;
+import items.*;
+import game.*;
+
+public abstract class LivingEntity extends SolidEntity {
+	
 	private boolean isAlive;
 	
-	public LivingEntity(Tile tile) {
-		super(tile);
+	public LivingEntity() {
+		
+	}
+	
+	public LivingEntity(Square s) {
+		super(s);
 		this.isAlive = true;
 	}
 	
@@ -28,4 +39,5 @@ public abstract class LivingEntity extends Entity {
 	public void fall() {
 		die();
 	}
+	
 }

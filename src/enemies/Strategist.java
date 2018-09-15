@@ -1,11 +1,18 @@
 package enemies;
 
-import dungeon.Tile;
+import dungeon.*;
+import player.*;
+import items.*;
+import game.*;
 
 public class Strategist extends Enemy {
-
-	public Strategist(Tile tile) {
-		super(tile);
+	
+	public Strategist() {
+		this(null);
+	}
+	
+	public Strategist(Square s) {
+		super(s);
 	}
 
 	@Override

@@ -1,11 +1,12 @@
 package enemies;
 
-import dungeon.Direction;
-import dungeon.Maze;
-import dungeon.Tile;
+import dungeon.*;
+import player.*;
+import items.*;
+import game.*;
 
 public interface MovementPattern {
 	
-	public Direction chooseMove(Tile currentTile, Maze maze);
+	public Direction chooseMove(Square s, Maze maze);
 	
 }

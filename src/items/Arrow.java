@@ -1,6 +1,6 @@
 package items;
 
-public class Arrow extends Unlimited {
+public class Arrow extends UnlimitedCollectible {
 	
 	public Arrow() {
 		// TODO Auto-generated constructor stub

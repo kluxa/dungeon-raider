@@ -1,29 +1,51 @@
 package player;
 
-import items.Item;
-import dungeon.Direction;
-import dungeon.Entity;
-import dungeon.LivingEntity;
-import dungeon.Maze;
-import enemies.Enemy;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import enemies.*;
+import dungeon.*;
+import items.*;
+import game.*;
 
 public class Player extends LivingEntity {
 	private Maze maze;
 	private Inventory inventory;
-	private Direction move;
-	private boolean isFlying;
 	private PlayerState state;
+	private ArrayList<LitBomb> bombs;
+	private boolean isFlying;
+	private Direction move;
 	
 	public Player(Maze maze) {
-		super(maze.getStartTile());
+		super(maze.getStartSquare());
 		inventory = new Inventory();
 		state = new NormalState(this);
+		bombs = new ArrayList<>();
 		this.isFlying = false;
 		this.maze = maze;
 	}
 	
+	////////////////////////////////////////////////////////////////////
+	// Getters/Setters
+	
+	public Maze getMaze() {
+		return maze;
+	}
+	
+	public void setState(PlayerState state) {
+		this.state = state;
+	}
+	
+	public void setFlying() {
+		System.out.println("You can fly now!");
+		isFlying = true;
+	}
+	
+	////////////////////////////////////////////////////////////////////
+	// Game Events
+	
 	@Override
-	public void collide(Entity e) {
+	public void collide(SolidEntity e) {
 		state.collide(e);
 	}
 	
@@ -39,48 +61,32 @@ public class Player extends LivingEntity {
 		}
 	}
 	
-	public void updateState() {
-		state.update();
-	}
-	
-	@Override
-	public char toChar() {
-		return '@';
-	}
-	
 	public void fight(Enemy e) {
 		state.fight(e);
 	}
 	
 	public void becomeInvincible() {
-		System.out.println("This... is to go... even further beyond!");
-		this.setState(new InvincibleState(this));
+		setState(new InvincibleState(this));
 	}
 	
-	public void setState(PlayerState state) {
-		this.state = state;
+	public void updateState() {
+		state.update();
 	}
 	
-	public void setFlying() {
-		System.out.println("I believe I can fly...");
-		isFlying = true;
+	public void updateBombs() {
+		Iterator<LitBomb> it = bombs.iterator();
+		while (it.hasNext()) {
+			LitBomb bomb = it.next();
+			bomb.countdown();
+			if (bomb.getCountdown() == 0) {
+				it.remove();
+				bomb.explode();
+			}
+		}
 	}
 	
-	public Maze getMaze() {
-		return maze;
-	}
-	
-	public Direction getDirection() {
-		return move;
-	}
-	
-	public void setDirection(Direction move) {
-		this.move = move;
-	}
-	
-	public void move() {
-		maze.moveEntity(this, move);
-	}
+	////////////////////////////////////////////////////////////////////
+	// Inventory
 	
 	public boolean hasItem(Item i) {
 		return inventory.hasItem(i);
@@ -104,6 +110,9 @@ public class Player extends LivingEntity {
 	}
 	
 	public void consumeItem(Item i) {
+		if (i instanceof UnlitBomb) {
+			bombs.add(new LitBomb(getLocation()));
+		}
 		inventory.removeItem(i);
 	}
 	
@@ -115,4 +124,13 @@ public class Player extends LivingEntity {
 	public String toString() {
 		return inventory.toString();
 	}
+	
+	////////////////////////////////////////////////////////////////////
+	// Random Shit
+	
+	@Override
+	public char toChar() {
+		return '@';
+	}
+	
 }

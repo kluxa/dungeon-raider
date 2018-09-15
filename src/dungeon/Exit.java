@@ -1,20 +1,29 @@
 package dungeon;
 
+import enemies.*;
+import dungeon.*;
+import player.*;
+import items.*;
+import game.*;
+
 public class Exit extends Tile {
-
-	public Exit(int y, int x) {
-		super(y, x);
-	}
-
+	
 	@Override
-	public void arrive(Entity entity) {
-		super.arrive(entity);
-		// TODO Auto-generated method stub
-
+	public void arrive(SolidEntity e) {
+		if (e instanceof Player) {
+			// TODO
+			// Make the player win
+		}
+	}
+	
+	@Override
+	public void depart(SolidEntity e) {
+		// Do nothing
 	}
 	
 	@Override
 	public char toChar() {
 		return 'E';
 	}
+	
 }

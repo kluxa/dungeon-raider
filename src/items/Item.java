@@ -1,8 +1,12 @@
 package items;
 
-import player.Player;
+import dungeon.*;
+import enemies.*;
+import player.*;
+import items.*;
+import game.*;
 
-public abstract class Item {
+public abstract class Item extends Entity {
 	
 	public abstract void pickUp(Player player);
 	

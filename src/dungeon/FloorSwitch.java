@@ -1,36 +1,41 @@
 package dungeon;
 
+import enemies.*;
+import dungeon.*;
+import player.*;
+import items.*;
+import game.*;
+
 public class FloorSwitch extends Tile {
 	private boolean isTriggered;
 	
-	public FloorSwitch(int y, int x) {
-		super(y, x);
+	public FloorSwitch() {
 		this.isTriggered = false;
 	}
 	
+	public boolean isTriggered() {
+		return this.isTriggered;
+	}
+	
 	@Override
-	public void arrive(Entity entity) {
-		super.arrive(entity);
-		if (entity instanceof Boulder) {
+	public void arrive(SolidEntity e) {
+		if (e instanceof Boulder) {
 			System.out.println("Triggered!");
 			isTriggered = true;
 		}
 	}
 	
 	@Override
-	public void depart(Entity entity) {
-		if (entity instanceof Boulder) {
+	public void depart(SolidEntity e) {
+		if (e instanceof Boulder) {
 			System.out.println("Untriggered!");
 			isTriggered = false;
 		}
 	}
 	
-	public boolean isTriggered() {
-		return this.isTriggered;
-	}
-
 	@Override
 	public char toChar() {
 		return 'F';
 	}
+	
 }

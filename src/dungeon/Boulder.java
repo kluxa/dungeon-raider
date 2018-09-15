@@ -1,30 +1,31 @@
 package dungeon;
 
-import player.Player;
+import enemies.*;
+import dungeon.*;
+import player.*;
+import items.*;
+import game.*;
 
 public class Boulder extends NonLivingEntity {
-
-	public Boulder(Tile tile) {
-		super(tile);
-	}
-
+	
 	@Override
-	public void collide(Entity entity) {
-		if (entity instanceof Player) {
-			Player p = (Player)entity;
-			Direction move = p.getDirection();
-			p.getMaze().moveEntity(this, move);
+	public void collide(SolidEntity e) {
+		if (e instanceof Player) {
+			Direction move = e.getDirection();
+			move(move);
 		}
 	}
-
+	
 	@Override
 	public void getBlownUp() {
 		getLocation().depart(this);
 		setLocation(null);
 	}
-
+	
 	@Override
 	public char toChar() {
 		return 'O';
 	}
+
+	
 }

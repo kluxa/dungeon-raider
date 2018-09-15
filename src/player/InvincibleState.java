@@ -1,6 +1,6 @@
 package player;
 
-import dungeon.Entity;
+import dungeon.SolidEntity;
 import enemies.Enemy;
 
 public class InvincibleState implements PlayerState {
@@ -9,6 +9,7 @@ public class InvincibleState implements PlayerState {
 	private int countdown;
 	
 	public InvincibleState(Player p) {
+		System.out.println("You are invincible!");
 		countdown = DURATION + 1;
 		player = p;
 	}
@@ -25,7 +26,7 @@ public class InvincibleState implements PlayerState {
 	}
 	
 	@Override
-	public void collide(Entity e) {
+	public void collide(SolidEntity e) {
 		if (e instanceof Enemy) {
 			((Enemy) e).die();
 		}

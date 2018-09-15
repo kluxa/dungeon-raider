@@ -2,171 +2,220 @@ package dungeon;
 
 import java.util.ArrayList;
 
-import enemies.Enemy;
-import items.Item;
-import player.Player;
+import enemies.*;
+import dungeon.*;
+import player.*;
+import items.*;
+import game.*;
 
 public class Maze {
-	private Tile[][] grid;
+	private Square[][] squares;
 	private int height;
 	private int width;
-	private Tile start;
+	private Square start;
 	private Player player;
 	
-	private ArrayList<LivingEntity> enemies;
-	private ArrayList<NonLivingEntity> things;
-	private ArrayList<LitBomb> bombs;
+	private ArrayList<Enemy> enemies;
 	
 	/**
 	 * Create a maze of given height and width.
-	 * Sets the border of the maze to walls.
 	 * @param height the height of the maze
 	 * @param width the width of the maze
 	 */
 	public Maze(int height, int width) {
 		this.height = height;
 		this.width = width;
-		grid = new Tile[height][width];
+		squares = new Square[height][width];
 		this.resetMaze();
 	}
 	
-	private void resetMaze() {
-		enemies = new ArrayList<LivingEntity>();
-		things = new ArrayList<NonLivingEntity>();
-		bombs = new ArrayList<LitBomb>();
-		
-		// Sets all tiles to normal paths
-		for (int i = 0; i < this.height; i++)
-			for (int j = 0; j < this.width; j++)
-				grid[i][j] = new Path(j, i);
+	/**
+	 * Copy constructor
+	 * @param maze the maze to be copied
+	 */
+	public Maze(Maze maze) {
+		Maze copy = new Maze(height, width);
+		for (int row = 0; row < height; row++) {
+			for (int col = 0; col < width; col++) {
+				copy.getSquares()[row][col] = new Square(squares[row][col]);
+			}
+		}
 	}
 	
-	public Tile getStartTile() {
+	/**
+	 * Clears the entire maze of all entities and
+	 * sets all tiles to normal paths.
+	 */
+	private void resetMaze() {
+		enemies = new ArrayList<Enemy>();
+		
+		// Sets all squares to have the default path tile
+		for (int i = 0; i < this.height; i++) {
+			for (int j = 0; j < this.width; j++) {
+				Square s = new Square(i, j);
+				s.setTile(new Path());
+				squares[i][j] = s;
+			}
+		}
+	}
+	
+	////////////////////////////////////////////////////////////////////
+	// Getters/Setters
+	public Square[][] getSquares() {
+		return squares;
+	}
+	
+	public Square getStartSquare() {
 		return start;
 	}
 	
 	public void setStart(int row, int col) {
-		grid[row][col] = new Path(row, col);
-		start = grid[row][col];
-	}
-	
-	public void setTile(int row, int col, Tile t) {
-		grid[row][col] = t;
-	}
-	
-	public void addEntity(Entity e) {
-		Tile t = e.getLocation();
-		if (e instanceof LitBomb) {
-			bombs.add((LitBomb)e);
-		} else if (e instanceof LivingEntity) {
-			enemies.add((Enemy) e);
-		} else {
-			things.add((NonLivingEntity) e);
-		}
-		t.arrive(e);
+		start = squares[row][col];
 	}
 	
 	public void setPlayer(Player p) {
 		player = p;
 	}
 	
-	public Tile getTile(int row, int col) {
-		return grid[row][col];
+	public Square getSquare(int row, int col) {
+		if (row >= 0 && row < height && col >= 0 && col < width) {
+			return squares[row][col];
+		}
+		return null;
 	}
 	
-	public void addItem(int row, int col, Item i) {
-		grid[row][col].addItem(i);
+	////////////////////////////////////////////////////////////////////
+	// Maze Playing
+	/**
+	 * Prepares the maze for playing
+	 */
+	public void prepMaze() {
+		for (Entity e: getAllEntities()) {
+			if (e instanceof Enemy) {
+				enemies.add((Enemy) e);
+			}
+		}
+		
+		// Connects all squares together, like a 2D linked list
+		for (int row = 0; row < height; row++) {
+			for (int col = 0; col < width; col++) {
+				squares[row][col].setUp(getSquare(row - 1, col));
+				squares[row][col].setDown(getSquare(row + 1, col));
+				squares[row][col].setRight(getSquare(row, col + 1));
+				squares[row][col].setLeft(getSquare(row, col - 1));
+			}
+		}
 	}
 	
+	private ArrayList<Entity> getAllEntities() {
+		ArrayList<Entity> entities = new ArrayList<>();
+		for (int row = 0; row < height; row++) {
+			for (int col = 0; col < width; col++) {
+				entities.addAll(squares[row][col].getOccupants());
+			}
+		}
+		return entities;
+	}
+	
+	////////////////////////////////////////////////////////////////////
+	// Maze Building
+	/**
+	 * Places an entity at the given coordinates.
+	 * Silently fails if there is an incompatible
+	 * entity there.
+	 * @param row the y-coordinate
+	 * @param col the x-coordinate
+	 * @param e the entity to be placed
+	 */
+	public void placeEntity(int row, int col, Entity e) {
+		if (!allowedToPlace(e)) {
+			
+			return;
+		}
+		if (e instanceof Tile) {
+			squares[row][col].setTile((Tile) e);
+		} else if (e instanceof SolidEntity) {
+			if (squares[row][col].getCollidableOccupant() == null) {
+				squares[row][col].placeSolidEntity((SolidEntity) e);
+				((SolidEntity) e).setLocation(squares[row][col]);
+			}
+		} else if (e instanceof Item) {
+			squares[row][col].addItem((Item) e);
+		}
+	}
+	
+	public void clearTile(int row, int col) {
+		squares[row][col].clear();
+	}
+	
+	public ArrayList<Entity> getEntities(int row, int col) {
+		ArrayList<Entity> entities = new ArrayList<>();
+		entities.addAll(squares[row][col].getItems());
+		entities.addAll(squares[row][col].getOccupants());
+		return entities;
+	}
+	
+	public boolean allowedToPlace(Entity newEntity) {
+		if (newEntity instanceof Key || newEntity instanceof Door)
+			if (containsEntity(newEntity))
+				return false;
+		return true;
+	}
+	
+	private boolean containsEntity(Entity e) {
+		for (int row = 0; row < width; row++) {
+			for (int col = 0; col < height; col++) {
+				if (squares[row][col].containsEntity(e)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	////////////////////////////////////////////////////////////////////
+	// Maze Printing
 	/**
 	 * 
-	 * @param p the player
 	 * @return a char[][] representation of the
 	 *         maze for printing to the terminal
 	 */
-	
 	public char[][] toCharArray() {
 		char[][] maze = new char[2 * height + 1][4 * width + 1];
-		for (Entity e: things) {
-			maze[2 * e.getY() + 1][4 * e.getX() + 2] = e.toChar();
-		}
-		for (Entity e: enemies) {
-			maze[2 * e.getY() + 1][4 * e.getX() + 2] = e.toChar();
-		}
-		for (Entity e: bombs) {
-			maze[2 * e.getY() + 1][4 * e.getX() + 2] = e.toChar();
-		}
 		for (int row = 0; row < height; row++) {
 			for (int col = 0; col < width; col++) {
-				maze[2 * row + 1][4 * col + 1] = grid[row][col].toChar();
-				for (Item i: grid[row][col].getItems()) {
-					maze[2 * row + 1][4 * col + 3] = i.toChar();
+				maze[2 * row + 1][4 * col + 1] = squares[row][col].getTile().toChar();
+				for (SolidEntity e: squares[row][col].getOccupants()) {
+					maze[2 * row + 1][4 * col + 2] = e.toChar();
 				}
+				for (Item e: squares[row][col].getItems()) {
+					maze[2 * row + 1][4 * col + 3] = e.toChar();
+				}
+			}
+		}
+		for (int col = 0; col < maze[0].length; col += 4) {
+			for (int row = 0; row < maze.length; row++) {
+				maze[row][col] = '|';
+			}
+		}
+		for (int row = 0; row < maze.length; row += 2) {
+			for (int col = 0; col < maze[0].length; col++) {
+				maze[row][col] = '-';
 			}
 		}
 		
 		return maze;
 	}
 	
-	public void moveEntity(Entity e, Direction move) {
-		Tile oldTile = e.getLocation();
-		Tile newTile = this.getTile(e.getY() + move.getDY(),
-				                    e.getX() + move.getDX());
-		Entity occupant = getCollidableOccupant(newTile);
-		if (occupant != null) {
-			occupant.collide(e);
-		} else {
-			oldTile.depart(e);
-			newTile.arrive(e);
+	@Override
+	public String toString() {
+		char[][] rep = toCharArray();
+		StringBuilder sb = new StringBuilder(1000);
+		for (int i = 0; i < rep.length; i++) {
+			sb.append(rep[i]);
+			sb.append("\n");
 		}
+		return sb.toString();
 	}
 	
-	public ArrayList<Entity> getOccupants(Tile t) {
-		ArrayList<Entity> occupants = new ArrayList<Entity>();
-		for (Entity e: enemies) {
-			if (t.equals(e.getLocation())) {
-				occupants.add(e);
-			}
-		}
-		for (Entity e: things) {
-			if (t.equals(e.getLocation())) {
-				occupants.add(e);
-			}
-		}
-		for (Entity e: bombs) {
-			if (t.equals(e.getLocation())) {
-				occupants.add(e);
-			}
-		}
-		if (t.equals(player.getLocation())) {
-			occupants.add(player);
-		}
-		return occupants;
-	}
-	
-	public Entity getCollidableOccupant(Tile t) {
-		for (Entity e: enemies) {
-			if (t.equals(e.getLocation()) && e.isCollidable()) {
-				return e;
-			}
-		}
-		for (Entity e: things) {
-			if (t.equals(e.getLocation()) && e.isCollidable()) {
-				return e;
-			}
-		}
-		return null;
-	}
-	
-	public void updateBombs() {
-		for (LitBomb b: bombs)
-			b.countdown();
-		cleanUp();
-	}
-	
-	public void cleanUp() {
-		enemies.removeIf(e-> e.isAlive() == false);
-		things.removeIf(e-> e.getLocation() == null);
-		bombs.removeIf(e-> e.getLocation() == null);
-	}
 }

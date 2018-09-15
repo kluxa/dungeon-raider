@@ -1,6 +1,6 @@
 package items;
 
-public class Key extends Limited {
+public class Key extends LimitedCollectible {
 	private static final int CARRY_LIMIT = 1;
 	private String color;
 	
@@ -24,7 +24,7 @@ public class Key extends Limited {
 		if (o == null) return false;
 		if (this.getClass() != o.getClass()) return false;
 		Key k = (Key)o;
-		return this.color == k.color;
+		return this.color.equalsIgnoreCase(k.color);
 	}
 	
 	@Override

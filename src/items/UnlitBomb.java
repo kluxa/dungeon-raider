@@ -1,6 +1,6 @@
 package items;
 
-public class UnlitBomb extends Unlimited {
+public class UnlitBomb extends UnlimitedCollectible {
 	
 	@Override
 	public char toChar() {

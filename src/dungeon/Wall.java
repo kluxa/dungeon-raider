@@ -1,13 +1,23 @@
 package dungeon;
 
+import enemies.*;
+import dungeon.*;
+import player.*;
+import items.*;
+import game.*;
+
 public class Wall extends NonLivingEntity {
 	
-	public Wall(Tile tile) {
-		super(tile);
+	public Wall() {
+		this(null);
+	}
+	
+	public Wall(Square s) {
+		super(s);
 	}
 	
 	@Override
-	public void collide(Entity entity) {
+	public void collide(SolidEntity entity) {
 		// Do nothing
 	}
 	
@@ -15,9 +25,10 @@ public class Wall extends NonLivingEntity {
 	public void getBlownUp() {
 		System.out.println("Walls don't get blown up.");
 	}
-
+	
 	@Override
 	public char toChar() {
 		return 'W';
 	}
+	
 }
