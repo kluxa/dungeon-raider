@@ -1,3 +1,4 @@
+package tests;
 import dungeon.Direction;
 
 import org.junit.jupiter.api.Test;

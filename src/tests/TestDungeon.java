@@ -1,4 +1,4 @@
-package dungeon;
+package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
@@ -8,8 +8,10 @@ import dungeon.*;
 import player.*;
 import items.*;
 import game.*;
+import static org.junit.Assert.*;
 
 public class TestDungeon {
+
 
 	@Test 
 	void TestTile() {
@@ -46,6 +48,30 @@ public class TestDungeon {
 
 	}
 
+	@Test
+	void TestSquare() {
+		Square sq = new Square(0,1);
+
+		//Test basic functions
+		assertTrue(sq.getX() == 0);
+		assertTrue(sq.getY() == 1);
+		assertNotNull(sq.getTile());
+
+		sq.setTile(new Tile(1,1));
+		assertNotNull(sq.getTile());
+
+		//Test array functions
+		Arrow arrow = new Arrow();
+		sq.addItem(arrow);
+		assertTrue(sq.getItems().size() > 0);
+
+		sq.drop(arrow);
+		assertTrue(sq.getDroppedItems().size() > 0);
+
+		sq.placeSolidEntity(new SolidEntity());
+		assertTrue(sq.getOccupants().size() > 0);
+	}
+
 	/**
 	*JUnit tests for class Entity
 	*/
@@ -71,7 +97,7 @@ public class TestDungeon {
 
 		//Test fall function -> set location to null
 		nle.fall();
-		assertTrue(nle.getLocation() == null);
+		assertNull(nle.getLocation());
 
 		//Test type is 0 for non living entity
 		assertEquals(nle.getType(), 0);
@@ -128,7 +154,49 @@ public class TestDungeon {
 
 		//Test toChar
 		assertEquals(fs.toChar(), 'F');
-
 	}
 
+	@Test
+	void TestDoor() {
+		Door door = new Door(new Square(1,1), "red");
+		Player player = new Player(new Maze(5,5));
+		Key key = new Key("red");
+
+		//assertion statements
+		assertTrue(door.isCollidable());
+
+		player.pickUp(key);
+		door.collide(player);
+		assertTrue("The Door is open after player uses key", door.isOpen());
+
+		assertEquals('r', door.toChar());
+	}
+
+	@Test
+	void TestExit() {
+		Exit exit = new Exit();
+
+		assertEquals('E', exit.toChar());
+	}
+
+	@Test
+	void TestLitBomb() {
+		LitBomb lb = new LitBomb(new Square(0,1));
+
+		//assertion statements
+		assertFalse(lb.isCollidable());
+
+		int cd = lb.getCountDown();
+		lb.countdown();
+		assertTrue(lb.getCountDown() != cd);
+
+		assertEquals('*', lb.toChar());
+	}
+
+	@Test
+	void TestWall() {
+		Wall wall = new Wall(new Square(1,0));
+
+		assertEquals('W', wall.toChar());
+	}
 }
