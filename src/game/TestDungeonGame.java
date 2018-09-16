@@ -474,7 +474,8 @@ public class TestDungeonGame {
 	
 	/**
 	 * Testing that the player picks up keys,
-	 * but not when they already have a key
+	 * but they drop the key they are holding
+	 * if they pick up another one.
 	 */
 	public void testLevel03() {
 		Level level = new Level(TestMaze.LEVEL03);
