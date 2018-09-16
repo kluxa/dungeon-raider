@@ -11,7 +11,6 @@ import game.*;
 public class Level {
 	private Player player;
 	private Maze maze;
-	private isComplete;
 	
 	public Level(TestMaze sampleMaze) {
 		MazeLoader reader = new MazeLoader();
@@ -19,7 +18,6 @@ public class Level {
 		maze.prepMaze();
 		player = new Player(maze);
 		maze.setPlayer(player);
-		isComplete = false;
 	}
 	
 	/**
@@ -176,15 +174,12 @@ public class Level {
 		return maze.getNumTriggeredSwitches();
 	}
 	
-	public void completeLevel() {
-		this.isComplete = true;
-	}
 	/**
 	 * Checks if the level is complete
 	 * @return true if the level is complete
 	 */
 	public boolean levelIsComplete() {
-		return isComplete;
+		return false;
 		// TODO: This is a stub implementation
 	}
 	

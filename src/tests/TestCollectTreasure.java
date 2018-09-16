@@ -24,7 +24,7 @@ class TestCollectTreasure {
 		assertTrue("There is a treasure to pick up",level.itemIsAt(treasure, 2, 4));
 
 		level.getPlayer().pickUp(treasure);
-		assertTrue(level.playerHas(treasure));
+		assertTrue(level.playerHas(treasure) == 1);
 
 		level.move(Direction.LEFT);
 		level.move(Direction.LEFT);
@@ -32,10 +32,7 @@ class TestCollectTreasure {
 
 		level.getPlayer().pickUp(treasure);
 		assertTrue(level.playerHas(treasure) > 0);
-		assertTrue(playerHas(treasure) > 1);
-
-		level.completeLevel();
-		assertTrue(level.isComplete());
+		assertTrue(level.playerHas(treasure) == 2);
 
 	}
 
@@ -51,7 +48,6 @@ class TestCollectTreasure {
 		level.getPlayer().pickUp(treasure);
 
 		assertFalse(level.playerHas(treasure) == 0);
-		assertFalse(level.isComplete());
 
 		level.move(Direction.DOWN);
 		level.getPlayer().pickUp(treasure);
