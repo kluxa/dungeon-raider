@@ -60,4 +60,26 @@ class TestCollectTreasure {
 		assertTrue(level.playerHas(treasure) > 0);
 		assertTrue(level.itemIsAt(treasure, 2, 4));
 	}
+
+	@Test 
+	void testCollectKeyA() {
+		Level level = new Level(TestMaze.LEVEL03);
+		Key gKey = new Key("green");
+		Key rKey = new Key("red");
+
+		level.move(Direction.DOWN);
+		level.move(Direction.DOWN);
+		level.getPlayer().pickUp(gKey);
+
+		assertTrue(level.playerHas(gKey) != 0);
+		assertFalse(level.itemIsAt(gKey, 2, 4));
+
+		level.move(Direction.LEFT);
+		level.move(Direction.LEFT);
+		assertTrue(level.itemIsAt(rKey, 4, 3));
+		level.move(Direction.UP);
+
+		level.getPlayer().pickUp(gKey);
+		assertTrue(level.playerHas(rKey) > 0);
+	}
 }
