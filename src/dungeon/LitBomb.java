@@ -18,6 +18,10 @@ public class LitBomb extends NonLivingEntity {
 		this.countdown = DURATION;
 	}
 	
+	public int getCountDown() {
+		return this.countdown;
+	}
+	
 	@Override
 	public boolean isCollidable() {
 		return false;
