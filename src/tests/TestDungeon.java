@@ -3,6 +3,11 @@ package dungeon;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 import dungeon.*;
+import enemies.*;
+import dungeon.*;
+import player.*;
+import items.*;
+import game.*;
 
 public class TestDungeon {
 

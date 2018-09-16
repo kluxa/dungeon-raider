@@ -1,10 +1,14 @@
-package Test;
+package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 import src.dungeon.*;
 import src.player.*;
-
+import enemies.*;
+import dungeon.*;
+import player.*;
+import items.*;
+import game.*;
 
 public class TestDG {
 	
@@ -22,7 +26,7 @@ public class TestDG {
 	 * bounds of the level.
 	 */
 	public void testLevel01() {
-		Level level01 = new Level(SampleMaze.LEVEL01);
+		Level level01 = new Level(TestMaze.LEVEL01);
 		System.out.println(level01.showLevel());
 		
 		Direction[] moves = {

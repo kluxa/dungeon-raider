@@ -3,6 +3,11 @@ package Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 import src.model.*;
+import enemies.*;
+import dungeon.*;
+import player.*;
+import items.*;
+import game.*;
 
 public class TestGame {
 

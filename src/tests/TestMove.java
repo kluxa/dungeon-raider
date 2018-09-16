@@ -1,7 +1,11 @@
 import dungeon.Direction;
-import dungeon.Level;
-import dungeon.SampleMaze;
+
 import org.junit.jupiter.api.Test;
+import enemies.*;
+import dungeon.*;
+import player.*;
+import items.*;
+import game.*;
 
 public class TestMove {
     @Test
