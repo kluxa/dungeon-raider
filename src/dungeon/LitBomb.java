@@ -12,6 +12,10 @@ public class LitBomb extends NonLivingEntity {
 	private final static int DURATION = 4;
 	int countdown;
 	
+	public LitBomb() {
+		
+	}
+	
 	public LitBomb(Square s) {
 		super(s);
 		s.placeSolidEntity(this);

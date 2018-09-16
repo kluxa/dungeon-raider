@@ -14,4 +14,6 @@ public interface PlayerState {
 	public void getBlownUp();
 	
 	public void hitByProjectile();
+	
+	public boolean isInvincible();
 }

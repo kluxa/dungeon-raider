@@ -48,4 +48,9 @@ public class InvincibleState implements PlayerState {
 		System.out.println("The projectile was harmless!");
 	}
 	
+	@Override
+	public boolean isInvincible() {
+		return true;
+	}
+	
 }

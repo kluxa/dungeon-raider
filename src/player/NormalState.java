@@ -42,4 +42,9 @@ public class NormalState implements PlayerState {
 	public void hitByProjectile() {
 		player.die();
 	}
+	
+	@Override
+	public boolean isInvincible() {
+		return false;
+	}
 }

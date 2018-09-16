@@ -18,7 +18,9 @@ public class Boulder extends NonLivingEntity {
 	
 	@Override
 	public void getBlownUp() {
-		getLocation().depart(this);
+		if (getLocation() != null) {
+			getLocation().depart(this);
+		}
 		setLocation(null);
 	}
 	

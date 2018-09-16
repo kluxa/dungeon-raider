@@ -29,6 +29,7 @@ public class Level {
 		maze.markObstacles();
 		maze.updateEnemies();
 		player.updateState();
+		System.out.println(showLevel());
 	}
 	
 	public Player getPlayer() {
@@ -189,4 +190,9 @@ public class Level {
 	public int numEnemies() {
 		return maze.getNumEnemies();
 	}
+	
+	public boolean playerIsInvincible() {
+		return player.isInvincible();
+	}
+	
 }

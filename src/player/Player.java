@@ -40,6 +40,10 @@ public class Player extends LivingEntity {
 		isFlying = true;
 	}
 	
+	public boolean isInvincible() {
+		return state.isInvincible();
+	}
+	
 	////////////////////////////////////////////////////////////////////
 	// Game Events
 	
