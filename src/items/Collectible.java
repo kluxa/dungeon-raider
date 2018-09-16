@@ -8,6 +8,7 @@ public abstract class Collectible extends Item {
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
 	public void pickUp(Player player) {
 		player.pickUp(this);
 	}

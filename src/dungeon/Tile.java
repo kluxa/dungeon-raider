@@ -8,8 +8,14 @@ import player.*;
 import items.*;
 import game.*;
 
-public abstract class Tile extends Entity implements Space {
+public abstract class Tile extends Entity {
 	
-	public abstract char toChar();
+	public void arrive(SolidEntity e) {
+		// Do nothing
+	}
+	
+	public void depart(SolidEntity e) {
+		// Do nothing
+	}
 	
 }

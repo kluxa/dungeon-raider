@@ -174,20 +174,10 @@ public class Maze {
 		return entities;
 	}
 	
-	private ArrayList<Entity> getAllItems() {
-		ArrayList<Entity> items = new ArrayList<>();
-		for (int row = 0; row < height; row++) {
-			for (int col = 0; col < width; col++) {
-				items.addAll(squares[row][col].getItems());
-			}
-		}
-		return items;
-	}
-	
 	public void updateEnemies() {
 		for (Enemy e: enemies) {
 			if (e.isAlive()) {
-				e.update(this);
+				e.makeMove(this);
 			}
 		}
 	}
@@ -411,87 +401,5 @@ public class Maze {
 		}
 		return distances;
 	}
-	
-	/*
-	public Direction findPath(Square start, Square goal,
-			                  boolean[][] obstacles,
-			                  Direction lastMove) {
-		Direction[][] pred = new Direction[height][width];
-		boolean[][] visited = new boolean[height][width];
-		for (int row = 0; row < visited.length; row++) {
-			Arrays.fill(visited[row], false);
-		}
-		visited[goal.getY()][goal.getX()] = true;
-		Queue<Square> q = new LinkedList<>();
-		q.add(goal);
-		while (!(q.isEmpty())) {
-			Square s = q.remove();
-			int y = s.getY();
-			int x = s.getX();
-			
-			if (obstacles[y + 1][x] == false && visited[y + 1][x] == false) {
-				visited[y + 1][x] = true;
-				q.add(squares[y + 1][x]);
-				pred[y + 1][x] = Direction.UP;
-			}
-			if (obstacles[y - 1][x] == false && visited[y - 1][x] == false) {
-				visited[y - 1][x] = true;
-				q.add(squares[y - 1][x]);
-				pred[y - 1][x] = Direction.DOWN;
-			}
-			if (obstacles[y][x - 1] == false && visited[y][x - 1] == false) {
-				visited[y][x - 1] = true;
-				q.add(squares[y][x - 1]);
-				pred[y][x - 1] = Direction.RIGHT;
-			}
-			if (obstacles[y][x + 1] == false && visited[y][x + 1] == false) {
-				visited[y][x + 1] = true;
-				q.add(squares[y][x + 1]);
-				pred[y][x + 1] = Direction.LEFT;
-			}
-		}
-		
-		if (visited[start.getY()][start.getX()] == true) {
-			int y = start.getY();
-			int x = start.getX();
-			Square[] nextMoves = {squares[y - 1][x], squares[y + 1][x],
-					              squares[y][x + 1], squares[y][x - 1]};
-			int[] distances = new int[4];
-			int minDist = 1000000;
-			int minIndex = 0;
-			for (int i = 0; i < 4; i++) {
-				distances[i] = 1000 * getDistance(nextMoves[i], goal, pred) +
-						nextMoves[i].straightDistanceSquared(goal);
-				if (distances[i] < minDist) {
-					minDist = distances[i];
-					minIndex = i;
-				}
-			}
-			if (lastMove != null && distances[lastMove.toInt()] == minDist) {
-				return lastMove;
-			}
-			return Direction.intToDirection(minIndex);
-		}
-		return null;
-	}
-	
-	public int getDistance(Square src, Square goal, Direction[][] pred) {
-		int currY = src.getY();
-		int currX = src.getX();
-		if (goal.getY() == src.getY() && goal.getX() == src.getX()) {
-			return 0;
-		} else if (pred[src.getY()][src.getX()] == null) {
-			return 1000;
-		}
-		int distance = 0;
-		while (!(currY == goal.getY() &&
-				 currX == goal.getX())) {
-			int tempY = currY;
-			currY += pred[currY][currX].getDY();
-			currX += pred[tempY][currX].getDX();
-			distance++;
-		}		
-		return distance;
-	}
-	*/
+
 }

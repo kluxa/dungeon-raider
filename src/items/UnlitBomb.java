@@ -6,4 +6,5 @@ public class UnlitBomb extends UnlimitedCollectible {
 	public char toChar() {
 		return 'B';
 	}
+	
 }

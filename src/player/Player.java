@@ -121,7 +121,7 @@ public class Player extends LivingEntity {
 	
 	public void dropItem(Item i) {
 		inventory.removeItem(i);
-		getLocation().drop(i);
+		getLocation().dropItem(i);
 	}
 	
 	public void removeItem(Item i) {

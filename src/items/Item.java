@@ -10,8 +10,6 @@ public abstract class Item extends Entity {
 	
 	public abstract void pickUp(Player player);
 	
-	public abstract char toChar();
-	
 	/**
 	 * @param i an item
 	 * @return true if the given item is the same

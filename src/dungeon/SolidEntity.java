@@ -46,6 +46,10 @@ public abstract class SolidEntity extends Entity {
 		return move;
 	}
 	
+	public void setDirection(Direction d) {
+		move = d;
+	}
+	
 	public void move(Direction d) {
 		move = d;
 		getLocation().move(this, d);
@@ -62,7 +66,5 @@ public abstract class SolidEntity extends Entity {
 	public boolean isCollidable() {
 		return true;
 	}
-	
-	public abstract char toChar();
 	
 }

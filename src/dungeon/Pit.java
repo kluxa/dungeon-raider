@@ -14,11 +14,6 @@ public class Pit extends Tile {
 	}
 	
 	@Override
-	public void depart(SolidEntity e) {
-		// Do nothing
-	}
-	
-	@Override
 	public char toChar() {
 		return 'P';
 	}

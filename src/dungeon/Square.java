@@ -9,7 +9,7 @@ import player.*;
 import items.*;
 import game.*;
 
-public class Square implements Space {
+public class Square {
 	private Tile tile;
 	private ArrayList<Item> items;
 	private ArrayList<Item> droppedItems;
@@ -75,7 +75,7 @@ public class Square implements Space {
 		}
 	}
 	
-	public void drop(Item item) {
+	public void dropItem(Item item) {
 		droppedItems.add(item);
 	}
 	
@@ -116,7 +116,6 @@ public class Square implements Space {
 		return false;
 	}
 	
-	@Override
 	public void arrive(SolidEntity e) {
 		e.setLocation(this);
 		occupants.add(e);
@@ -130,7 +129,6 @@ public class Square implements Space {
 		tile.arrive(e);
 	}
 	
-	@Override
 	public void depart(SolidEntity e) {
 		occupants.remove(e);
 		tile.depart(e);
@@ -187,14 +185,6 @@ public class Square implements Space {
 		}
 	}
 	
-	public boolean isAdjacent(Square s) {
-		if (s == null) {
-			System.out.println("The Earth is flat");
-			System.exit(1);
-		}
-		return (s == up || s == down || s == right || s == left);
-	}
-	
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -207,9 +197,5 @@ public class Square implements Space {
 	@Override
 	public String toString() {
 		return String.format("(%d, %d)", y, x);
-	}
-	
-	public int straightDistanceSquared(Square s) {
-		return (y - s.y) * (y - s.y) + (x - s.x) * (x - s.x); 
 	}
 }

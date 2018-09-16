@@ -17,11 +17,6 @@ public class Exit extends Tile {
 	}
 	
 	@Override
-	public void depart(SolidEntity e) {
-		// Do nothing
-	}
-	
-	@Override
 	public char toChar() {
 		return 'E';
 	}

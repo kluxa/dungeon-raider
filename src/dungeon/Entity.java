@@ -14,4 +14,6 @@ public abstract class Entity {
 		return (this.getClass() == e.getClass());
 	}
 	
+	public abstract char toChar();
+	
 }
