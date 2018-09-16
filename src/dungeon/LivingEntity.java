@@ -31,8 +31,14 @@ public abstract class LivingEntity extends SolidEntity {
 	 * causes the entity to die
 	 */
 	public void die() {
-		System.out.println("Someone died");
+		System.out.println(this.getClass().getSimpleName() + " died");
+		getLocation().depart(this);
 		isAlive = false;
+	}
+	
+	@Override
+	public void hitByProjectile() {
+		die();
 	}
 	
 	@Override

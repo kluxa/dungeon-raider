@@ -1,6 +1,10 @@
 package dungeon;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.concurrent.TimeUnit;
 
 import enemies.*;
 import dungeon.*;
@@ -16,6 +20,7 @@ public class Maze {
 	private Player player;
 	
 	private ArrayList<Enemy> enemies;
+	private ArrayList<FloorSwitch> switches;
 	
 	/**
 	 * Create a maze of given height and width.
@@ -27,19 +32,6 @@ public class Maze {
 		this.width = width;
 		squares = new Square[height][width];
 		this.resetMaze();
-	}
-	
-	/**
-	 * Copy constructor
-	 * @param maze the maze to be copied
-	 */
-	public Maze(Maze maze) {
-		Maze copy = new Maze(height, width);
-		for (int row = 0; row < height; row++) {
-			for (int col = 0; col < width; col++) {
-				copy.getSquares()[row][col] = new Square(squares[row][col]);
-			}
-		}
 	}
 	
 	/**
@@ -61,6 +53,7 @@ public class Maze {
 	
 	////////////////////////////////////////////////////////////////////
 	// Getters/Setters
+	
 	public Square[][] getSquares() {
 		return squares;
 	}
@@ -84,15 +77,79 @@ public class Maze {
 		return null;
 	}
 	
+	public Square getPlayerLocation() {
+		return player.getLocation();
+	}
+	
+	// Only for testing
+	public int getNumOfEntity(Entity e) {
+		ArrayList<SolidEntity> entities = getAllSolidEntities();
+		int count = 0;
+		for (int i = 0; i < entities.size(); i++) {
+			if (e.sameType(entities.get(i))) {
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	// Only for testing
+	public boolean itemIsAt(Item i, int row, int col) {
+		ArrayList<Item> items = squares[row][col].getItems();
+		for (Item o: items) {
+			if (i.sameType(o)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	// Only for testing
+	public int getNumEnemies() {
+		int count = 0;
+		for (Enemy e: enemies) {
+			if (e.isAlive()) {
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	public int getNumTriggeredSwitches() {
+		int count = 0;
+		for (FloorSwitch f: switches) {
+			if (f.isTriggered()) {
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	public boolean allSwitchesTriggered() {
+		return (getNumTriggeredSwitches() == switches.size());
+	}
+	
 	////////////////////////////////////////////////////////////////////
 	// Maze Playing
 	/**
 	 * Prepares the maze for playing
 	 */
 	public void prepMaze() {
-		for (Entity e: getAllEntities()) {
+		// Adds all the enemies to a list to aid completion checking
+		for (Entity e: getAllSolidEntities()) {
 			if (e instanceof Enemy) {
 				enemies.add((Enemy) e);
+			}
+		}
+		
+		// Adds all the floor switches to a list to aid completion
+		// checking
+		for (int row = 0; row < height; row++) {
+			for (int col = 0; col < width; col++) {
+				Tile t = squares[row][col].getTile();
+				if (t instanceof FloorSwitch) {
+					switches.add((FloorSwitch) t);
+				}
 			}
 		}
 		
@@ -107,14 +164,32 @@ public class Maze {
 		}
 	}
 	
-	private ArrayList<Entity> getAllEntities() {
-		ArrayList<Entity> entities = new ArrayList<>();
+	private ArrayList<SolidEntity> getAllSolidEntities() {
+		ArrayList<SolidEntity> entities = new ArrayList<>();
 		for (int row = 0; row < height; row++) {
 			for (int col = 0; col < width; col++) {
 				entities.addAll(squares[row][col].getOccupants());
 			}
 		}
 		return entities;
+	}
+	
+	private ArrayList<Entity> getAllItems() {
+		ArrayList<Entity> items = new ArrayList<>();
+		for (int row = 0; row < height; row++) {
+			for (int col = 0; col < width; col++) {
+				items.addAll(squares[row][col].getItems());
+			}
+		}
+		return items;
+	}
+	
+	public void updateEnemies() {
+		for (Enemy e: enemies) {
+			if (e.isAlive()) {
+				e.update(this);
+			}
+		}
 	}
 	
 	////////////////////////////////////////////////////////////////////
@@ -129,7 +204,6 @@ public class Maze {
 	 */
 	public void placeEntity(int row, int col, Entity e) {
 		if (!allowedToPlace(e)) {
-			
 			return;
 		}
 		if (e instanceof Tile) {
@@ -163,8 +237,8 @@ public class Maze {
 	}
 	
 	private boolean containsEntity(Entity e) {
-		for (int row = 0; row < width; row++) {
-			for (int col = 0; col < height; col++) {
+		for (int row = 0; row < height; row++) {
+			for (int col = 0; col < width; col++) {
 				if (squares[row][col].containsEntity(e)) {
 					return true;
 				}
@@ -210,7 +284,7 @@ public class Maze {
 	@Override
 	public String toString() {
 		char[][] rep = toCharArray();
-		StringBuilder sb = new StringBuilder(1000);
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < rep.length; i++) {
 			sb.append(rep[i]);
 			sb.append("\n");
@@ -218,4 +292,206 @@ public class Maze {
 		return sb.toString();
 	}
 	
+	////////////////////////////////////////////////////////////////////
+	// Maze Searching - this is for enemies
+	
+	// Arrays to mark the location of obstacles
+	private boolean[][] walls;
+	private boolean[][] boulders;
+	private boolean[][] doors;
+	
+	private boolean[][] wallsOrBoulders;
+	private boolean[][] wallsBouldersOrDoors;
+	
+	/**
+	 * Mark obstacles
+	 */
+	public void markObstacles() {
+		walls = new boolean[height][width];
+		boulders = new boolean[height][width];
+		doors = new boolean[height][width];
+		
+		wallsOrBoulders = new boolean[height][width];
+		wallsBouldersOrDoors = new boolean[height][width];
+		
+		Wall w = new Wall();
+		Boulder b = new Boulder();
+		Door d = new Door();
+		for (int row = 0; row < height; row++) {
+			for (int col = 0; col < width; col++) {
+				Entity e = squares[row][col].getCollidableOccupant();
+				walls[row][col] = w.sameType(e);
+				boulders[row][col] = b.sameType(e);
+				doors[row][col] = d.sameType(e);
+				
+				wallsOrBoulders[row][col] = walls[row][col] || boulders[row][col];
+				wallsBouldersOrDoors[row][col] = wallsOrBoulders[row][col] || doors[row][col];
+			}
+		}
+	}
+	
+	/**
+	 * 
+	 * @param start
+	 * @param goal
+	 * @return
+	 */
+	public int[][] getDistances(Square src, Square s) {
+		int[][] distances;
+		distances = getDistancesBFS(src, wallsBouldersOrDoors);
+		if (distances[s.getY()][s.getX()] != -1) return distances;
+		distances = getDistancesBFS(src, wallsOrBoulders);
+		if (distances[s.getY()][s.getX()] != -1) return distances;
+		distances = getDistancesBFS(src, walls);
+		return distances;
+	}
+	
+	/**
+	 * Tries to find the best move
+	 * Tries to prevent 'oppressive' movement, such as the shuffle dance
+	 * @preconditions the goal square should not contain an obstacle and
+	 *                should not be the same as the start square
+	 * @param start the start square
+	 * @param goal the goal square
+	 * @param obstacles an array of booleans indicating which squares contain
+	 *                  obstacles, and hence should not be visited
+	 * @return an array of distances from every square in the maze to the
+	 *         target location.
+	 */
+	public int[][] getDistancesBFS(Square src,
+			                       boolean[][] obstacles) {
+		
+		int[][] distances = new int[height][width];
+		Direction[][] pred = new Direction[height][width];
+		boolean[][] visited = new boolean[height][width];
+		for (int row = 0; row < visited.length; row++){
+			Arrays.fill(visited[row], false);
+			Arrays.fill(distances[row], -1);
+		}
+		
+		int distance = 0;
+		distances[src.getY()][src.getX()] = 0;
+		visited[src.getY()][src.getX()]= true;
+		Queue<Square> q1 = new LinkedList<>();
+		Queue<Square> q2 = new LinkedList<>();
+		
+		q1.add(src);
+		while (!(q1.isEmpty()) || !(q2.isEmpty())) {
+			Square s = q1.remove();
+			int y = s.getY();
+			int x = s.getX();
+			distances[y][x] = distance;
+			
+			if (obstacles[y + 1][x] == false && visited[y + 1][x] == false) {
+				visited[y + 1][x] = true;
+				q2.add(squares[y + 1][x]);
+				pred[y + 1][x] = Direction.UP;
+			}
+			if (obstacles[y - 1][x] == false && visited[y - 1][x] == false) {
+				visited[y - 1][x] = true;
+				q2.add(squares[y - 1][x]);
+				pred[y - 1][x] = Direction.DOWN;
+			}
+			if (obstacles[y][x - 1] == false && visited[y][x - 1] == false) {
+				visited[y][x - 1] = true;
+				q2.add(squares[y][x - 1]);
+				pred[y][x - 1] = Direction.RIGHT;
+			}
+			if (obstacles[y][x + 1] == false && visited[y][x + 1] == false) {
+				visited[y][x + 1] = true;
+				q2.add(squares[y][x + 1]);
+				pred[y][x + 1] = Direction.LEFT;
+			}
+			if (q1.isEmpty()) {
+				distance++;
+				Queue<Square> temp = q1;
+				q1 = q2;
+				q2 = temp;
+			}
+		}
+		return distances;
+	}
+	
+	/*
+	public Direction findPath(Square start, Square goal,
+			                  boolean[][] obstacles,
+			                  Direction lastMove) {
+		Direction[][] pred = new Direction[height][width];
+		boolean[][] visited = new boolean[height][width];
+		for (int row = 0; row < visited.length; row++) {
+			Arrays.fill(visited[row], false);
+		}
+		visited[goal.getY()][goal.getX()] = true;
+		Queue<Square> q = new LinkedList<>();
+		q.add(goal);
+		while (!(q.isEmpty())) {
+			Square s = q.remove();
+			int y = s.getY();
+			int x = s.getX();
+			
+			if (obstacles[y + 1][x] == false && visited[y + 1][x] == false) {
+				visited[y + 1][x] = true;
+				q.add(squares[y + 1][x]);
+				pred[y + 1][x] = Direction.UP;
+			}
+			if (obstacles[y - 1][x] == false && visited[y - 1][x] == false) {
+				visited[y - 1][x] = true;
+				q.add(squares[y - 1][x]);
+				pred[y - 1][x] = Direction.DOWN;
+			}
+			if (obstacles[y][x - 1] == false && visited[y][x - 1] == false) {
+				visited[y][x - 1] = true;
+				q.add(squares[y][x - 1]);
+				pred[y][x - 1] = Direction.RIGHT;
+			}
+			if (obstacles[y][x + 1] == false && visited[y][x + 1] == false) {
+				visited[y][x + 1] = true;
+				q.add(squares[y][x + 1]);
+				pred[y][x + 1] = Direction.LEFT;
+			}
+		}
+		
+		if (visited[start.getY()][start.getX()] == true) {
+			int y = start.getY();
+			int x = start.getX();
+			Square[] nextMoves = {squares[y - 1][x], squares[y + 1][x],
+					              squares[y][x + 1], squares[y][x - 1]};
+			int[] distances = new int[4];
+			int minDist = 1000000;
+			int minIndex = 0;
+			for (int i = 0; i < 4; i++) {
+				distances[i] = 1000 * getDistance(nextMoves[i], goal, pred) +
+						nextMoves[i].straightDistanceSquared(goal);
+				if (distances[i] < minDist) {
+					minDist = distances[i];
+					minIndex = i;
+				}
+			}
+			if (lastMove != null && distances[lastMove.toInt()] == minDist) {
+				return lastMove;
+			}
+			return Direction.intToDirection(minIndex);
+		}
+		return null;
+	}
+	
+	public int getDistance(Square src, Square goal, Direction[][] pred) {
+		int currY = src.getY();
+		int currX = src.getX();
+		if (goal.getY() == src.getY() && goal.getX() == src.getX()) {
+			return 0;
+		} else if (pred[src.getY()][src.getX()] == null) {
+			return 1000;
+		}
+		int distance = 0;
+		while (!(currY == goal.getY() &&
+				 currX == goal.getX())) {
+			int tempY = currY;
+			currY += pred[currY][currX].getDY();
+			currX += pred[tempY][currX].getDX();
+			distance++;
+		}		
+		return distance;
+	}
+	*/
 }

@@ -7,6 +7,7 @@ import game.*;
 
 public interface MovementPattern {
 	
-	public Direction chooseMove(Square s, Maze maze);
+	public Direction chooseMove(Square s, Maze maze,
+			                    Direction oldMove);
 	
 }

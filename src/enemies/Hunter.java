@@ -13,6 +13,7 @@ public class Hunter extends Enemy {
 	
 	public Hunter(Square s) {
 		super(s);
+		setMovementPattern(new SimpleChase());
 	}
 	
 	@Override

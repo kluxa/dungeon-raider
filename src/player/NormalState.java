@@ -34,7 +34,12 @@ public class NormalState implements PlayerState {
 	}
 	
 	@Override
-	public void hitByBlast() {
+	public void getBlownUp() {
+		player.die();
+	}
+	
+	@Override
+	public void hitByProjectile() {
 		player.die();
 	}
 }

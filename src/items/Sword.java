@@ -27,4 +27,8 @@ public class Sword extends LimitedCollectible {
 		return usesLeft;
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("Sword (uses left: %d)", usesLeft);
+	}
 }

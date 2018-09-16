@@ -11,6 +11,7 @@ public interface PlayerState {
 	
 	public void fight(Enemy e);
 	
-	public void hitByBlast();
+	public void getBlownUp();
 	
+	public void hitByProjectile();
 }

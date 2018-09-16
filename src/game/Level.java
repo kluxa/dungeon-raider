@@ -20,11 +20,14 @@ public class Level {
 		maze.setPlayer(player);
 	}
 	
+	/**
+	 * This function is very
+	 * pleasing to look at...
+	 */
 	private void update() {
 		player.updateBombs();
-		
-		// Enemies update here
-		
+		maze.markObstacles();
+		maze.updateEnemies();
 		player.updateState();
 	}
 	
@@ -49,18 +52,24 @@ public class Level {
 	public void dropBomb() {
 		if (player.hasItem(new UnlitBomb())) {
 			System.out.println("Fire in the hole!");
-			player.consumeItem(new UnlitBomb());
+			player.dropBomb();
+			update();
+		} else {
+			System.out.println("You don't even have a bomb!");
+			System.out.println("Try and do something else.");
 		}
-		update();
 	}
 	
-	//STEPH: started implementing
 	public void fireArrow(Direction move) {
-		System.out.printf("Firing an arrow %s\n",
-				move.toString());
-		//steph
-		// if(player.hasItem(arrow)) player.dropItem(arrow);
-		//steph
+		if (player.hasItem(new Arrow())) {
+			System.out.printf("Firing an arrow %s\n",
+					move.toString());
+			player.fireArrow(move);
+			update();
+		} else {
+			System.out.println("You don't even have an arrow!");
+			System.out.println("Try and do something else.");
+		}
 	}
 	
 	////////////////////////////////////////////////////////////////////
@@ -87,7 +96,6 @@ public class Level {
 	////////////////////////////////////////////////////////////////////
 	// METHODS FOR TESTING
 	
-	//STEPH : implementing
 	/**
 	 * Checks if the player is alive
 	 * @return true if the player is alive
@@ -126,21 +134,19 @@ public class Level {
 	 * @return the amount of a particular entity
 	 */
 	public int getNumOfEntity(SolidEntity e) {
-		return 0;
-		// TODO: This is a stub implementation
-
-		//steph
-		//return 0;
-
-		// return maze.getEntities(e);
-
-		//steph
+		return maze.getNumOfEntity(e);
 	}
 	
-	
+	/**
+	 * Returns true if an item of the given type is on
+	 * a particular square in the maze
+	 * @param i an item
+	 * @param y y-coordinate
+	 * @param x x-coordinate
+	 * @return
+	 */
 	public boolean itemIsAt(Item i, int y, int x) {
-		// TODO: This is a stub implementation
-		return false;
+		return maze.itemIsAt(i, y, x);
 	}
 	
 	/**
@@ -164,13 +170,7 @@ public class Level {
 	 * @return the number of triggered floor switches
 	 */
 	public int numTriggeredFloorSwitches() {
-		// TODO: This is a stub implementation
-		return 0;
-		//steph
-
-		// return maze.numOfTriggeredSwitches();
-
-		//steph
+		return maze.getNumTriggeredSwitches();
 	}
 	
 	/**
@@ -178,8 +178,8 @@ public class Level {
 	 * @return true if the level is complete
 	 */
 	public boolean levelIsComplete() {
-		// TODO: This is a stub implementation
 		return false;
+		// TODO: This is a stub implementation
 	}
 	
 	/**
@@ -187,7 +187,6 @@ public class Level {
 	 * @return the number of (alive) enemies
 	 */
 	public int numEnemies() {
-		// TODO: This is a stub implementation
-		return 0;
+		return maze.getNumEnemies();
 	}
 }

@@ -9,12 +9,13 @@ import items.*;
 import game.*;
 
 public class LitBomb extends NonLivingEntity {
+	private final static int DURATION = 4;
 	int countdown;
 	
 	public LitBomb(Square s) {
 		super(s);
 		s.placeSolidEntity(this);
-		this.countdown = 4;
+		this.countdown = DURATION;
 	}
 	
 	@Override
@@ -27,12 +28,8 @@ public class LitBomb extends NonLivingEntity {
 		// Do nothing
 	}
 	
-	public void countdown() {
-		countdown--;
-	}
-	
-	public int getCountdown() {
-		return countdown;
+	public int countdown() {
+		return --countdown;
 	}
 	
 	@Override
@@ -42,8 +39,10 @@ public class LitBomb extends NonLivingEntity {
 	
 	public void explode() {
 		System.out.println("Kaboom!");
-		getLocation().depart(this);
-		getLocation().explosion();
+		Square s = getLocation();
+		setLocation(null);
+		s.depart(this);
+		s.explosion();
 	}
 	
 	@Override

@@ -16,9 +16,15 @@ public abstract class NonLivingEntity extends SolidEntity {
 		super(s);
 	}
 	
+	@Override
 	public void fall() {
-		System.out.println("Something fell into a pit");
+		System.out.println(this.getClass().getSimpleName() + " fell into a pit");
 		getLocation().depart(this);
+	}
+	
+	@Override
+	public void hitByProjectile() {
+		// Do nothing
 	}
 	
 }

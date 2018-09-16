@@ -49,6 +49,7 @@ public class SelectionMode implements DesignerMode {
 	public SelectionMode(LevelDesigner levelDesigner) {
 		this.levelDesigner = levelDesigner;
 		maze = levelDesigner.getMaze();
+		
 		cursorY = 0;
 		cursorX = 0;
 		

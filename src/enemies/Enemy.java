@@ -9,7 +9,7 @@ public abstract class Enemy extends LivingEntity {
 	private int awareDistance;
 	private boolean awareOfPlayer;
 	private MovementPattern pattern;
-	public Direction move;
+	private Direction move;
 	
 	public Enemy(Square s) {
 		super(s);
@@ -35,6 +35,12 @@ public abstract class Enemy extends LivingEntity {
 	}
 	
 	public void selectMove(Maze maze) {
-		move = pattern.chooseMove(getLocation(), maze);
+		move = pattern.chooseMove(getLocation(), maze, move);
 	}
+	
+	public void update(Maze maze) {
+		selectMove(maze);
+		move(move);
+	}
+	
 }

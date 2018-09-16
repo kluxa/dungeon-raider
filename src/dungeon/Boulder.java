@@ -26,6 +26,5 @@ public class Boulder extends NonLivingEntity {
 	public char toChar() {
 		return 'O';
 	}
-
 	
 }

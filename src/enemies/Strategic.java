@@ -16,7 +16,7 @@ import game.*;
 public class Strategic implements MovementPattern {
 	
 	@Override
-	public Direction chooseMove(Square s, Maze maze) {
+	public Direction chooseMove(Square s, Maze maze, Direction oldMove) {
 		// TODO Auto-generated method stub
 		return Direction.DOWN;
 	}

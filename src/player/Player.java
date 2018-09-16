@@ -14,7 +14,6 @@ public class Player extends LivingEntity {
 	private PlayerState state;
 	private ArrayList<LitBomb> bombs;
 	private boolean isFlying;
-	private Direction move;
 	
 	public Player(Maze maze) {
 		super(maze.getStartSquare());
@@ -51,7 +50,7 @@ public class Player extends LivingEntity {
 	
 	@Override
 	public void getBlownUp() {
-		state.hitByBlast();
+		state.getBlownUp();
 	}
 	
 	@Override
@@ -59,6 +58,11 @@ public class Player extends LivingEntity {
 		if (!this.isFlying) {
 			die();
 		}
+	}
+	
+	@Override
+	public void hitByProjectile() {
+		state.hitByProjectile();
 	}
 	
 	public void fight(Enemy e) {
@@ -73,12 +77,23 @@ public class Player extends LivingEntity {
 		state.update();
 	}
 	
+	public void dropBomb() {
+		inventory.removeItem(new UnlitBomb());
+		bombs.add(new LitBomb(getLocation()));
+	}
+	
+	public void fireArrow(Direction move) {
+		inventory.removeItem(new Arrow());
+		getLocation().launchProjectile(move);
+	}
+	
 	public void updateBombs() {
 		Iterator<LitBomb> it = bombs.iterator();
 		while (it.hasNext()) {
 			LitBomb bomb = it.next();
-			bomb.countdown();
-			if (bomb.getCountdown() == 0) {
+			if (bomb.getLocation() == null) {
+				it.remove();
+			} else if (bomb.countdown() == 0) {
 				it.remove();
 				bomb.explode();
 			}
@@ -109,10 +124,7 @@ public class Player extends LivingEntity {
 		getLocation().drop(i);
 	}
 	
-	public void consumeItem(Item i) {
-		if (i instanceof UnlitBomb) {
-			bombs.add(new LitBomb(getLocation()));
-		}
+	public void removeItem(Item i) {
 		inventory.removeItem(i);
 	}
 	
@@ -126,7 +138,7 @@ public class Player extends LivingEntity {
 	}
 	
 	////////////////////////////////////////////////////////////////////
-	// Random Shit
+	// Random
 	
 	@Override
 	public char toChar() {

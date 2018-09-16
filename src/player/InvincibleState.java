@@ -39,8 +39,13 @@ public class InvincibleState implements PlayerState {
 	}
 	
 	@Override
-	public void hitByBlast() {
+	public void getBlownUp() {
 		System.out.println("You survived the blast!");
+	}
+
+	@Override
+	public void hitByProjectile() {
+		System.out.println("The projectile was harmless!");
 	}
 	
 }

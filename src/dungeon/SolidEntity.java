@@ -11,6 +11,13 @@ public abstract class SolidEntity extends Entity {
 	private Square location;
 	private Direction move;
 	
+	/**
+	 * Calls to this no-arg constructor
+	 * should be closely followed up by a
+	 * call to setLocation on the entity.
+	 * This constructor is used by the
+	 * factories.
+	 */
 	public SolidEntity() {
 		this(null);
 	}
@@ -43,6 +50,8 @@ public abstract class SolidEntity extends Entity {
 		move = d;
 		getLocation().move(this, d);
 	}
+	
+	public abstract void hitByProjectile();
 	
 	public abstract void collide(SolidEntity e);
 	

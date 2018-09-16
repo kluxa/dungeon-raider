@@ -14,10 +14,8 @@ public class Square implements Space {
 	private ArrayList<Item> items;
 	private ArrayList<Item> droppedItems;
 	private ArrayList<SolidEntity> occupants;
-	
 	private int y;
 	private int x;
-	
 	private Square up;
 	private Square down;
 	private Square right;
@@ -29,14 +27,6 @@ public class Square implements Space {
 		occupants = new ArrayList<SolidEntity>();
 		this.y = y;
 		this.x = x;
-	}
-	
-	/**
-	 * Copy constructor
-	 * @param s the square to be copied
-	 */
-	public Square(Square square) {
-		// TODO
 	}
 	
 	public int getY() {
@@ -148,6 +138,7 @@ public class Square implements Space {
 	
 	public void explosion() {
 		ArrayList<SolidEntity> affected = new ArrayList<>();
+		affected.addAll(getOccupants());
 		affected.addAll(up.getOccupants());
 		affected.addAll(down.getOccupants());
 		affected.addAll(right.getOccupants());
@@ -183,6 +174,27 @@ public class Square implements Space {
 		}
 	}
 	
+	public void launchProjectile(Direction move) {
+		SolidEntity target;
+		Square nextSquare = getAdjacentSquare(move);
+		if (nextSquare != null) {
+			target = nextSquare.getCollidableOccupant();
+			if (target == null) {
+				nextSquare.launchProjectile(move);
+			} else {
+				target.hitByProjectile();
+			}
+		}
+	}
+	
+	public boolean isAdjacent(Square s) {
+		if (s == null) {
+			System.out.println("The Earth is flat");
+			System.exit(1);
+		}
+		return (s == up || s == down || s == right || s == left);
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -192,4 +204,12 @@ public class Square implements Space {
 		return (x == s.x && y == s.y);
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("(%d, %d)", y, x);
+	}
+	
+	public int straightDistanceSquared(Square s) {
+		return (y - s.y) * (y - s.y) + (x - s.x) * (x - s.x); 
+	}
 }

@@ -54,7 +54,7 @@ public enum TestMaze {
 		public int getHeight() { return 5; }
 		
 		public char[][] getTiles() {
-			char[][] tiles = {    // [5][5]
+			char[][] tiles = {
 					{' ', ' ', ' ', ' ', ' '},
 					{' ', 'S', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', ' '},
@@ -95,7 +95,7 @@ public enum TestMaze {
 		public int getHeight() { return 5; }
 		
 		public char[][] getTiles() {
-			char[][] tiles = {    // [5][5]
+			char[][] tiles = {
 					{' ', ' ', ' ', ' ', ' '},
 					{' ', 'S', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', ' '},
@@ -137,7 +137,7 @@ public enum TestMaze {
 		public int getHeight() { return 5; }
 		
 		public char[][] getTiles() {
-			char[][] tiles = {    // [5][5]
+			char[][] tiles = {
 					{' ', ' ', ' ', ' ', ' '},
 					{' ', 'S', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', ' '},
@@ -181,7 +181,7 @@ public enum TestMaze {
 		public int getHeight() { return 5; }
 		
 		public char[][] getTiles() {
-			char[][] tiles = {    // [5][9]
+			char[][] tiles = {
 					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 					{' ', 'S', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -224,7 +224,7 @@ public enum TestMaze {
 		public int getHeight() { return 5; }
 		
 		public char[][] getTiles() {
-			char[][] tiles = {    // [5][9]
+			char[][] tiles = {
 					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 					{' ', 'S', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -267,7 +267,7 @@ public enum TestMaze {
 		public int getHeight() { return 5; }
 		
 		public char[][] getTiles() {
-			char[][] tiles = {    // [5][9]
+			char[][] tiles = {
 					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 					{' ', 'S', ' ', ' ', 'F', ' ', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', ' ', 'F', ' ', ' ', ' '},
@@ -310,7 +310,7 @@ public enum TestMaze {
 		public int getHeight() { return 5; }
 		
 		public char[][] getTiles() {
-			char[][] tiles = {    // [5][9]
+			char[][] tiles = {
 					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 					{' ', 'S', ' ', ' ', 'F', ' ', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', ' ', 'F', ' ', ' ', ' '},
@@ -354,7 +354,7 @@ public enum TestMaze {
 		public int getHeight() { return 5; }
 		
 		public char[][] getTiles() {
-			char[][] tiles = {    // [5][5]
+			char[][] tiles = {
 					{' ', ' ', ' ', ' ', ' ', ' '},
 					{' ', 'S', ' ', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', 'P', ' '},
@@ -398,7 +398,7 @@ public enum TestMaze {
 		public int getHeight() { return 5; }
 		
 		public char[][] getTiles() {
-			char[][] tiles = {    // [5][5]
+			char[][] tiles = {
 					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 					{' ', 'S', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -442,7 +442,7 @@ public enum TestMaze {
 		public int getHeight() { return 5; }
 		
 		public char[][] getTiles() {
-			char[][] tiles = {    // [5][5]
+			char[][] tiles = {
 					{' ', ' ', ' ', ' ', ' ', ' '},
 					{' ', 'S', ' ', ' ', ' ', ' '},
 					{' ', ' ', ' ', ' ', 'P', ' '},
@@ -473,10 +473,391 @@ public enum TestMaze {
 			};
 			return items;
 		}
+	},
+	
+	/**
+	 * Simple testing of a hunter. Checking that a hunter
+	 * moves towards the player. Checking that a player dies
+	 * upon collision
+	 */
+	LEVEL11 {
+		public int getWidth() { return 6; }
+		public int getHeight() { return 6; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', 'S', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getSolidEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W', 'W'},
+					{'W', ' ', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', 'H', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
+	},
+	
+	/**
+	 * Testing hunter pathfinding in a spiral. Testing
+	 * the player killing the hunter with a sword. Testing
+	 * the player dying to the hunter even with a sword.
+	 */
+	LEVEL12 {
+		public int getWidth() { return 8; }
+		public int getHeight() { return 8; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', 'S', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getSolidEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
+					{'W', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W', ' ', 'W'},
+					{'W', ' ', ' ', ' ', ' ', 'W', ' ', 'W'},
+					{'W', ' ', 'W', 'W', 'H', 'W', ' ', 'W'},
+					{'W', ' ', 'W', 'W', 'W', 'W', ' ', 'W'},
+					{'W', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', 'S', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
+	},
+	
+	/**
+	 * Testing a sword running out of uses
+	 */
+	LEVEL13 {
+		public int getWidth() { return 8; }
+		public int getHeight() { return 8; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', 'S', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getSolidEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
+					{'W', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W', ' ', 'W'},
+					{'W', ' ', ' ', ' ', ' ', 'W', 'H', 'W'},
+					{'W', ' ', 'W', 'W', ' ', 'W', ' ', 'W'},
+					{'W', ' ', 'W', 'W', 'W', 'W', 'H', 'W'},
+					{'W', 'H', ' ', 'H', ' ', 'H', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', 'I', ' ', 'S', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
+	},
+	
+	/**
+	 * Testing hunter pathfinding in a spiral. Testing
+	 * the player killing the hunter with a sword. Testing
+	 * the player dying to the hunter even with a sword.
+	 */
+	LEVEL14 {
+		public int getWidth() { return 8; }
+		public int getHeight() { return 8; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', 'S', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getSolidEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
+					{'W', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
+					{'W', ' ', 'W', 'W', 'W', 'W', ' ', 'W'},
+					{'W', ' ', 'W', 'W', 'W', 'W', ' ', 'W'},
+					{'W', ' ', 'W', 'W', 'W', 'W', 'H', 'W'},
+					{'W', ' ', 'W', 'W', 'W', 'W', ' ', 'W'},
+					{'W', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
+	},
+	
+	/**
+	 * Testing a player placing a bomb and firing an arrow,
+	 * and destroying enemies with these
+	 */
+	LEVEL15 {
+		public int getWidth() { return 15; }
+		public int getHeight() { return 3; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'S', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getSolidEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
+					{'W', 'H', ' ', 'H', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'B', 'A', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
+	},
+	
+	/**
+	 * Testing that arrows do not go through boulders or 
+	 * closed doors, but do go through open doors
+	 */
+	LEVEL16 {
+		public int getWidth() { return 20; }
+		public int getHeight() { return 3; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', 'S', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getSolidEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
+					{'W', 'H', ' ', 'O', ' ', ' ', ' ', ' ', ' ', 'R', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'H', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', 'A', 'A', 'A', 'r', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
+	},
+	
+	/**
+	 * Testing that you can push boulders through open doors
+	 */
+	LEVEL17 {
+		public int getWidth() { return 9; }
+		public int getHeight() { return 5; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', 'S', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getSolidEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
+					{'W', ' ', ' ', ' ', 'W', ' ', ' ', ' ', 'W'},
+					{'W', ' ', 'O', ' ', 'R', ' ', ' ', ' ', 'W'},
+					{'W', ' ', ' ', ' ', 'W', ' ', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', 'r', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
+	},
+	
+	/**
+	 * Testing that enemies can go through open doors
+	 */
+	LEVEL18 {
+		public int getWidth() { return 15; }
+		public int getHeight() { return 3; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'S', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getSolidEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
+					{'W', 'H', ' ', ' ', ' ', ' ', 'R', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'r', 'S', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
+	},
+	
+	/**
+	 * Testing that the player can't use items they
+	 * don't have...
+	 */
+	LEVEL19 {
+		public int getWidth() { return 15; }
+		public int getHeight() { return 3; }
+		
+		public char[][] getTiles() {
+			char[][] tiles = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'S', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return tiles;
+		}
+		
+		public char[][] getSolidEntities() {
+			char[][] entities = {
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
+					{'W', 'H', ' ', 'H', ' ', 'H', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
+					{'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'}
+			};
+			return entities;
+		}
+		
+		public char[][] getItems() {
+			char[][] items = {
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'B', 'A', ' ', ' ', ' '},
+					{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+			};
+			return items;
+		}
 	};
-	
-	
-	
 	
 	// Add more sample levels to test...
 	// Add a comment to the top of each level to
