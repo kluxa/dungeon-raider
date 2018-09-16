@@ -1,7 +1,9 @@
-package dungeon;
+package Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
+import src.dungeon.*;
+import src.player.*;
 
 
 public class TestDG {
@@ -229,51 +231,6 @@ public class TestDG {
 		assertTrue(maze.isLegalMove(player, Direction.RIGHT));
 		assertTrue(maze.isLegalMove(player, Direction.LEFT));
 		assertTrue(maze.isLegalMove(player, Direction.UP));
-	}
-
-	//Test Level funcionalities
-	@Test
-	void LevelTest() {
-		Level level = new Level(SampleMaze.LEVEL01);
-
-		//Test player inside level
-		assertTrue(level.getPlayer() != null);
-		//Test player is alive
-		assertTrue(level.playersAlive());
-
-		//Test player is at certain coordinates and moves accordingly
-		assertTrue(level.playerIsAt(0,0));
-
-		level.getPlayer().move(SampleMaze.LEVEL01, Direction.DOWN);
-		assertTrue(level.playerIsAt(0,1));
-
-		level.getPlayer().move(SampleMaze.LEVEL01, Direction.RIGHT);
-		assertTrue(level.playerIsAt(1,1));
-
-		level.getPlayer().move(SampleMaze.LEVEL01, Direction.RIGHT);
-		assertTrue(level.playerIsAt(2,1));
-
-		level.getPlayer().move(SampleMaze.LEVEL01, Direction.LEFT);
-		assertTrue(level.playerIsAt(1,1));
-
-		//Test bomb droped correctly
-		UnlitBomb bomb = new UnlitBomb();
-		level.dropBomb();
-		assertFalse(level.getPlayer().hasItem(bomb));
-		assertTrue(level.getMaze().getLast(bomb) instanceof LitBomb);
-
-		//Test entity location
-		FloorSwitch fs = new FloorSwitch(1,1);
-		assertTrue(level.entityIsAt(fs,1,1));
-
-		Boulder b = new Boulder(new Tile(1,1));
-		assertTrue(level.entityIsAt(b,1,1));
-
-		Door d = new Door(new Tile(1,1));
-		assertTrue(level.entityIsAt(d,1,1));
-
-		//Test level is complete
-		assertFalse(level.levelIsComplete());
 	}
 	
 }
