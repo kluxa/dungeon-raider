@@ -23,6 +23,10 @@ public class Door extends NonLivingEntity {
 		this.color = color;
 	}
 	
+	public boolean isOpen() {
+		return isOpen;
+	}
+	
 	@Override
 	public void collide(SolidEntity e) {
 		if (e instanceof Player) {
