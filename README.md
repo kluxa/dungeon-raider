@@ -19,9 +19,9 @@ back-end.
 - Pause menu
 - Game over menu
 - Level editor
-- - Designing the level
-- - Loading a saved level
-- - Saving a custom level
+-- Designing the level
+-- Loading a saved level
+-- Saving a custom level
 
 ## Details
 ### Maze File Format
