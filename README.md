@@ -19,9 +19,9 @@ back-end.
 - Pause menu
 - Game over menu
 - Level editor
-  > Designing the level
-  > Loading a saved level
-  > Saving a custom level
+(Designing the level)
+(Loading a saved level)
+(Saving a custom level)
 
 ## Details
 ### Maze File Format
@@ -44,21 +44,16 @@ Path tiles are the default tile and do NOT need to be listed.
 Possible objectives are Exit, Treasures, Enemies, and Switches
 
 #### Example
+`
 7 7
-
 Player 1 1
-
 Wall 0 0, 0 1, 0 2, 0 3, 0 4, 0 5, 0 6, 1 0, 2 0, 3 0, 4 0, 5 0, 6 0, 1 6, 2 6, 3 6, 4 6, 5 6, 6 6, 6 1, 6 2, 6 3, 6 4, 6 5, 5 4, 4 4, 3 4
-
 Boulder 3 1, 4 5
-
 Switch 5 1, 5 5
-
 Key Red 2 1
-
 Door Red 3 5
-
 Objectives Switches
+`
 
 ### Main Menu
 #### Relevant Keys: W (up), S (down), Enter (select)
