@@ -25,34 +25,51 @@ back-end.
 
 ## Details
 ### Maze File Format
+
 <Height> <Width>
+
 Player <Starting Y> <Starting X>
+
 <Entity-1> <Y1> <X1>, <Y2> <X2>...
+
 <Entity-2> <Y1> <X1>, <Y2> <X2>...
+
 ...
+
 Objectives <Objective 1> <Objective 2>...
-# Comment
+\# Comment
 
 If the entity is a door or key, a color must also be stated.
 Path tiles are the default tile and do NOT need to be listed.
-Possible objectives are Exit, Treasures, Enemies, Switches
+Possible objectives are Exit, Treasures, Enemies, and Switches
 
 #### Example
 7 7
+
 Player 1 1
+
 Wall 0 0, 0 1, 0 2, 0 3, 0 4, 0 5, 0 6, 1 0, 2 0, 3 0, 4 0, 5 0, 6 0, 1 6, 2 6, 3 6, 4 6, 5 6, 6 6, 6 1, 6 2, 6 3, 6 4, 6 5, 5 4, 4 4, 3 4
+
 Boulder 3 1, 4 5
+
 Switch 5 1, 5 5
+
 Key Red 2 1
+
 Door Red 3 5
+
 Objectives Switches
 
 ### Main Menu
 #### Relevant Keys: W (up), S (down), Enter (select)
 Game Title
+
 Play
+
 Level Editor
+
 Options (optional)
+
 Quit
 
 ### Level Selection Menu
@@ -71,18 +88,23 @@ effects (such as invincibility/flying) are located to the right of the inventory
 ### Level Complete Menu
 #### Relevant Keys: W, S, Enter
 Next Level
+
 Replay Level
+
 Level Select
 
 ### Pause Menu
 #### Relevant Keys: W, S, Enter, P (unpause)
 Resume
+
 Restart Level
+
 Level Select
 
 ### Game Over Menu
 #### Relevant Keys: W, S, Enter
 Restart Level
+
 Level Select
 
 ### Level Editor
@@ -90,11 +112,20 @@ Level Select
 
 ## Possible Extensions
 Different Level Themes
+
 More Interesting Enemies
+
 Replays
+
 Customisable Player
+
 Scores
+
 Story Mode
+
 Music
+
 Sound FX
+
 Animations
+
