@@ -2,26 +2,26 @@
 
 ## TODO
 ### Back-End
--[] Level completion checking
--[] Enemy movement (Strategist, Hound, Coward)
--[] Writing and reading mazes to and from files
+- [ ] Level completion checking
+- [ ] Enemy movement (Strategist, Hound, Coward)
+- [ ] Writing and reading mazes to and from files
 
 ### Front-End
 Some of these will require changing the back-end,
 NOTIFY everyone if you are about to modify the
 back-end.
 
--[] Choosing sprites
--[] Main menu (KEVIN)
--[] Level selection menu
--[] Level playing view
--[] Level complete menu
--[] Pause menu
--[] Game over menu
--[] Level editor
-  -[] Designing the level
-  -[] Loading a saved level
-  -[] Saving a custom level
+- [ ] Choosing sprites
+- [ ] Main menu (KEVIN)
+- [ ] Level selection menu
+- [ ] Level playing view
+- [ ] Level complete menu
+- [ ] Pause menu
+- [ ] Game over menu
+- [ ] Level editor
+  - [ ] Designing the level
+  - [ ] Loading a saved level
+  - [ ] Saving a custom level
 
 ## Details
 ### Maze File Format
