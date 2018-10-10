@@ -2,7 +2,7 @@
 
 ## TODO
 ### Back-End
-- [ ] Level completion checking
+- [ ] Level completion checking (KEVIN)
 - [ ] Enemy movement (Strategist, Hound, Coward)
 - [ ] Writing and reading mazes to and from files
 
@@ -12,7 +12,7 @@ NOTIFY everyone if you are about to modify the
 back-end.
 
 - [ ] Choosing sprites
-- [ ] Main menu (KEVIN)
+- [x] Main menu (KEVIN)
 - [ ] Level selection menu
 - [ ] Level playing view
 - [ ] Level complete menu
