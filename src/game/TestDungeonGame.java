@@ -10,7 +10,7 @@ public class TestDungeonGame {
 	// But they are very helpful for visualising the game
 	public static void main(String[] args) {
 		TestDungeonGame test = new TestDungeonGame();
-		test.testLevel19();
+		test.testLevel15();
 		
 	}
 	

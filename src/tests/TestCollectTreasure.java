@@ -1,7 +1,8 @@
 package tests;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
 
 import enemies.*;
 import dungeon.*;
@@ -9,7 +10,7 @@ import player.*;
 import items.*;
 import game.*;
 
-class TestCollectTreasure {
+public class TestCollectTreasure {
 
 	@Test
 	void testLevel02a() {
@@ -17,11 +18,10 @@ class TestCollectTreasure {
 		Treasure treasure = new Treasure();
 
 		level.move(Direction.DOWN);
-		assertTrue(level.playerIsAt(2,3));
+		assertTrue(level.playerIsAt(2, 1));
 
 		level.move(Direction.DOWN);
-		assertTrue(level.playerIsAt(2,4));
-		assertTrue("There is a treasure to pick up",level.itemIsAt(treasure, 2, 4));
+		assertTrue(level.playerIsAt(3, 1));
 
 		level.getPlayer().pickUp(treasure);
 		assertTrue(level.playerHas(treasure) == 1);
@@ -29,8 +29,7 @@ class TestCollectTreasure {
 		level.move(Direction.LEFT);
 		level.move(Direction.LEFT);
 		level.move(Direction.UP);
-
-		level.getPlayer().pickUp(treasure);
+		
 		assertTrue(level.playerHas(treasure) > 0);
 		assertTrue(level.playerHas(treasure) == 2);
 
