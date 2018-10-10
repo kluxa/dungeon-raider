@@ -27,7 +27,7 @@ back-end.
 ### Maze File Format
 ```
 <Height> <Width>
-<WALL GRID>
+<WALL AND BOULDER GRID>
 Player <Starting Y> <Starting X>
 <Entity-1> <Y1> <X1>, <Y2> <X2>...
 <Entity-2> <Y1> <X1>, <Y2> <X2>...
@@ -38,20 +38,21 @@ Objectives <Objective 1> <Objective 2>...
 
 If the entity is a door or key, a color must also be stated.
 Path tiles are the default tile and do NOT need to be listed.
-Possible objectives are Exit, Treasures, Enemies, and Switches
+Other tiles (e.g., pits, switches and exit) must be declared.
+Possible objectives are Treasures, Enemies, and Switches. If
+no there is no Objectives line, the objective is Exit.
 
 #### Example
 ```
 7 7
-1111111
-1000001
-1000001
-1000101
-1000101
-1000101
-1111111
+WWWWWWW
+W     W
+W     W
+WB  W W
+W   WBW
+W   W W
+WWWWWWW
 Player 1 1
-Boulder 3 1, 4 5
 Switch 5 1, 5 5
 Key Red 2 1
 Door Red 3 5
