@@ -81,6 +81,14 @@ public class Maze {
 		return player.getLocation();
 	}
 	
+	public int getHeight () {
+		return this.height;
+	}
+	
+	public int getWidth () {
+		return this.width;
+	}
+	
 	// Only for testing
 	public int getNumOfEntity(Entity e) {
 		ArrayList<SolidEntity> entities = getAllSolidEntities();
