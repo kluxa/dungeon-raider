@@ -30,8 +30,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Scanner;
 
-public class MazeReader implements FileIOStrat {
 
+public class MazeReader implements FileIOStrat {
+//IN THIS CLASS
+//LOAD MAZE AND SAVE MAZE are very important
 
 	/**
 	 * Loads a Maze from a file under a strict format
@@ -58,9 +60,9 @@ public class MazeReader implements FileIOStrat {
             //if H is 7, line 8 contains final line of W&B grid
             newMaze = setWallAndBoulderGrid (newMaze, allLines.subList(1, newMaze.getHeight()+1));
             
-            LinkedHashMap<String, ArrayList<Object>> mazeInfo = getMazeInfo(allLines);
+            LinkedHashMap<String, ArrayList<Object>> mazeInfo = getMazeInfo(allLines.subList(newMaze.getHeight()+1, allLines.size()));
             
-            newMaze = addInfoToMaze (newMaze, mazeInfo);
+            //newMaze = addInfoToMaze (newMaze, mazeInfo);
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -76,6 +78,7 @@ public class MazeReader implements FileIOStrat {
     }
 
     private Maze addInfoToMaze(Maze newMaze, LinkedHashMap<String, ArrayList<Object>> mazeInfo) {
+		ArrayList<Object> startInfo = mazeInfo.get("Start");
 		
     	
     	
@@ -109,8 +112,8 @@ public class MazeReader implements FileIOStrat {
     }
     
     /**
-     * Gets the coordinates of an entity from a file based representation "<Entity> <Y1> <X1>, <Y2> <X2>..."
-     * Returns a <String, ArrayList<Object>> HashMap where the Object is some info about the Entity
+     * Gets the coordinates of an entity from a file based representation "Entity Y1 X1, Y2 X2 ..."
+     * Returns a HashMap where the Value is some info about the Key
      * @param lines
      * @return
      */
@@ -123,6 +126,7 @@ public class MazeReader implements FileIOStrat {
     	for (int i = 0; i < splitted.length; i++) {
     		if (splitted[i] != null) {
     			ArrayList<Object> info = new ArrayList<Object>();
+    			//Starts at 1 because 0 is Key
     			for (int j = 1; j < splitted[i].length; j++) {
     				info.add(splitted[i][j]);
     			}
@@ -143,8 +147,8 @@ public class MazeReader implements FileIOStrat {
     		if (line.charAt(0) == '#') {
     			break;
     		} else {
-    			line.trim();
-    			line.replaceAll(",", ""); //unnecessary responsibility, possible refactoring
+    			line = line.trim();
+    			line = line.replaceAll(",", ""); //unnecessary responsibility, possible refactoring
     			splitted[i] = line.split(" ");
     		}
     	}
@@ -174,45 +178,11 @@ public class MazeReader implements FileIOStrat {
     	}
     	return maze;
     }
-    
-    
-    private Tile charToTile(char code) {
-		switch (code) {
-		case 'P': return new Pit();
-		case 'F': return new FloorSwitch();
-		case 'E': return new Exit();
-		default:  return new Path();
-		}
-	}
 	
 	private SolidEntity charToSolidEntity(char code) {
 		switch (code) {
 		case 'W': return new Wall();
 		case 'B': return new Boulder();
-		case 'H': return new Hunter();
-		case 'S': return new Strategist();
-		case 'U': return new Hound();
-		case 'C': return new Coward();
-		case 'R': return new Door("red");
-		case 'Y': return new Door("yellow");
-		case 'G': return new Door("green");
-		case 'b': return new Door("blue");
-		default:  return null;
-		}
-	}
-	
-	private Item charToItem(char code) {
-		switch (code) {
-		case 'H': return new HoverPotion();
-		case 'I': return new InvincibilityPotion();
-		case 'S': return new Sword();
-		case 'T': return new Treasure();
-		case 'B': return new UnlitBomb();
-		case 'A': return new Arrow();
-		case 'r': return new Key("red");
-		case 'y': return new Key("yellow");
-		case 'g': return new Key("green");
-		case 'b': return new Key("blue");
 		default:  return null;
 		}
 	}
@@ -222,6 +192,6 @@ public class MazeReader implements FileIOStrat {
     	MazeReader reader = new MazeReader();
     	Maze newMaze = reader.loadMaze("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\testDung.txt");
     	
-    	//System.out.println(newMaze.toString());
+    	System.out.println(newMaze.toString());
     }
 }
