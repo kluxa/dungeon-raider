@@ -58,7 +58,7 @@ public class MazeReader implements FileIOStrat {
             //if H is 7, line 8 contains final line of W&B grid
             newMaze = setWallAndBoulderGrid (newMaze, allLines.subList(1, newMaze.getHeight()+1));
             
-            LinkedHashMap<String, ArrayList<Object>> mazeInfo = getMazeInfo(allLines.subList(newMaze.getHeight()+2, allLines.size()));
+            LinkedHashMap<String, ArrayList<Object>> mazeInfo = getMazeInfo(allLines);
             
             newMaze = addInfoToMaze (newMaze, mazeInfo);
             
@@ -71,7 +71,7 @@ public class MazeReader implements FileIOStrat {
                 e.printStackTrace();
             }
         }
-        newMaze.toString();
+        //newMaze.toString();
         return newMaze;
     }
 
@@ -86,8 +86,26 @@ public class MazeReader implements FileIOStrat {
     
     
 	@Override
-    public void saveMaze(String location, Maze maze) {
+    public void saveMaze(String location, Maze maze, String fileName) {
+		BufferedWriter out = null;
 
+		try {
+		    FileWriter fstream = new FileWriter("out.txt", true); //true tells to append data.
+		    out = new BufferedWriter(fstream);
+		    out.write("\nsue");
+		}
+
+		catch (IOException e) {
+		    System.err.println("Error: " + e.getMessage());
+		}
+
+		finally {
+			try {
+				out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+		}
     }
     
     /**
@@ -204,6 +222,6 @@ public class MazeReader implements FileIOStrat {
     	MazeReader reader = new MazeReader();
     	Maze newMaze = reader.loadMaze("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\testDung.txt");
     	
-    	System.out.println(newMaze.toString());
+    	//System.out.println(newMaze.toString());
     }
 }
