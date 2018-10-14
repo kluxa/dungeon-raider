@@ -60,7 +60,7 @@ public class MazeReader implements FileIOStrat {
             
             LinkedHashMap<String, ArrayList<Object>> mazeInfo = getMazeInfo(allLines.subList(newMaze.getHeight()+2, allLines.size()));
             
-            
+            newMaze = addInfoToMaze (newMaze, mazeInfo);
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -75,7 +75,17 @@ public class MazeReader implements FileIOStrat {
         return newMaze;
     }
 
-    @Override
+    private Maze addInfoToMaze(Maze newMaze, LinkedHashMap<String, ArrayList<Object>> mazeInfo) {
+		
+    	
+    	
+		return null;
+	}
+
+    
+    
+    
+	@Override
     public void saveMaze(String location, Maze maze) {
 
     }
