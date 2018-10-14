@@ -52,7 +52,7 @@ WB  W W
 W   WBW
 W   W W
 WWWWWWW
-Player 1 1
+Start 1 1
 Switch 5 1, 5 5
 Key Red 2 1
 Door Red 3 5
