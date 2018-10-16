@@ -2,15 +2,15 @@ package controller;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import game.Level;
 
 public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Dungeon Raider");
-		MainMenuScreen screen = new MainMenuScreen(primaryStage);
-		Controller cc = new MainMenuController(primaryStage);
-		screen.display(cc);
+		MenuHandler intro = new MenuHandler(primaryStage);
+		intro.initiate();
 	}
 	
 	public static void main(String[] args) {

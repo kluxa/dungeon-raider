@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="zone-select-menu-pane" fx:id="display" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@menu.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="219.0" layoutY="82.0" text="Zone Select" textFill="WHITE">
+         <font>
+            <Font name="Power Red and Green" size="96.0" />
+         </font>
+      </Label>
+      <Button fx:id="tutorialButton" layoutX="56.0" layoutY="193.0" mnemonicParsing="false" onKeyPressed="#handleTutorialButton" prefHeight="358.0" prefWidth="151.0" style="-fx-background-color: none;" text="Tutorial" textFill="WHITE">
+         <font>
+            <Font name="Power Red and Green" size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="zone1Button" layoutX="264.0" layoutY="193.0" mnemonicParsing="false" onKeyPressed="#handleZone1Button" prefHeight="358.0" prefWidth="151.0" style="-fx-background-color: none;" text="Zone 1" textFill="WHITE">
+         <font>
+            <Font name="Power Red and Green" size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="world2Button" layoutX="474.0" layoutY="193.0" mnemonicParsing="false" onKeyPressed="#handleZone2Button" prefHeight="358.0" prefWidth="151.0" style="-fx-background-color: none;" text="Zone 2" textFill="WHITE">
+         <font>
+            <Font name="Power Red and Green" size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="zone3Button" layoutX="686.0" layoutY="193.0" mnemonicParsing="false" onKeyPressed="#handleZone3Button" prefHeight="358.0" prefWidth="151.0" style="-fx-background-color: none;" text="Zone 3" textFill="WHITE">
+         <font>
+            <Font name="Power Red and Green" size="30.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

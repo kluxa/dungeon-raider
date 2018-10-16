@@ -1,18 +1,13 @@
-.root {
-	-fx-focus-color: transparent;
-}
 
 .button {
 	-fx-background-radius: 8px;
-	-fx-border-color: rgb(160,160,160);
 	-fx-border-radius: 4px;
 	-fx-border-width: 4px;
 	-fx-faint-focus-color: transparent;
 	-fx-focus-color: transparent;
-	-fx-text-fill: black;
+	-fx-text-fill: white;
 }
 
 .button:focused {
-	-fx-border-color: black;
-	-fx-text-fill: black;
+	-fx-border-color: rgb(208,214,18);
 }
