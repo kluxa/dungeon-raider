@@ -19,5 +19,10 @@ public class Hound extends Enemy {
 	public char toChar() {
 		return 'U';
 	}
+
+	@Override
+	public String getImageName() {
+		return "hound";
+	}
 	
 }

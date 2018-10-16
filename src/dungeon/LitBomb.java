@@ -57,5 +57,10 @@ public class LitBomb extends NonLivingEntity {
 	public char toChar() {
 		return '*';
 	}
+
+	@Override
+	public String getImageName() {
+		return "litbomb" + String.valueOf(countdown);
+	}
 	
 }

@@ -19,5 +19,10 @@ public class Coward extends Enemy {
 	public char toChar() {
 		return 'C';
 	}
+
+	@Override
+	public String getImageName() {
+		return "coward";
+	}
 	
 }

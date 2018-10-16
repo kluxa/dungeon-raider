@@ -148,5 +148,10 @@ public class Player extends LivingEntity {
 	public char toChar() {
 		return '@';
 	}
+
+	@Override
+	public String getImageName() {
+		return "player";
+	}
 	
 }

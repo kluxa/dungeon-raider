@@ -4,6 +4,7 @@ import enemies.*;
 import dungeon.*;
 import player.*;
 import items.*;
+import javafx.scene.image.Image;
 import game.*;
 
 public abstract class Entity {
@@ -16,4 +17,5 @@ public abstract class Entity {
 	
 	public abstract char toChar();
 	
+	public abstract String getImageName();
 }

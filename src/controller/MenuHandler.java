@@ -1,5 +1,7 @@
 package controller;
 
+import game.Level;
+import game.TestMaze;
 import javafx.stage.Stage;
 
 /**
@@ -50,5 +52,11 @@ public class MenuHandler {
 	
 	public void switchToDungeonSelectMenu() {
 		dungeonSelectMenu.display(dungeonSelectMenuController);
+	}
+	
+	public void switchToPlayingDungeon(int zone, String name) {
+		Level level = new Level(TestMaze.LEVEL16);
+		PlayDungeon playing = new PlayDungeon(stage, this, level);
+		playing.beginGame();
 	}
 }

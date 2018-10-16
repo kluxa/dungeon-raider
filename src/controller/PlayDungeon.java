@@ -1,18 +1,34 @@
 package controller;
 
+import dungeon.Maze;
 import game.Level;
 import javafx.stage.Stage;
 
 public class PlayDungeon {
+	private MenuHandler menus;
 	
 	private Stage stage;
 	private Screen pauseScreen;
 	private Screen playDungeonScreen;
 	
-	public PlayDungeon(Stage stage, Level level) {
+	private Level level;
+	private Maze maze;
+	
+	public PlayDungeon(Stage stage, MenuHandler menus, Level level) {
 		this.stage = stage;
+		this.menus = menus;
 		this.pauseScreen = new PauseMenuScreen(stage);
-		this.playDungeonScreen = new PlayDungeonScreen(stage, level);
+		this.playDungeonScreen = new PlayDungeonScreen(stage);
+		this.maze = level.getMaze();
+		this.level = level;
+	}
+	
+	public Level getLevel() {
+		return level;
+	}
+	
+	public Maze getMaze() {
+		return maze;
 	}
 	
 	public void pauseGame() {

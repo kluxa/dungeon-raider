@@ -4,6 +4,7 @@ import enemies.*;
 import dungeon.*;
 import player.*;
 import items.*;
+import javafx.scene.image.Image;
 import game.*;
 
 public class Boulder extends NonLivingEntity {
@@ -29,4 +30,8 @@ public class Boulder extends NonLivingEntity {
 		return 'O';
 	}
 	
+	@Override
+	public String getImageName() {
+		return "boulder";
+	}
 }

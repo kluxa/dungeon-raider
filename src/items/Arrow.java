@@ -6,5 +6,10 @@ public class Arrow extends UnlimitedCollectible {
 	public char toChar() {
 		return 'A';
 	}
+
+	@Override
+	public String getImageName() {
+		return "arrow";
+	}
 	
 }

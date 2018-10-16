@@ -64,4 +64,12 @@ public class Door extends NonLivingEntity {
 		return (this.color.equalsIgnoreCase(d.color));
 	}
 	
+	// TODO
+	@Override
+	public String getImageName() {
+		return "door_" +
+		       (isOpen() ? "open_" : "closed_") +
+		       color.toLowerCase();
+	}
+	
 }

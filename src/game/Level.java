@@ -36,6 +36,10 @@ public class Level {
 		return this.player;
 	}
 	
+	public Maze getMaze() {
+		return this.maze;
+	}
+	
 	////////////////////////////////////////////////////////////////////
 	// METHODS FOR MAKING A MOVE
 	

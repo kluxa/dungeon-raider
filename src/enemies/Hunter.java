@@ -20,5 +20,10 @@ public class Hunter extends Enemy {
 	public char toChar() {
 		return 'H';
 	}
+
+	@Override
+	public String getImageName() {
+		return "hunter";
+	}
 	
 }

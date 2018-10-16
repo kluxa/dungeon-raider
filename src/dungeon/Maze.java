@@ -31,7 +31,17 @@ public class Maze {
 		this.height = height;
 		this.width = width;
 		squares = new Square[height][width];
+		enemies = new ArrayList<Enemy>();
+		switches = new ArrayList<FloorSwitch>();
 		this.resetMaze();
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	public int getWidth() {
+		return width;
 	}
 	
 	/**
@@ -68,6 +78,7 @@ public class Maze {
 	
 	public void setPlayer(Player p) {
 		player = p;
+		placeEntity(start.getY(), start.getX(), p);
 	}
 	
 	public Square getSquare(int row, int col) {

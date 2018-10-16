@@ -81,8 +81,8 @@ public class TutorialSelectMenuController extends Controller {
 			goToPreviousScreen();
 			
 		} else if (k.equals(KeyCode.ENTER)) {
-			PlayDungeon d = new PlayDungeon(getStage(), null);
-			d.beginGame();
+			menus.switchToPlayingDungeon(0,
+					files[cursorY][cursorX]);
 			
 		} else if (k.equals(KeyCode.UP)) {
 			moveCursorUp();

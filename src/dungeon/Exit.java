@@ -20,5 +20,10 @@ public class Exit extends Tile {
 	public char toChar() {
 		return 'E';
 	}
+
+	@Override
+	public String getImageName() {
+		return "exit";
+	}
 	
 }
