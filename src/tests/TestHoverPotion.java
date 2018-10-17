@@ -14,7 +14,7 @@ class TestHoverPotion {
 	
 	@Test
 	void survivePitsWithHoverPotion() {
-		Level level = new Level(TestMaze.LEVEL10);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL10);
 		
 		assert level.itemIsAt(new HoverPotion(), 3, 1);
 		

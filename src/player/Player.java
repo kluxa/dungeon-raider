@@ -14,6 +14,7 @@ public class Player extends LivingEntity {
 	private PlayerState state;
 	private ArrayList<LitBomb> bombs;
 	private boolean isFlying;
+	private boolean onExit;
 	
 	public Player(Maze maze) {
 		super(maze.getStartSquare());
@@ -21,6 +22,7 @@ public class Player extends LivingEntity {
 		state = new NormalState(this);
 		bombs = new ArrayList<>();
 		this.isFlying = false;
+		onExit = false;
 		this.maze = maze;
 	}
 	
@@ -42,6 +44,14 @@ public class Player extends LivingEntity {
 	
 	public boolean isInvincible() {
 		return state.isInvincible();
+	}
+	
+	public boolean isOnExit() {
+		return onExit;
+	}
+	
+	public void setOnExit() {
+		onExit = true;
 	}
 	
 	////////////////////////////////////////////////////////////////////

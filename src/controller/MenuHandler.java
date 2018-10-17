@@ -1,6 +1,9 @@
 package controller;
 
+import dungeon.Maze;
 import game.Level;
+import game.MazeLoader;
+import game.SimpleLevel;
 import game.TestMaze;
 import javafx.stage.Stage;
 
@@ -55,7 +58,9 @@ public class MenuHandler {
 	}
 	
 	public void switchToPlayingDungeon(int zone, String name) {
-		Level level = new Level(TestMaze.LEVEL16);
+		MazeLoader reader = new MazeLoader();
+		Maze maze = reader.readMaze(TestMaze.LEVEL06);
+		Level level = new SimpleLevel.LevelBuilder(maze).collectTreasure(true).triggerSwitches(true).build();
 		PlayDungeon playing = new PlayDungeon(stage, this, level);
 		playing.beginGame();
 	}

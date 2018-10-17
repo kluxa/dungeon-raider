@@ -1,6 +1,6 @@
 package controller;
 
-import game.Level;
+import game.SimpleLevel;
 import javafx.stage.Stage;
 
 public class PlayDungeonScreen extends Screen {

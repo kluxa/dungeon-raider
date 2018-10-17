@@ -136,8 +136,31 @@ public class Maze {
 		return count;
 	}
 	
+	public int getNumOfItem(Item i) {
+		int count = 0;
+		for (int row = 0; row < height; row++) {
+			for (int col = 0; col < width; col++) {
+				count += squares[row][col].getNumOfItem(i);
+			}
+		}
+		return count;
+	}
+	
+	public boolean allTreasuresCollected() {
+		return getNumOfItem(new Treasure()) == 0;
+	}
+	
 	public boolean allSwitchesTriggered() {
 		return (getNumTriggeredSwitches() == switches.size());
+	}
+	
+	public boolean allEnemiesDefeated() {
+		for (Enemy e: enemies) {
+			if (e.isAlive()) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	////////////////////////////////////////////////////////////////////

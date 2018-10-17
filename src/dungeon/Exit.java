@@ -11,8 +11,8 @@ public class Exit extends Tile {
 	@Override
 	public void arrive(SolidEntity e) {
 		if (e instanceof Player) {
-			// TODO
-			// Make the player win
+			Player p = (Player)e;
+			p.setOnExit();
 		}
 	}
 	

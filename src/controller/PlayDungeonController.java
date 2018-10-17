@@ -9,6 +9,7 @@ import dungeon.SolidEntity;
 import dungeon.Square;
 import dungeon.Tile;
 import game.Level;
+import game.SimpleLevel;
 import items.Item;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -72,6 +73,11 @@ public class PlayDungeonController extends Controller {
 			playDungeon.gameOver();
 		}
 		
+		if (level.isComplete()) {
+			System.out.println("Complete");
+		} else {
+			System.out.println("Not yet complete");
+		}
 		drawFrame();
 	}
 	

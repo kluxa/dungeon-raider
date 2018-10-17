@@ -2,6 +2,7 @@ package controller;
 
 import dungeon.Maze;
 import game.Level;
+import game.SimpleLevel;
 import javafx.stage.Stage;
 
 public class PlayDungeon {

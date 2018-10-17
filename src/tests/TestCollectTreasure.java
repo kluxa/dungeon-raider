@@ -14,7 +14,7 @@ public class TestCollectTreasure {
 
 	@Test
 	void testLevel02a() {
-		Level level = new Level(TestMaze.LEVEL02);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL02);
 		Treasure treasure = new Treasure();
 
 		level.move(Direction.DOWN);
@@ -37,7 +37,7 @@ public class TestCollectTreasure {
 
 	@Test
 	void testLevel02b() {
-		Level level = new Level(TestMaze.LEVEL02);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL02);
 		Treasure treasure = new Treasure();
 
 		level.move(Direction.DOWN);
@@ -58,7 +58,7 @@ public class TestCollectTreasure {
 
 	@Test 
 	void testCollectKeyA() {
-		Level level = new Level(TestMaze.LEVEL03);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL03);
 		Key gKey = new Key("green");
 		Key rKey = new Key("red");
 

@@ -15,7 +15,7 @@ class TestSword {
 	@Test
 	void swordKillsEnemies() {
 		// Testing that a sword will kill a hunter
-		Level level = new Level(TestMaze.LEVEL12);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL12);
 		
 		level.move(Direction.RIGHT);
 		level.move(Direction.RIGHT);
@@ -54,7 +54,7 @@ class TestSword {
 	void dyingEvenWithSword() {
 		// Even if you have a sword, you can die
 		// if an enemy bumps into you.
-		Level level = new Level(TestMaze.LEVEL12);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL12);
 		
 		level.move(Direction.RIGHT);
 		level.move(Direction.RIGHT);
@@ -89,7 +89,7 @@ class TestSword {
 	@Test
 	void swordHasOnlyFiveUses() {
 		// There are 5 enemies in this level!
-		Level level = new Level(TestMaze.LEVEL13);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL13);
 		assert level.numEnemies() == 5;
 		
 		assert level.playerHas(new Sword()) == 0;

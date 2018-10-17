@@ -14,7 +14,7 @@ class TestHunter {
 
 	@Test
 	void hunterMovesTowardsPlayer1() {
-		Level level = new Level(TestMaze.LEVEL11);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL11);
 
 		assert level.numEnemies() == 1;
 		assert level.playerIsAt(1, 1);
@@ -62,7 +62,7 @@ class TestHunter {
 	
 	@Test
 	void hunterMovesTowardsPlayer2() {
-		Level level = new Level(TestMaze.LEVEL12);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL12);
 
 		assert level.numEnemies() == 1;
 		assert level.playerIsAt(1, 1);
