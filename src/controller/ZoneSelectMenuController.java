@@ -16,6 +16,7 @@ import javafx.util.Duration;
 
 public class ZoneSelectMenuController extends Controller {
 	private MenuHandler menus;
+	
 	@FXML
 	private AnchorPane display;
 	@FXML

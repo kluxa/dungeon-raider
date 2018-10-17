@@ -23,9 +23,9 @@ public class MenuHandler {
 	Screen zoneSelectMenu;
 	Screen dungeonSelectMenu;
 	
-	Controller mainMenuController;
-	Controller zoneSelectMenuController;
-	Controller dungeonSelectMenuController;
+	MainMenuController mainMenuController;
+	ZoneSelectMenuController zoneSelectMenuController;
+	DungeonSelectMenuController dungeonSelectMenuController;
 	
 	public MenuHandler(Stage stage) {
 		this.stage = stage;
@@ -48,7 +48,7 @@ public class MenuHandler {
 		zoneSelectMenu.display(zoneSelectMenuController);
 	}
 	
-	public void setDungeonSelectScreen(Screen s, Controller c) {
+	public void setDungeonSelectScreen(Screen s, DungeonSelectMenuController c) {
 		dungeonSelectMenu = s;
 		dungeonSelectMenuController = c;
 	}

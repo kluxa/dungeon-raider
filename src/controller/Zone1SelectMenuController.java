@@ -13,7 +13,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class Zone1SelectMenuController extends Controller {
+public class Zone1SelectMenuController extends DungeonSelectMenuController {
 	private MenuHandler menus;
 	
 	@FXML
@@ -53,8 +53,7 @@ public class Zone1SelectMenuController extends Controller {
 	private int cursorY = 0;
 	
 	public Zone1SelectMenuController(Stage s, MenuHandler menus) {
-		super(s);
-		this.menus = menus;
+		super(s, menus);
 	}
 	
 	@FXML

@@ -44,8 +44,7 @@ public class PauseMenuController extends Controller {
 	@FXML
 	private void handleReturnButton(KeyEvent e) {
 		if (e.getCode().equals(KeyCode.ENTER)) {
-			System.out.println("Returning");
-			// playDungeon.returnToPrevious();
+			playDungeon.returnToPrevious();
 		}
 	}
 }
