@@ -8,6 +8,7 @@ import player.*;
 import items.*;
 import game.*;
 
+
 public class Level {
 	private Player player;
 	private Maze maze;
