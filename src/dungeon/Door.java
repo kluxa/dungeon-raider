@@ -10,9 +10,6 @@ public class Door extends NonLivingEntity {
 	private boolean isOpen;
 	private String color;
 	
-	public Door() {
-	}
-	
 	public Door(String color) {
 		this(null, color);
 	}
@@ -64,7 +61,6 @@ public class Door extends NonLivingEntity {
 		return (this.color.equalsIgnoreCase(d.color));
 	}
 	
-	// TODO
 	@Override
 	public String getImageName() {
 		return "door_" +

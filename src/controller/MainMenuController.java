@@ -48,7 +48,7 @@ public class MainMenuController extends Controller {
 	private void handleLevelDesignerButton(KeyEvent e) {
 		KeyCode k = e.getCode();
 		if (k.equals(KeyCode.ENTER)) {
-			System.out.println("Level Designer button pressed");			
+			menus.switchToLevelDesigner();
 		}
 	}
 	

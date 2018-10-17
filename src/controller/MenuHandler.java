@@ -1,5 +1,6 @@
 package controller;
 
+import designer.DesignerHandler;
 import dungeon.Maze;
 import game.Level;
 import game.MazeLoader;
@@ -63,5 +64,10 @@ public class MenuHandler {
 		Level level = new SimpleLevel.LevelBuilder(maze).collectTreasure(true).triggerSwitches(true).build();
 		PlayDungeon playing = new PlayDungeon(stage, this, level);
 		playing.beginGame();
+	}
+	
+	public void switchToLevelDesigner() {
+		DesignerHandler designerHandler = new DesignerHandler(stage, this);
+		designerHandler.initialize();
 	}
 }
