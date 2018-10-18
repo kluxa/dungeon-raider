@@ -146,31 +146,4 @@ public class StringUtils {
 		}
 		return -1;
 	}
-	
-	public static void main (String[] args) throws IOException {
-		ArrayList<String> input = new ArrayList<String>();
-		input.add("   ] aa");
-		input.add(")}");
-		
-		BufferedReader reader = null;
-    	File file = new File("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\testDung.txt");
-        reader = new BufferedReader(new FileReader(file));
-        
-        String line;
-        ArrayList<String> allLines = new ArrayList<String>();
-        while ((line = reader.readLine()) != null) {
-        	allLines.add(line);
-        }
-    	
-        LinkedHashMap<String, ArrayList<String>> player = StringUtils.hasapafy(allLines, "player");
-        System.out.println(player.toString());
-        
-        LinkedHashMap<String, ArrayList<String>> map = StringUtils.hasapafy(allLines, "map");
-        System.out.println(map.toString());
-        
-        LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> entityMap = new LinkedHashMap <String, LinkedHashMap<String, ArrayList<String>>>();
-		entityMap = hasapafyNonUnique (allLines, "nonlivingentities");
-		System.out.println(entityMap.toString());
-		
-	}
 }
