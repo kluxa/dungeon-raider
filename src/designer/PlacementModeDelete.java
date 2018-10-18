@@ -13,16 +13,15 @@ import game.*;
  */
 public class PlacementModeDelete extends PlacementMode {
 	
-	public PlacementModeDelete(LevelDesigner levelDesigner) {
-		super(levelDesigner);
+	public PlacementModeDelete(LevelDesignerController controller) {
+		super(controller);
 	}
-
+	
 	@Override
 	public void select() {
 		delete();
-		System.out.println("Something was deleted");
 	}
-
+	
 	@Override
 	public void cancel() {
 		quit();
