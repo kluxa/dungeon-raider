@@ -33,16 +33,13 @@ import java.util.Stack;
 
 
 public class MazeFromFileReader {
-//IN THIS CLASS
-//LOAD MAZE AND SAVE MAZE are very important
-
 	/**
 	 * Loads a Maze from a file under a strict format
 	 */
-    public static ArrayList<Object> getMazeInfo(String fileLoc) {
+    public LinkedHashMap<String, Object> getMazeInfo(String fileLoc) {
         Maze newMaze = null;
         BufferedReader reader = null;
-        ArrayList<Object> mazeInfo = new ArrayList<Object>();
+        LinkedHashMap<String, Object> mazeInfo = new LinkedHashMap<String, Object>();
         
         try {
         	File file = new File(fileLoc);
@@ -59,22 +56,19 @@ public class MazeFromFileReader {
             	throw new IOException();
             }
             
-            LinkedHashMap<String, ArrayList<String>> playerMap 
-            = StringUtils.hasapafy (allLines, "player");
             LinkedHashMap<String, ArrayList<String>> mapMap 
             = StringUtils.hasapafy(allLines, "map");
             LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> nonLivingEntitiesMap 
             = StringUtils.hasapafyNonUnique(allLines, "nonlivingentities");
-            LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> enemiesMap 
-            = StringUtils.hasapafyNonUnique(allLines, "enemies");
+            LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> livingEntitiesMap 
+            = StringUtils.hasapafyNonUnique(allLines, "livingentities");
             LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> itemsMap 
             = StringUtils.hasapafyNonUnique(allLines, "items");
             
-            mazeInfo.add(playerMap);
-            mazeInfo.add(mapMap);
-            mazeInfo.add(nonLivingEntitiesMap);
-            mazeInfo.add(enemiesMap);
-            mazeInfo.add(itemsMap);
+            mazeInfo.put("Map", mapMap);
+            mazeInfo.put("NonLivingEntities", nonLivingEntitiesMap);
+            mazeInfo.put("LivingEntities", livingEntitiesMap);
+            mazeInfo.put("Items", itemsMap);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -87,9 +81,5 @@ public class MazeFromFileReader {
         }
         //newMaze.toString();
         return mazeInfo;
-    }
-	
-    public static void main (String[] args) throws IOException {
-        getMazeInfo("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\testDung.txt");
     }
 }

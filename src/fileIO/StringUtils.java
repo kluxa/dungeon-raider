@@ -64,7 +64,6 @@ public class StringUtils {
 			LinkedHashMap<String, ArrayList<String>> smallMap = new LinkedHashMap<String, ArrayList<String>>();
 			while (allLines.get(i).contains("[")) {
 				String smallKey = formatLine(allLines.get(i));
-				System.out.println(smallKey);
 				i++;
 				ArrayList<String> data = new ArrayList<String>();
 				while (!allLines.get(i).contains("]")) {
@@ -152,7 +151,6 @@ public class StringUtils {
 		ArrayList<String> input = new ArrayList<String>();
 		input.add("   ] aa");
 		input.add(")}");
-		System.out.println(input.get(0).contains("]"));
 		
 		BufferedReader reader = null;
     	File file = new File("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\testDung.txt");
@@ -163,7 +161,6 @@ public class StringUtils {
         while ((line = reader.readLine()) != null) {
         	allLines.add(line);
         }
-    	//System.out.println(allLines.toString());
     	
         LinkedHashMap<String, ArrayList<String>> player = StringUtils.hasapafy(allLines, "player");
         System.out.println(player.toString());

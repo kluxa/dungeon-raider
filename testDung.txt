@@ -1,8 +1,11 @@
 {
-    player: {
-        location: [
-            (0, 0)
-        ]
+    map: {
+        dim: [
+            (4, 8)
+	]
+	completion: [
+	    
+	]
     }
     nonlivingentities: {
         wall: {
@@ -52,29 +55,17 @@
             ]
         }
     }
-    enemies: {
+    livingentities: {
         coward: {
 	    location: [
                 (4, 3),
                 (2, 1)
             ]
         }
-        specialcoward: {
+	player: {
             location: [
-                (2, 1),
-		(2, 1)
+                (0, 0)
             ]
-            movementstrategy: [
-                simplechase
-            ]
-	}
-    }
-    map: {
-	dim: [
-         (4, 8)
-	]
-	completion: [
-	    
-	]
+        }
     }
 }
