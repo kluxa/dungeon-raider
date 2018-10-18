@@ -1,0 +1,26 @@
+17 14
+WWWWWWWWWWWWWW
+WWWWWWWWWW   W
+WWW          W
+WWW WWWWWW   W
+WWW WWWWWWWWWW
+WWW WWWWWWWWWW
+WWW WWWWWWWWWW
+WW   WWWWWWWWW
+WBB BBWWWWWWWW
+W BBB WWWWWWWW
+WB   BWWWWWWWW
+W BBB WWWWWWWW
+W     WWWWWWWW
+W     WWWW   W
+W            W
+W     WWWW   W
+WWWWWWWWWWWWWW
+
+Player 14 11
+Exit 2 11
+
+# A tutorial level containing a slightly more
+# challenging boulder puzzle. We let them know
+# that they can restart the level by pausing
+# and then pressing 'Restart Level'.

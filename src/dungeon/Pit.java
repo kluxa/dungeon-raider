@@ -17,5 +17,10 @@ public class Pit extends Tile {
 	public char toChar() {
 		return 'P';
 	}
+
+	@Override
+	public String getImageName() {
+		return "pit";
+	}
 	
 }

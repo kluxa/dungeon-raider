@@ -14,7 +14,7 @@ class TestBomb {
 
 	@Test
 	void pickUpBombs() {
-		Level level = new Level(TestMaze.LEVEL09);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL09);
 		level.move(Direction.DOWN);
 		
 		assert (level.playerHas(new UnlitBomb()) == 1);
@@ -31,7 +31,7 @@ class TestBomb {
 	
 	@Test
 	void dropBombNextToBoulder() {
-		Level level = new Level(TestMaze.LEVEL09);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL09);
 		level.move(Direction.DOWN);
 		
 		assert (level.playerHas(new UnlitBomb()) == 1);
@@ -77,7 +77,7 @@ class TestBomb {
 	
 	@Test
 	void bombChainReaction() {
-		Level level = new Level(TestMaze.LEVEL09);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL09);
 		level.move(Direction.DOWN);
 		level.move(Direction.DOWN);
 		level.move(Direction.RIGHT);
@@ -105,7 +105,7 @@ class TestBomb {
 	
 	@Test
 	void bombDoor() {
-		Level level = new Level(TestMaze.LEVEL09);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL09);
 		level.move(Direction.DOWN);
 		level.move(Direction.DOWN);
 		level.move(Direction.RIGHT);
@@ -136,7 +136,7 @@ class TestBomb {
 	
 	@Test
 	void bombSelf() {
-		Level level = new Level(TestMaze.LEVEL09);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL09);
 		level.move(Direction.DOWN);
 		assert level.playerHas(new UnlitBomb()) == 1;
 		
@@ -159,7 +159,7 @@ class TestBomb {
 	
 	@Test
 	void noBombsToDrop() {
-		Level level = new Level(TestMaze.LEVEL09);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL09);
 		
 		assert level.playerIsAt(1, 1);
 		

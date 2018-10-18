@@ -1,0 +1,41 @@
+27 25
+WWWWWWWWWWWWWWWWWWWWWWWWW
+W         WWWWWWWWWWWWWWW
+W WW   WW WWWWW         W
+W W     W WWWWW         W
+W                       W
+W                       W
+W                       W
+W W     W WWWWW         W
+W WW   WW WWWWWWWWW WWWWW
+W         WWWWWWWWW WWWWW
+WWWWWWWWWWWWWWWWWWW WWWWW
+WWWWWWWWWWWWWWWWWWW WWWWW
+WWWWWWWWWWWWWWW         W
+WWW     WWWWWWW         W
+WWW                     W
+WWW     WWWWWWW         W
+WWWWWWWWWWWWWWWWWW   WWWW
+WWWWWWWWWWWWWWWWWW   WWWW
+WWWW         WWWWW   WWWW
+WWWW         WWWWW   WWWW
+WWWW WWWWWWWWWW         W
+WWWW WWWWWWWWWW         W
+WWWW                    W
+WWWWWWWWWWWWWWW         W
+WWWWWWWWWWWWWWW         W
+WWWWWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWW
+
+Player 5 5
+Key Red 5 19
+Door Red 10 19
+HoverPotion 14 5
+Pit 17 18, 17 19, 17 20, 18 18, 18 19, 18 20
+Treasure 18 12
+Exit 22 19
+Objectives
+
+# This is a tutorial level that introduces doors/keys,
+# pits and hover potions, treasures, and reaching the
+# exit as a completion objective.

@@ -1,0 +1,40 @@
+30 22
+WWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWW          W
+WWWWWWWWWWW WWWWWWWWWW
+WW        W WWWWWWWWWW
+WW         B         W
+WW          WWWWWWWW W
+WW WWWWWWWWWWWWWWWWW W
+WW WWWWWWWWWWWWWWWWW W
+WW WWWWWWWWWWWWWWWWW W
+W  B     W     B   W W
+WWW WWW  W  WWW WW W W
+WWW WWW     WWW B    W
+WWW WWWWWWWWWWW WWWW W
+WWW           B  WWW W
+WWW WWWWWWWWWWWWWWWW W
+WWW WWWWWWWWWWWWWWWW W
+WWW WWWWWWWW       W W
+WW          BB     W W
+WW WWWWWWWWW       W W
+WW WWWWWWWWWWWWWWW W W
+WW WWWWWWWWWWWWWWW W W
+WW WWWWWWWWWWWWWWW W W
+WW WWWW     WWWWWW W W
+WW WWWW     WWWWWW W W
+WW WWWW       B      W
+WWWWWWW     WWWWWWWW W
+WWWWWWW     WW   WWW W
+WWWWWWWWWWWWWW   WWW W
+WWWWWWWWWWWWWW       W
+WWWWWWWWWWWWWWWWWWWWWW
+
+Player 24 9
+Treasure 1 28, 24 2, 26 14, 26 16, 28 14
+Exit 4 6
+
+# This is a simple tutorial level for boulders
+# Only pushing boulders, no floor switches yet
+# It's impossible for the player to get stuck
+# There are some hidden treasures

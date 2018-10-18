@@ -79,6 +79,16 @@ public class Square {
 		droppedItems.add(item);
 	}
 	
+	public int getNumOfItem(Item i) {
+		int count = 0;
+		for (Item item: items) {
+			if (item.sameType(i)) {
+				count++;
+			}
+		}
+		return count;
+	}
+	
 	////////////////////////////////////////////////////////////////////
 	// Occupants
 	

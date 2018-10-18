@@ -11,14 +11,19 @@ public class Exit extends Tile {
 	@Override
 	public void arrive(SolidEntity e) {
 		if (e instanceof Player) {
-			// TODO
-			// Make the player win
+			Player p = (Player)e;
+			p.setOnExit();
 		}
 	}
 	
 	@Override
 	public char toChar() {
 		return 'E';
+	}
+
+	@Override
+	public String getImageName() {
+		return "exit";
 	}
 	
 }

@@ -30,5 +30,10 @@ public class Wall extends NonLivingEntity {
 	public char toChar() {
 		return 'W';
 	}
+
+	@Override
+	public String getImageName() {
+		return "wall";
+	}
 	
 }

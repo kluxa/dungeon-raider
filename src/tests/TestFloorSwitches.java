@@ -14,7 +14,7 @@ public class TestFloorSwitches {
 
 	@Test
 	void testFloorSwitch() {
-		Level level = new Level(TestMaze.LEVEL06);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL06);
 		FloorSwitch fs1 = new FloorSwitch();
 		FloorSwitch fs2 = new FloorSwitch();
 		FloorSwitch fs3 = new FloorSwitch();

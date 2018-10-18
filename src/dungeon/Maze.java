@@ -31,7 +31,17 @@ public class Maze {
 		this.height = height;
 		this.width = width;
 		squares = new Square[height][width];
+		enemies = new ArrayList<Enemy>();
+		switches = new ArrayList<FloorSwitch>();
 		this.resetMaze();
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	public int getWidth() {
+		return width;
 	}
 	
 	/**
@@ -68,6 +78,7 @@ public class Maze {
 	
 	public void setPlayer(Player p) {
 		player = p;
+		placeEntity(start.getY(), start.getX(), p);
 	}
 	
 	public Square getSquare(int row, int col) {
@@ -133,8 +144,31 @@ public class Maze {
 		return count;
 	}
 	
+	public int getNumOfItem(Item i) {
+		int count = 0;
+		for (int row = 0; row < height; row++) {
+			for (int col = 0; col < width; col++) {
+				count += squares[row][col].getNumOfItem(i);
+			}
+		}
+		return count;
+	}
+	
+	public boolean allTreasuresCollected() {
+		return getNumOfItem(new Treasure()) == 0;
+	}
+	
 	public boolean allSwitchesTriggered() {
 		return (getNumTriggeredSwitches() == switches.size());
+	}
+	
+	public boolean allEnemiesDefeated() {
+		for (Enemy e: enemies) {
+			if (e.isAlive()) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	////////////////////////////////////////////////////////////////////

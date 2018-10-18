@@ -14,7 +14,7 @@ class TestInvincibilityWithBombAndPit {
 
 	@Test
 	void surviveBombWithInvincibility() {
-		Level level = new Level(TestMaze.LEVEL10);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL10);
 		
 		level.move(Direction.RIGHT);
 		assert level.playerHas(new UnlitBomb()) == 1;
@@ -42,7 +42,7 @@ class TestInvincibilityWithBombAndPit {
 	
 	@Test
 	void doNotSurvivePitWithInvincibility() {
-		Level level = new Level(TestMaze.LEVEL10);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL10);
 		level.move(Direction.RIGHT);
 		level.move(Direction.RIGHT);
 		level.move(Direction.RIGHT);
@@ -62,7 +62,7 @@ class TestInvincibilityWithBombAndPit {
 	void playerDoesNotPickUpPotions() {
 		// Potions' effects are instantaneous,
 		// players do not get to pick them up
-		Level level = new Level(TestMaze.LEVEL10);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL10);
 		level.move(Direction.RIGHT);
 		
 		assert level.itemIsAt(new InvincibilityPotion(), 1, 3);

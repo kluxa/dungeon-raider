@@ -12,5 +12,10 @@ public class Path extends Tile {
 	public char toChar() {
 		return ' ';
 	}
+
+	@Override
+	public String getImageName() {
+		return "path";
+	}
 	
 }

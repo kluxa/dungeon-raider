@@ -19,4 +19,9 @@ public class Strategist extends Enemy {
 	public char toChar() {
 		return 'S';
 	}
+
+	@Override
+	public String getImageName() {
+		return "strategist";
+	}
 }

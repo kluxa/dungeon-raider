@@ -14,7 +14,7 @@ class TestSimpleMovement {
 
 	@Test
 	void simpleMovement() {
-		Level level = new Level(TestMaze.LEVEL01);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL01);
 		assert level.playerIsAt(1, 1);
 		
 		level.move(Direction.RIGHT);
@@ -32,7 +32,7 @@ class TestSimpleMovement {
 
 	@Test
 	void hittingWalls() {
-		Level level = new Level(TestMaze.LEVEL01);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL01);
 		assert level.playerIsAt(1, 1);
 		
 		level.move(Direction.UP);

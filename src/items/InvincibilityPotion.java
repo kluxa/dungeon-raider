@@ -13,5 +13,10 @@ public class InvincibilityPotion extends Potion {
 	public char toChar() {
 		return 'I';
 	}
+
+	@Override
+	public String getImageName() {
+		return "invincibilitypotion";
+	}
 	
 }

@@ -13,5 +13,10 @@ public class HoverPotion extends Potion {
 	public char toChar() {
 		return 'H';
 	}
+
+	@Override
+	public String getImageName() {
+		return "hoverpotion";
+	}
 	
 }

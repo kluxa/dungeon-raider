@@ -31,4 +31,9 @@ public class Sword extends LimitedCollectible {
 	public String toString() {
 		return String.format("Sword (uses left: %d)", usesLeft);
 	}
+
+	@Override
+	public String getImageName() {
+		return "sword";
+	}
 }

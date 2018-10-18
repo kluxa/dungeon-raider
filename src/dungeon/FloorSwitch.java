@@ -37,5 +37,10 @@ public class FloorSwitch extends Tile {
 	public char toChar() {
 		return 'F';
 	}
+
+	@Override
+	public String getImageName() {
+		return "floorswitch";
+	}
 	
 }

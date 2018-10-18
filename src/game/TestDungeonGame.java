@@ -10,7 +10,7 @@ public class TestDungeonGame {
 	// But they are very helpful for visualising the game
 	public static void main(String[] args) {
 		TestDungeonGame test = new TestDungeonGame();
-		test.testLevel19();
+		test.testLevel15();
 		
 	}
 	
@@ -19,7 +19,7 @@ public class TestDungeonGame {
 	 * have...
 	 */
 	public void testLevel19() {
-		Level level = new Level(TestMaze.LEVEL19);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL19);
 		System.out.println(level.showLevel());
 		
 		moveAndShowResult(level, Direction.RIGHT);
@@ -36,7 +36,7 @@ public class TestDungeonGame {
 	 * Testing that enemies can go through open doors
 	 */
 	public void testLevel18() {
-		Level level = new Level(TestMaze.LEVEL18);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL18);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves = {
@@ -53,7 +53,7 @@ public class TestDungeonGame {
 	 * open door
 	 */
 	public void testLevel17() {
-		Level level = new Level(TestMaze.LEVEL17);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL17);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves = {
@@ -74,7 +74,7 @@ public class TestDungeonGame {
 	 * enemy
 	 */
 	public void testLevel16() {
-		Level level = new Level(TestMaze.LEVEL16);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL16);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves1 = {
@@ -103,7 +103,7 @@ public class TestDungeonGame {
 	 * and destroying enemies with these
 	 */
 	public void testLevel15() {
-		Level level = new Level(TestMaze.LEVEL15);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL15);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves1 = {
@@ -133,7 +133,7 @@ public class TestDungeonGame {
 	 * in circles
 	 */
 	public void testLevel14() {
-		Level level = new Level(TestMaze.LEVEL14);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL14);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves = {
@@ -151,7 +151,7 @@ public class TestDungeonGame {
 	 * player is invincible
 	 */
 	public void testLevel13b() {
-		Level level = new Level(TestMaze.LEVEL13);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL13);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves = {
@@ -168,7 +168,7 @@ public class TestDungeonGame {
 	 * Testing a sword running out of uses
 	 */
 	public void testLevel13a() {
-		Level level = new Level(TestMaze.LEVEL13);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL13);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves = {
@@ -188,7 +188,7 @@ public class TestDungeonGame {
 	 * the player dying to the hunter even with a sword.
 	 */
 	public void testLevel12() {
-		Level level = new Level(TestMaze.LEVEL12);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL12);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves = {
@@ -206,7 +206,7 @@ public class TestDungeonGame {
 	 * moves towards the player.
 	 */
 	public void testLevel11() {
-		Level level = new Level(TestMaze.LEVEL11);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL11);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves = {
@@ -227,7 +227,7 @@ public class TestDungeonGame {
 	 * when blown up.
 	 */
 	public void testLevel10c() {
-		Level level = new Level(TestMaze.LEVEL10);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL10);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves1 = {
@@ -254,7 +254,7 @@ public class TestDungeonGame {
 	 * (It should time out after 15 turns.)
 	 */
 	public void testLevel10b() {
-		Level level = new Level(TestMaze.LEVEL10);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL10);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves1 = {
@@ -284,7 +284,7 @@ public class TestDungeonGame {
 	 * tile, even with an invincibility potion.
 	 */
 	public void testLevel10a() {
-		Level level = new Level(TestMaze.LEVEL10);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL10);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves1 = {
@@ -312,7 +312,7 @@ public class TestDungeonGame {
 	 * player dying from a bomb.
 	 */
 	public void testLevel09() {
-		Level level = new Level(TestMaze.LEVEL09);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL09);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves1 = {
@@ -367,7 +367,7 @@ public class TestDungeonGame {
 	 * moving onto a pit tile while hovering
 	 */
 	public void testLevel08b() {
-		Level level = new Level(TestMaze.LEVEL08);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL08);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves = {
@@ -385,7 +385,7 @@ public class TestDungeonGame {
 	 * Testing pushing boulders into pits and falling into pits
 	 */
 	public void testLevel08a() {
-		Level level = new Level(TestMaze.LEVEL08);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL08);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves = {
@@ -403,7 +403,7 @@ public class TestDungeonGame {
 	 * be triggered...
 	 */
 	public void testLevel07() {
-		Level level = new Level(TestMaze.LEVEL07);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL07);
 		System.out.println(level.showLevel());
 	}
 	
@@ -414,7 +414,7 @@ public class TestDungeonGame {
 	 * and that pushing a boulder off a switch untriggers it.
 	 */
 	public void testLevel06() {
-		Level level = new Level(TestMaze.LEVEL06);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL06);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves = {
@@ -436,7 +436,7 @@ public class TestDungeonGame {
 	 * once and that players can't push boulders into walls
 	 */
 	public void testLevel05() {
-		Level level = new Level(TestMaze.LEVEL05);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL05);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves = {
@@ -458,7 +458,7 @@ public class TestDungeonGame {
 	 * Testing that the key disappears after use.
 	 */
 	public void testLevel04() {
-		Level level = new Level(TestMaze.LEVEL04);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL04);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves = {
@@ -478,7 +478,7 @@ public class TestDungeonGame {
 	 * if they pick up another one.
 	 */
 	public void testLevel03() {
-		Level level = new Level(TestMaze.LEVEL03);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL03);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves = {
@@ -495,7 +495,7 @@ public class TestDungeonGame {
 	 * Testing that the player picks up treasure
 	 */
 	public void testLevel02() {
-		Level level = new Level(TestMaze.LEVEL02);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL02);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves = {
@@ -511,7 +511,7 @@ public class TestDungeonGame {
 	 * Testing that the player does not walk into walls
 	 */
 	public void testLevel01b() {
-		Level level = new Level(TestMaze.LEVEL01);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL01);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves = {
@@ -530,7 +530,7 @@ public class TestDungeonGame {
 	 * Testing simple movement
 	 */
 	public void testLevel01a() {
-		Level level = new Level(TestMaze.LEVEL01);
+		SimpleLevel level = new SimpleLevel(TestMaze.LEVEL01);
 		System.out.println(level.showLevel());
 		
 		Direction[] moves = {
@@ -542,19 +542,19 @@ public class TestDungeonGame {
 		}
 	}
 	
-	private void moveAndShowResult(Level l, Direction move) {
+	private void moveAndShowResult(SimpleLevel l, Direction move) {
 		l.move(move);
 		System.out.println(l.showLevel());
 		System.out.println(l.showPlayer());
 	}
 	
-	private void dropBombAndShowResult(Level l) {
+	private void dropBombAndShowResult(SimpleLevel l) {
 		l.dropBomb();
 		System.out.println(l.showLevel());
 		System.out.println(l.showPlayer());
 	}
 	
-	private void fireArrowAndShowResult(Level l, Direction move) {
+	private void fireArrowAndShowResult(SimpleLevel l, Direction move) {
 		l.fireArrow(move);
 		System.out.println(l.showLevel());
 		System.out.println(l.showPlayer());

@@ -31,5 +31,10 @@ public class Key extends LimitedCollectible {
 	public String toString() {
 		return String.format("Key (%s)", color);
 	}
+
+	@Override
+	public String getImageName() {
+		return "key_" + color.toLowerCase();
+	}
 	
 }
