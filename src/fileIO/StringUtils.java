@@ -87,7 +87,7 @@ public class StringUtils {
 	 * @param string
 	 * @return
 	 */
-	private static String formatLine(String string) {
+	public static String formatLine(String string) {
 		string = string.trim();
 		string = string.replace(":", "");
 		string = string.replace("[", "");
@@ -138,12 +138,25 @@ public class StringUtils {
 	 * @param toFind
 	 * @return
 	 */
-	private static int getIndexContaining(ArrayList<String> allLines, String toFind) {
+	public static int getIndexContaining(ArrayList<String> allLines, String toFind) {
 		for (int i = 0; i < allLines.size(); i++) {
 			if (allLines.get(i).contains(toFind)) {
 				return i;
 			}
 		}
 		return -1;
+	}
+	
+	public static ArrayList<Integer> getCoords (String data) {
+		String[] dataSplit = data.split(" ");
+		
+		ArrayList<Integer> coords = new ArrayList<Integer>();
+		Integer loc1 = Integer.parseInt(dataSplit[0]);
+		Integer loc2 = Integer.parseInt(dataSplit[1]);
+		coords.add(loc1);
+		coords.add(loc2);
+		
+		
+		return coords;
 	}
 }

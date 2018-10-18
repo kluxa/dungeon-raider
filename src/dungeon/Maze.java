@@ -36,14 +36,6 @@ public class Maze {
 		this.resetMaze();
 	}
 	
-	public int getHeight() {
-		return height;
-	}
-	
-	public int getWidth() {
-		return width;
-	}
-	
 	/**
 	 * Clears the entire maze of all entities and
 	 * sets all tiles to normal paths.

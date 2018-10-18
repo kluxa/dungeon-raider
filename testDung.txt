@@ -1,27 +1,32 @@
 {
     map: {
-        dim: [
+        dims: [
             (4, 8)
 	]
 	completion: [
-	    
+	    treasure
+	    switch
+            enemies
+	]
+	start: [
+	    (2, 1)
 	]
     }
     nonlivingentities: {
-        wall: {
+        Wall: {
             location: [
                 (0, 0),
 		(0, 1),
 		(0, 2)
             ]
         }
-        boulder: {
+        Boulder: {
             location: [
                 (1, 1),
 		(2, 2)
             ]
         }
-        exit: {
+        Exit: {
             location: [
                 (0, 1)
             ]
@@ -30,24 +35,24 @@
             location: [
 		(0, 0)
             ]
-	    Colour: [
+	    colour: [
                 red
             ]
         }
-        treasure: {
+        Treasure: {
             location: [
                 (0, 0)
             ]
         }
     }
     items: {
-        hoverpotion: {
+        Hoverpotion: {
             location: [
                 (0, 0),
 		(0, 0)
             ]
         }
-        arrow: {
+        Arrow: {
             location: [
                 (10, 8),
                 (10, 8),
@@ -56,15 +61,10 @@
         }
     }
     livingentities: {
-        coward: {
+        Coward: {
 	    location: [
                 (4, 3),
                 (2, 1)
-            ]
-        }
-	player: {
-            location: [
-                (0, 0)
             ]
         }
     }
