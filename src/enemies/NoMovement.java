@@ -9,7 +9,6 @@ public class NoMovement implements MovementPattern {
 
 	@Override
 	public Direction chooseMove(Square s, Maze maze, Direction oldMove) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
