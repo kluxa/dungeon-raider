@@ -1,7 +1,7 @@
 {
     map: {
         dims: [
-            (4, 8)
+            (8, 8)
 	]
 	completion: [
 	    treasure
@@ -12,12 +12,23 @@
 	    (2, 1)
 	]
     }
-    nonlivingentities: {
+    solidentities: {
+        Coward: {
+	    location: [
+                (4, 3),
+                (2, 1)
+            ]
+        }
         Wall: {
             location: [
                 (0, 0),
 		(0, 1),
 		(0, 2)
+            ]
+        }
+	blueDoor: {
+            location: [
+                (1, 1)
             ]
         }
         Boulder: {
@@ -26,22 +37,9 @@
 		(2, 2)
             ]
         }
-        Exit: {
-            location: [
-                (0, 1)
-            ]
-        }
-        Door: {
+        redDoor: {
             location: [
 		(0, 0)
-            ]
-	    colour: [
-                red
-            ]
-        }
-        Treasure: {
-            location: [
-                (0, 0)
             ]
         }
     }
@@ -54,18 +52,22 @@
         }
         Arrow: {
             location: [
-                (10, 8),
-                (10, 8),
-                (4, 3)
+                (7, 7),
+                (5, 7),
+                (6, 3)
+            ]
+        }
+        Treasure: {
+            location: [
+                (0, 0)
             ]
         }
     }
-    livingentities: {
-        Coward: {
-	    location: [
-                (4, 3),
-                (2, 1)
+    tileentities: {
+	Exit: {
+            location: [
+                (5, 5)
             ]
-        }
+	}
     }
 }

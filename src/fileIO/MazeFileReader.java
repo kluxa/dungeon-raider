@@ -58,16 +58,16 @@ public class MazeFileReader {
             
             LinkedHashMap<String, ArrayList<String>> mapMap 
             = StringUtils.hasapafy(allLines, "map");
-            LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> nonLivingEntitiesMap 
-            = StringUtils.hasapafyNonUnique(allLines, "nonlivingentities");
-            LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> livingEntitiesMap 
-            = StringUtils.hasapafyNonUnique(allLines, "livingentities");
+            LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> solidMap 
+            = StringUtils.hasapafyNonUnique(allLines, "solidentities");
+            LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> tileMap 
+            = StringUtils.hasapafyNonUnique(allLines, "tileentities");
             LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> itemsMap 
             = StringUtils.hasapafyNonUnique(allLines, "items");
             
             mazeInfo.put("Map", mapMap);
-            mazeInfo.put("NonLivingEntities", nonLivingEntitiesMap);
-            mazeInfo.put("LivingEntities", livingEntitiesMap);
+            mazeInfo.put("SolidEntities", solidMap);
+            mazeInfo.put("TileEntities", tileMap);
             mazeInfo.put("Items", itemsMap);
 
         } catch (IOException e) {

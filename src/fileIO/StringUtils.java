@@ -62,15 +62,17 @@ public class StringUtils {
 			i++;
 			
 			LinkedHashMap<String, ArrayList<String>> smallMap = new LinkedHashMap<String, ArrayList<String>>();
-			while (allLines.get(i).contains("[")) {
+			while (allLines.get(i).contains("[")) { //location
 				String smallKey = formatLine(allLines.get(i));
 				i++;
 				ArrayList<String> data = new ArrayList<String>();
-				while (!allLines.get(i).contains("]")) {
+				while (!allLines.get(i).contains("]")) { //(0, 0)
 					data.add(formatLine(allLines.get(i)));
 					i++;
 				}
+				
 				smallMap.put(smallKey, data);
+				
 				if (allLines.get(i+1).contains("[")) {
 					i++;
 				} else {
@@ -95,6 +97,7 @@ public class StringUtils {
 		string = string.replace("(", "");
 		string = string.replace(")", "");
 		string = string.replace("{", "");
+		string = string.trim();
 		return string;
 	}
 
@@ -147,16 +150,29 @@ public class StringUtils {
 		return -1;
 	}
 	
-	public static ArrayList<Integer> getCoords (String data) {
+	/**
+	 * Takes in a string of form "x y" where x and y are ints
+	 * and returns an arrayList of ints storing them
+	 * @param data
+	 * @return
+	 */
+	public static Integer[] getCoords (String data) {
 		String[] dataSplit = data.split(" ");
 		
-		ArrayList<Integer> coords = new ArrayList<Integer>();
+		Integer[] coords = {0, 0};
 		Integer loc1 = Integer.parseInt(dataSplit[0]);
 		Integer loc2 = Integer.parseInt(dataSplit[1]);
-		coords.add(loc1);
-		coords.add(loc2);
+		coords[0] = loc1;
+		coords[1] = loc2;
 		
 		
 		return coords;
+	}
+	
+	public static void main (String[] args) {
+		Integer[] coords = getCoords ("0 0");
+		
+		System.out.println(coords[0] + " " + coords[1]);
+		
 	}
 }
