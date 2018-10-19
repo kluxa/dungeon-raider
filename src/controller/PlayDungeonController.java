@@ -103,8 +103,8 @@ public class PlayDungeonController extends Controller {
 		if (x < 0 || x >= maze.getWidth())  return;
 		Square s = maze.getSquare(y, x);
 		
-		int posY = 300 + offsetY * 32;
-		int posX = 450 + offsetX * 32;
+		int posY = (int)canvas.getHeight() / 2 + offsetY * 32 + 16;
+		int posX = (int)canvas.getWidth()  / 2 + offsetX * 32 + 16;
 		
 		Tile t = s.getTile();
 		ArrayList<Item> items = s.getItems();

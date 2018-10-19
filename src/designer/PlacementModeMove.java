@@ -25,23 +25,27 @@ public class PlacementModeMove extends PlacementMode {
 	private int selectedY;
 	private int selectedX;
 	
-	public PlacementModeMove(LevelDesigner levelDesigner) {
-		super(levelDesigner);
+	public PlacementModeMove(LevelDesignerController controller) {
+		super(controller);
 	}
 	
 	@Override
 	public void select() {
 		if (stage == MARK) {
-			selectedY = getCursorY();
-			selectedX = getCursorX();
+			selectedY = controller.getCursorY();
+			selectedX = controller.getCursorX();
 			stage = MOVE;
+			controller.setHelpMessage("Select where you want these entities to be moved (ESC to cancel)");
 		} else {
-			if (getCursorY() != selectedY || getCursorX() != selectedX) {
+			if (controller.getCursorY() != selectedY ||
+					controller.getCursorX() != selectedX) {
 				for (Entity e: getMaze().getEntities(selectedY, selectedX)) {
-					getMaze().placeEntity(getCursorY(), getCursorX(), e);
-				}			
+					getMaze().placeEntity(controller.getCursorY(),
+							              controller.getCursorX(),
+							              e);
+				}
 				getMaze().clearTile(selectedY, selectedX);
-				System.out.println("Something was moved");
+				controller.setHelpMessage("ARROW KEYS to select a square, ENTER to move entities, ESC to cancel");
 			}
 			stage = MARK;
 		}

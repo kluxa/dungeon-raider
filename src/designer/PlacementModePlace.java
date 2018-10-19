@@ -10,9 +10,9 @@ import game.*;
 public class PlacementModePlace extends PlacementMode {
 	private EntityFactory factory;
 	
-	public PlacementModePlace(LevelDesigner levelDesigner,
+	public PlacementModePlace(LevelDesignerController controller,
 			                  EntityFactory factory) {
-		super(levelDesigner);
+		super(controller);
 		this.factory = factory;
 	}
 	
@@ -20,10 +20,9 @@ public class PlacementModePlace extends PlacementMode {
 	public void select() {
 		Entity e = factory.createEntity();
 		System.out.println(e.getClass().getSimpleName());
-		getMaze().placeEntity(getCursorY(),
-				              getCursorX(),
-				              factory.createEntity());
-		System.out.println("Something was placed?");
+		getMaze().placeEntity(controller.getCursorY(),
+				              controller.getCursorX(),
+				              e);
 	}
 	
 	@Override

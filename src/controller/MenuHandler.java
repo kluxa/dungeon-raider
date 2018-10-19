@@ -1,5 +1,6 @@
 package controller;
 
+import designer.DesignerHandler;
 import dungeon.Maze;
 import fileIO.LevelBuilder;
 import game.Level;
@@ -70,5 +71,10 @@ public class MenuHandler {
 		PlayDungeon playing = new PlayDungeon(stage, this, level);
 		playing.beginGame();
 		*/
+	}
+	
+	public void switchToLevelDesigner() {
+		DesignerHandler designerHandler = new DesignerHandler(stage, this);
+		designerHandler.initialize();
 	}
 }
