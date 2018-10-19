@@ -19,12 +19,13 @@ public class LevelBuilder {
 	 * @param fileLoc
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public static Level makeLevel (String fileLoc) {
 		LinkedHashMap<String, Object> mazeInfo = MazeFileReader.getMazeInfo(fileLoc);
-		Maze maze = createMazeFromHashMap ((LinkedHashMap<String, ArrayList<String>>) mazeInfo.get("Map"));
-		maze = placeSolidEntities ((LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>>) mazeInfo.get("SolidEntities"), maze);
-		maze = placeItems ((LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>>) mazeInfo.get("Items"), maze);
-		maze = placeTiles ((LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>>) mazeInfo.get("TileEntities"), maze);
+		Maze maze = createMazeFromHashMap((LinkedHashMap<String, ArrayList<String>>) mazeInfo.get("Map"));
+		maze = placeSolidEntities((LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>>) mazeInfo.get("SolidEntities"), maze);
+		maze = placeItems((LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>>) mazeInfo.get("Items"), maze);
+		maze = placeTiles((LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>>) mazeInfo.get("TileEntities"), maze);
 		
 		ArrayList<String> obj = ((LinkedHashMap<String, ArrayList<String>>) mazeInfo.get("Map")).get("completion");
 		
@@ -35,42 +36,46 @@ public class LevelBuilder {
 		return lvl;
 	}
 
-	private static Maze placeTiles(LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> tileMap,
-			Maze maze) {
-		for (String key : tileMap.keySet()) {
+	private static Maze placeTiles(LinkedHashMap<String,
+			                       LinkedHashMap<String, ArrayList<String>>> tileMap,
+			                       Maze maze) {
+		for (String key: tileMap.keySet()) {
 			ArrayList<String> locData = tileMap.get(key).get("location");
+			if (locData == null) break;
 			for (String loc : locData) {
+				Tile t = stringToTile(key);
 				Integer[] coords = StringUtils.getCoords(loc);
-				Square pos = new Square (coords[1], coords[0]);
-				Item e = stringToItem (key);
-				maze.placeEntity(pos.getY(), pos.getX(), e);
+				maze.placeEntity(coords[0], coords[1], t);
 			}
 		}
 		return maze;
 	}
 
-	private static Maze placeItems(LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> itemMap,
-			Maze maze) {
-		for (String key : itemMap.keySet()) {
+	private static Maze placeItems(LinkedHashMap<String,
+			                       LinkedHashMap<String, ArrayList<String>>> itemMap,
+			                       Maze maze) {
+		for (String key: itemMap.keySet()) {
 			ArrayList<String> locData = itemMap.get(key).get("location");
-			for (String loc : locData) {
-				Integer[] coords = StringUtils.getCoords(loc);
-				Square pos = new Square (coords[1], coords[0]);
+			if (locData == null) break;
+			for (String loc: locData) {
 				Item e = stringToItem (key);
-				maze.placeEntity(pos.getY(), pos.getX(), e);
+				Integer[] coords = StringUtils.getCoords(loc);
+				maze.placeEntity(coords[0], coords[1], e);
 			}
 		}
 		return maze;
 	}
 
-	private static Maze placeSolidEntities(LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> entityMap, Maze maze) {
-		for (String key : entityMap.keySet()) {
+	private static Maze placeSolidEntities(LinkedHashMap<String,
+			                               LinkedHashMap<String, ArrayList<String>>> entityMap,
+			                               Maze maze) {
+		for (String key: entityMap.keySet()) {
 			ArrayList<String> locData = entityMap.get(key).get("location");
-			for (String loc : locData) {
+			if (locData == null) break;
+			for (String loc: locData) {
+				SolidEntity e = stringToSolidEntity(key);
 				Integer[] coords = StringUtils.getCoords(loc);
-				Square pos = new Square (coords[1], coords[0]);
-				SolidEntity e = stringToSolidEntity (key);
-				maze.placeEntity(pos.getY(), pos.getX(), e);
+				maze.placeEntity(coords[0], coords[1], e);
 			}
 		}
 		
@@ -101,19 +106,15 @@ public class LevelBuilder {
 	 * @return
 	 */
 	public static Level giveCompObj (Maze maze, ArrayList<String> compObj) {
-		boolean treasure = false;
-		boolean switches = false;
-		boolean enemies = false;
+		SimpleLevel.LevelBuilder builder = new SimpleLevel.LevelBuilder(maze);
 		
 		if (compObj != null) {
-			treasure = compObj.contains("treasure");
-			switches = compObj.contains("switch");
-			enemies = compObj.contains("enemies");
+			builder = builder.collectTreasure(compObj.contains("treasure"))
+					         .triggerSwitches(compObj.contains("switches"))
+					         .defeatEnemies(compObj.contains("enemies"));
 		}
 		
-		Level lvl = new SimpleLevel.LevelBuilder(maze).collectTreasure(treasure)
-				.triggerSwitches(switches).defeatEnemies(enemies).build();
-		return lvl;
+		return builder.build();
 	}
 	
 	private static SolidEntity stringToSolidEntity(String code) {
@@ -128,7 +129,7 @@ public class LevelBuilder {
 		case "yellowDoor": return new Door("yellow");
 		case "greenDoor": return new Door("green");
 		case "blueDoor": return new Door("blue");
-		default:  return null;
+		default: return null;
 		}
 	}
 	
@@ -144,13 +145,17 @@ public class LevelBuilder {
 		case "yellowKey": return new Key("yellow");
 		case "greenKey": return new Key("green");
 		case "blueKey": return new Key("blue");
-		default:  return null;
+		default: return null;
 		}
 	}
 	
-	public static void main (String[] args) {
-		Level maze = makeLevel("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\testDung.txt");
-		
-		System.out.println(maze.toString());		
+	private static Tile stringToTile(String code) {
+		switch (code) {
+		case "Path": return new Path();
+		case "Pit": return new Pit();
+		case "FloorSwitch": return new FloorSwitch();
+		case "Exit": return new Exit();
+		default: return null;
+		}
 	}
 }

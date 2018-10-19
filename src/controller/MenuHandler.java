@@ -1,6 +1,7 @@
 package controller;
 
 import dungeon.Maze;
+import fileIO.LevelBuilder;
 import game.Level;
 import game.MazeLoader;
 import game.SimpleLevel;
@@ -57,11 +58,17 @@ public class MenuHandler {
 		dungeonSelectMenu.display(dungeonSelectMenuController);
 	}
 	
-	public void switchToPlayingDungeon(int zone, String name) {
+	public void switchToPlayingDungeon(int zone, String pathName) {
+		Level level = LevelBuilder.makeLevel(pathName);
+		PlayDungeon playing = new PlayDungeon(stage, this, level);
+		playing.beginGame();
+		
+		/*
 		MazeLoader reader = new MazeLoader();
 		Maze maze = reader.readMaze(TestMaze.LEVEL06);
 		Level level = new SimpleLevel.LevelBuilder(maze).collectTreasure(true).triggerSwitches(true).build();
 		PlayDungeon playing = new PlayDungeon(stage, this, level);
 		playing.beginGame();
+		*/
 	}
 }

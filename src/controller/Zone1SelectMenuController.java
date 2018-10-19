@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Zone1SelectMenuController extends DungeonSelectMenuController {
-	private MenuHandler menus;
 	
 	@FXML
 	private AnchorPane display;
@@ -42,8 +41,8 @@ public class Zone1SelectMenuController extends DungeonSelectMenuController {
 	private Button[][] buttons;
 	
 	private String[][] files = {
-			{ "zone1/01", "zone1/02", "zone1/03", "zone1/04", "zone1/05" },
-			{ "zone1/06", "zone1/07", "zone1/08", "zone1/09", "zone1/10" }
+			{ "01.txt", "02.txt", "03.txt", "04.txt", "05.txt" },
+			{ "06.txt", "07.txt", "08.txt", "09.txt", "10.txt" }
 	};
 	
 	private int height  = 2;
@@ -81,6 +80,7 @@ public class Zone1SelectMenuController extends DungeonSelectMenuController {
 			
 		} else if (k.equals(KeyCode.ENTER)) {
 			menus.switchToPlayingDungeon(0,
+					"./src/resources/levels/zone1/" +
 					files[cursorY][cursorX]);
 			
 		} else if (k.equals(KeyCode.UP)) {

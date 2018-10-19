@@ -31,13 +31,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
-
 public class MazeFileReader {
 	/**
 	 * Loads a Maze from a file under a strict format
 	 */
     public static LinkedHashMap<String, Object> getMazeInfo(String fileLoc) {
-        Maze newMaze = null;
         BufferedReader reader = null;
         LinkedHashMap<String, Object> mazeInfo = new LinkedHashMap<String, Object>();
         
