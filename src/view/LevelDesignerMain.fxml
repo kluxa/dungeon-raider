@@ -33,7 +33,7 @@
             </VBox>
             <AnchorPane fx:id="selectPane" prefHeight="600.0" prefWidth="250.0" style="-fx-background-color: black;">
                <children>
-                  <Button fx:id="button01" alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="9.0" maxHeight="50.0" maxWidth="50.0" mnemonicParsing="false" onAction="#handleButton01" prefHeight="50.0" prefWidth="50.0" style="-fx-background-image: url('file:C:/sprites/pit.png');" textAlignment="CENTER">
+                  <Button fx:id="button01" alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="9.0" maxHeight="50.0" maxWidth="50.0" mnemonicParsing="false" onAction="#handleButton01" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
                      <graphic>
                         <ImageView fitHeight="47.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                            <image>

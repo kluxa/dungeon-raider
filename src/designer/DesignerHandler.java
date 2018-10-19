@@ -26,6 +26,8 @@ public class DesignerHandler {
 		designerScreen.display(designerController);
 	}
 	
-	
+	public void quit() {
+		menus.switchToMainMenu();
+	}
 	
 }

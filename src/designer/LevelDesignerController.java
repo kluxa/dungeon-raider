@@ -18,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -47,11 +48,11 @@ public class LevelDesignerController extends Controller {
 	private Button nothing;
 	
 	@FXML
-	private MenuItem collectTreasure;
+	private CheckBox collectTreasure;
 	@FXML
-	private MenuItem triggerSwitches;
+	private CheckBox triggerSwitches;
 	@FXML
-	private MenuItem defeatEnemies;
+	private CheckBox defeatEnemies;
 	
 	private Node selectedButton;
 	private GraphicsContext ctx;
@@ -121,6 +122,10 @@ public class LevelDesignerController extends Controller {
 			}
 			
 			drawFrame();
+		} else {
+			if (k == KeyCode.ESCAPE) {
+				quit();
+			}
 		}
 	}
 	
@@ -158,6 +163,10 @@ public class LevelDesignerController extends Controller {
 		placementMode = new PlacementModeDelete(this);
 		inPlacementMode = true;
 		drawFrame();
+	}
+	
+	public void quit() {
+		designerHandler.quit();
 	}
 	
 	private void highlightButton(Node button) {
@@ -393,7 +402,8 @@ public class LevelDesignerController extends Controller {
 	
 	@FXML
 	private void handleButton90() {
-		System.out.println("Exiting the level");
+		System.out.println("Exiting the level designer");
+		quit();
 	}
 	
 	@FXML

@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Zone1SelectMenuController extends DungeonSelectMenuController {
-	private MenuHandler menus;
 	
 	@FXML
 	private AnchorPane display;
