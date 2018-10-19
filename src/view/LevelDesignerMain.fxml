@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<StackPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="display" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleKeyPress" prefHeight="600.0" prefWidth="900.0" stylesheets="@level-builder.css">
          <children>
@@ -35,9 +35,9 @@
                <children>
                   <Button fx:id="button01" alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="9.0" maxHeight="50.0" maxWidth="50.0" mnemonicParsing="false" onAction="#handleButton01" prefHeight="50.0" prefWidth="50.0" style="-fx-background-image: url('file:C:/sprites/pit.png');" textAlignment="CENTER">
                      <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="47.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../sprites/pit.png" />
+                              <Image url="@../sprites/designer/pit.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -47,9 +47,9 @@
                   </Button>
                   <Button fx:id="button02" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleButton02" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
                      <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="47.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../sprites/floorswitch.png" />
+                              <Image url="@../sprites/designer/floorswitch.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -182,9 +182,9 @@
                   </Button>
                   <Button fx:id="button00" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleButton00" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
                      <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="47.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../sprites/path.png" />
+                              <Image url="@../sprites/designer/path.png" />
                            </image>
                            <viewport>
                               <Rectangle2D />
@@ -202,7 +202,7 @@
                   </Button>
                   <Button fx:id="button10" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="68.0" mnemonicParsing="false" onAction="#handleButton10" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
                      <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="32.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../sprites/wall.png" />
                            </image>
@@ -394,5 +394,6 @@
             </AnchorPane>
          </children>
       </HBox>
+      <Button fx:id="nothing" mnemonicParsing="false" onKeyPressed="#handleKeyPress" text="Button" />
    </children>
 </StackPane>

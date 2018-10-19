@@ -20,10 +20,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -39,6 +41,17 @@ public class LevelDesignerController extends Controller {
 	private Label helpMessage;
 	@FXML
 	private Canvas canvas;
+	@FXML
+	private StackPane display;
+	@FXML
+	private Button nothing;
+	
+	@FXML
+	private MenuItem collectTreasure;
+	@FXML
+	private MenuItem triggerSwitches;
+	@FXML
+	private MenuItem defeatEnemies;
 	
 	private Node selectedButton;
 	private GraphicsContext ctx;
@@ -58,6 +71,9 @@ public class LevelDesignerController extends Controller {
 		super(s);
 		this.designerHandler = designerHandler;
 		maze = new Maze(15, 15);
+		maze.setStart(7, 7);
+		
+		maze.setPlayer(new Player(maze));
 		
 		mazeCursorY = 7;
 		mazeCursorX = 7;
@@ -75,7 +91,15 @@ public class LevelDesignerController extends Controller {
 		
 		selectPane.setMouseTransparent(false);
 		
+		nothing.setVisible(false);
+		
 		drawFrame();
+		
+		display.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+			if (e.getCode() == KeyCode.SPACE) {
+				handleKeyPress(e);
+			}
+		});
 	}
 	
 	@FXML
@@ -90,7 +114,7 @@ public class LevelDesignerController extends Controller {
 			case RIGHT:  mazeCursorRight();      break;
 			case LEFT:   mazeCursorLeft();       break;
 			
-			case ENTER:  placementMode.select(); break;
+			case SPACE:  placementMode.select(); break;
 			case DELETE: placementMode.delete(); break;
 			case ESCAPE: placementMode.cancel(); break;
 			default:                             break;
@@ -107,13 +131,14 @@ public class LevelDesignerController extends Controller {
 	public void switchToSelectionMode() {
 		inPlacementMode = false;
 		selectedButton.getStyleClass().remove("selected");
-		helpMessage.setText("Choose an entity to place by clicking on it");
+		helpMessage.setText("Choose an entity to place by clicking it");
 		selectPane.setMouseTransparent(false);
 	}
 	
 	public void switchToPlacementPlaceMode(EntityFactory factory) {
+		nothing.requestFocus();
 		selectPane.setMouseTransparent(true);
-		helpMessage.setText("ARROW KEYS to select a square, ENTER to place, DEL to delete, ESC to cancel");
+		helpMessage.setText("ARROW KEYS to select a square, SPACE to place, DEL to delete, ESC to cancel");
 		placementMode = new PlacementModePlace(this, factory);
 		inPlacementMode = true;
 		drawFrame();
@@ -121,7 +146,7 @@ public class LevelDesignerController extends Controller {
 	
 	public void switchToPlacementMoveMode() {
 		selectPane.setMouseTransparent(true);
-		helpMessage.setText("ARROW KEYS to select a square, ENTER to move entities, ESC to cancel");
+		helpMessage.setText("ARROW KEYS to select a square, SPACE to move entities, ESC to cancel");
 		placementMode = new PlacementModeMove(this);
 		inPlacementMode = true;
 		drawFrame();
@@ -129,7 +154,7 @@ public class LevelDesignerController extends Controller {
 	
 	public void switchToPlacementDeleteMode() {
 		selectPane.setMouseTransparent(true);
-		helpMessage.setText("ARROW KEYS to select a square, ENTER/DEL to delete, ESC to cancel");
+		helpMessage.setText("ARROW KEYS to select a square, SPACE to delete, ESC to cancel");
 		placementMode = new PlacementModeDelete(this);
 		inPlacementMode = true;
 		drawFrame();
@@ -141,25 +166,25 @@ public class LevelDesignerController extends Controller {
 	}
 	
 	private void mazeCursorUp() {
-		if (mazeCursorY > 0) {
+		if (mazeCursorY > 1) {
 			mazeCursorY--;
 		}
 	}
 	
 	private void mazeCursorDown() {
-		if (mazeCursorY < maze.getHeight() - 1) {
+		if (mazeCursorY < maze.getHeight() - 2) {
 			mazeCursorY++;
 		}
 	}
 	
 	private void mazeCursorRight() {
-		if (mazeCursorX < maze.getWidth()  - 1) {
+		if (mazeCursorX < maze.getWidth()  - 2) {
 			mazeCursorX++;
 		}
 	}
 	
 	private void mazeCursorLeft() {
-		if (mazeCursorX > 0) {
+		if (mazeCursorX > 1) {
 			mazeCursorX--;
 		}
 	}
@@ -171,7 +196,6 @@ public class LevelDesignerController extends Controller {
 	public int getCursorX() {
 		return mazeCursorX;
 	}
-	
 	
 	// It's not pretty...
 	// But this is a OO course, not a JavaFX course.
@@ -426,8 +450,6 @@ public class LevelDesignerController extends Controller {
 	private Button button82;
 	@FXML
 	private Button button90;
-	
-	
 	
 	private void drawFrame() {
 		ctx.setFill(Color.BLACK);
