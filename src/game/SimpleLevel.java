@@ -163,6 +163,7 @@ public class SimpleLevel implements Level {
 			if (bool) {
 				System.out.println("You need to collect treasure");
 				level = new CollectTreasureLevel(level);
+				
 			}
 			return this;
 		}

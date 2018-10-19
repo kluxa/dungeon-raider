@@ -8,7 +8,10 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Stack;
 
-public class StringUtils {
+import dungeon.Maze;
+import game.Level;
+
+public class StringUtilsRead {
 	
 	/**
 	 * Gets JSON objects out of the file and puts them in a hashmap
@@ -172,7 +175,6 @@ public class StringUtils {
 	public static void main (String[] args) {
 		Integer[] coords = getCoords ("0 0");
 		
-		System.out.println(coords[0] + " " + coords[1]);
-		
+		System.out.println(coords[0] + " " + coords[1]);	
 	}
 }

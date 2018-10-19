@@ -15,7 +15,7 @@ import items.*;
 public class LevelBuilder {
 
 	/**
-	 * Makes a fully fledged maze from a file
+	 * Makes a fully fledged level from a file
 	 * @param fileLoc
 	 * @return
 	 */
@@ -40,7 +40,7 @@ public class LevelBuilder {
 		for (String key : tileMap.keySet()) {
 			ArrayList<String> locData = tileMap.get(key).get("location");
 			for (String loc : locData) {
-				Integer[] coords = StringUtils.getCoords(loc);
+				Integer[] coords = StringUtilsRead.getCoords(loc);
 				Square pos = new Square (coords[1], coords[0]);
 				Item e = stringToItem (key);
 				maze.placeEntity(pos.getY(), pos.getX(), e);
@@ -54,7 +54,7 @@ public class LevelBuilder {
 		for (String key : itemMap.keySet()) {
 			ArrayList<String> locData = itemMap.get(key).get("location");
 			for (String loc : locData) {
-				Integer[] coords = StringUtils.getCoords(loc);
+				Integer[] coords = StringUtilsRead.getCoords(loc);
 				Square pos = new Square (coords[1], coords[0]);
 				Item e = stringToItem (key);
 				maze.placeEntity(pos.getY(), pos.getX(), e);
@@ -67,7 +67,7 @@ public class LevelBuilder {
 		for (String key : entityMap.keySet()) {
 			ArrayList<String> locData = entityMap.get(key).get("location");
 			for (String loc : locData) {
-				Integer[] coords = StringUtils.getCoords(loc);
+				Integer[] coords = StringUtilsRead.getCoords(loc);
 				Square pos = new Square (coords[1], coords[0]);
 				SolidEntity e = stringToSolidEntity (key);
 				maze.placeEntity(pos.getY(), pos.getX(), e);
@@ -84,11 +84,11 @@ public class LevelBuilder {
 	 */
 	private static Maze createMazeFromHashMap(LinkedHashMap<String, ArrayList<String>> mapInfo) {
 		ArrayList<String> dims = mapInfo.get("dims");
-		Integer[] coords = StringUtils.getCoords(dims.get(0));
+		Integer[] coords = StringUtilsRead.getCoords(dims.get(0));
 		Maze maze = new Maze (coords[0], coords[1]);
 		
 		ArrayList<String> start = mapInfo.get("start");
-		coords = StringUtils.getCoords(start.get(0));
+		coords = StringUtilsRead.getCoords(start.get(0));
 		maze.setStart(coords[0], coords[1]);
 		
 		return maze;

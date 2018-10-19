@@ -51,19 +51,19 @@ public class MazeFileReader {
             	allLines.add(line);
             }
             
-            if (!StringUtils.isBalanced(allLines)) {
+            if (!StringUtilsRead.isBalanced(allLines)) {
             	System.out.println("File not parentheses balanced.");
             	throw new IOException();
             }
             
             LinkedHashMap<String, ArrayList<String>> mapMap 
-            = StringUtils.hasapafy(allLines, "map");
+            = StringUtilsRead.hasapafy(allLines, "map");
             LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> solidMap 
-            = StringUtils.hasapafyNonUnique(allLines, "solidentities");
+            = StringUtilsRead.hasapafyNonUnique(allLines, "solidentities");
             LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> tileMap 
-            = StringUtils.hasapafyNonUnique(allLines, "tileentities");
+            = StringUtilsRead.hasapafyNonUnique(allLines, "tileentities");
             LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> itemsMap 
-            = StringUtils.hasapafyNonUnique(allLines, "items");
+            = StringUtilsRead.hasapafyNonUnique(allLines, "items");
             
             mazeInfo.put("Map", mapMap);
             mazeInfo.put("SolidEntities", solidMap);
