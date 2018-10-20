@@ -56,7 +56,7 @@ public class MainMenuController extends Controller {
 	@FXML
 	private void handleOptionsButton(KeyEvent e) {
 		if (e.getCode().equals(KeyCode.ENTER)) {
-			System.out.println("Options button pressed");			
+			menus.switchToOptionsMenu();
 		}
 	}
 	

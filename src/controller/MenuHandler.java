@@ -1,6 +1,6 @@
 package controller;
 
-import designer.DesignerHandler;
+import designer_controller.DesignerHandler;
 import dungeon.Maze;
 import fileIO.LevelBuilder;
 import game.Level;
@@ -93,4 +93,17 @@ public class MenuHandler {
 		DesignerHandler designerHandler = new DesignerHandler(stage, this);
 		designerHandler.initialize();
 	}
+	
+	public void switchToOptionsMenu() {
+		Screen optionsMenuScreen = new OptionsMenuScreen(stage);
+		Controller optionsMenuController = new OptionsMenuController(stage, this);
+		optionsMenuScreen.display(optionsMenuController);
+	}
+	
+	public void switchToKeyRebindMenu() {
+		Screen keyRebindMenuScreen = new KeyRebindMenuScreen(stage);
+		Controller optionsMenuController = new KeyRebindMenuController(stage, this);
+		keyRebindMenuScreen.display(optionsMenuController);
+	}
+	
 }

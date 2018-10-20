@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" />
+      <AnchorPane fx:id="display" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@key-rebind-menu.css">
+         <children>
+            <Label alignment="CENTER" layoutX="188.0" layoutY="42.0" prefHeight="68.0" prefWidth="525.0" text="Rebind Keys" textFill="WHITE">
+               <font>
+                  <Font name="Power Red and Green" size="72.0" />
+               </font>
+            </Label>
+            <Label layoutX="208.0" layoutY="174.0" prefHeight="53.0" prefWidth="170.0" text="Move Up" textFill="WHITE">
+               <font>
+                  <Font name="Power Red and Green" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="208.0" layoutY="229.0" prefHeight="53.0" prefWidth="170.0" text="Move Down" textFill="WHITE">
+               <font>
+                  <Font name="Power Red and Green" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="208.0" layoutY="284.0" prefHeight="53.0" prefWidth="170.0" text="Move Right" textFill="WHITE">
+               <font>
+                  <Font name="Power Red and Green" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="208.0" layoutY="339.0" prefHeight="53.0" prefWidth="170.0" text="Move Left" textFill="WHITE">
+               <font>
+                  <Font name="Power Red and Green" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="210.0" layoutY="394.0" prefHeight="53.0" prefWidth="170.0" text="Drop Bomb" textFill="WHITE">
+               <font>
+                  <Font name="Power Red and Green" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="208.0" layoutY="449.0" prefHeight="53.0" prefWidth="170.0" text="Fire Arrow" textFill="WHITE">
+               <font>
+                  <Font name="Power Red and Green" size="36.0" />
+               </font>
+            </Label>
+            <Button fx:id="upKeyButton" layoutX="518.0" layoutY="173.0" mnemonicParsing="false" onKeyPressed="#handleUpKeyButton" prefHeight="42.0" prefWidth="265.0" style="-fx-background-color: black;" text="UP" textFill="WHITE">
+               <font>
+                  <Font name="Power Green" size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="downKeyButton" layoutX="518.0" layoutY="228.0" mnemonicParsing="false" onKeyPressed="#handleDownKeyButton" prefHeight="53.0" prefWidth="265.0" style="-fx-background-color: black;" text="DOWN" textFill="WHITE">
+               <font>
+                  <Font name="Power Green" size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="rightKeyButton" layoutX="518.0" layoutY="283.0" mnemonicParsing="false" onKeyPressed="#handleRightKeyButton" prefHeight="53.0" prefWidth="265.0" style="-fx-background-color: black;" text="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="Power Green" size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="leftKeyButton" layoutX="518.0" layoutY="338.0" mnemonicParsing="false" onKeyPressed="#handleLeftKeyButton" prefHeight="53.0" prefWidth="265.0" style="-fx-background-color: black;" text="LEFT" textFill="WHITE">
+               <font>
+                  <Font name="Power Green" size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="dropBombKeyButton" layoutX="518.0" layoutY="393.0" mnemonicParsing="false" onKeyPressed="#handleDropBombKeyButton" prefHeight="53.0" prefWidth="265.0" style="-fx-background-color: black;" text="D" textFill="WHITE">
+               <font>
+                  <Font name="Power Green" size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="fireArrowKeyButton" layoutX="518.0" layoutY="448.0" mnemonicParsing="false" onKeyPressed="#handleFireArrowKeyButton" prefHeight="53.0" prefWidth="265.0" style="-fx-background-color: black;" text="A" textFill="WHITE">
+               <font>
+                  <Font name="Power Green" size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="backButton" layoutX="318.0" layoutY="510.0" mnemonicParsing="false" onKeyPressed="#handleBackButton" prefHeight="60.0" prefWidth="265.0" style="-fx-background-color: none;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="Power Red and Green" size="48.0" />
+               </font>
+            </Button>
+            <Label fx:id="helpMessage" alignment="CENTER" layoutX="167.0" layoutY="121.0" prefHeight="53.0" prefWidth="568.0" style="-fx-background-color: black;" textFill="#ff9b00">
+               <font>
+                  <Font name="Power Red and Green" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

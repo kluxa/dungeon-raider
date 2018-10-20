@@ -1,21 +1,11 @@
 package controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
+import java.util.Scanner;
 
-import dungeon.Direction;
-import dungeon.Entity;
-import dungeon.Maze;
-import dungeon.SolidEntity;
-import dungeon.Square;
-import dungeon.Tile;
-import game.Level;
-import game.SimpleLevel;
-import items.Arrow;
-import items.Item;
-import items.Sword;
-import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -30,9 +20,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import player.Inventory;
-import player.Player;
+
+import dungeon.*;
+import game.*;
+import items.*;
+import player.*;
 
 public class PlayDungeonController extends Controller {
 	private PlayDungeon playDungeon;
@@ -51,6 +43,13 @@ public class PlayDungeonController extends Controller {
 	
 	private GraphicsContext ctx;
 	
+	private KeyCode upKey;
+	private KeyCode downKey;
+	private KeyCode rightKey;
+	private KeyCode leftKey;
+	private KeyCode dropBombKey;
+	private KeyCode fireArrowKey;
+	
 	public PlayDungeonController(Stage s, PlayDungeon playDungeon) {
 		super(s);
 		this.playDungeon = playDungeon;
@@ -65,6 +64,7 @@ public class PlayDungeonController extends Controller {
 		ctx = canvas.getGraphicsContext2D();
 		
 		ctx.setFont(Font.font("Power Red and Green", FontWeight.NORMAL, 17));
+		readKeyBindings();
 		drawFrame();
 	}
 	
@@ -80,23 +80,26 @@ public class PlayDungeonController extends Controller {
 		if (firingArrow) {
 			fireArrow(k);
 		} else {
-			switch (k) {
-			case UP:    level.move(Direction.UP);          break;
-			case DOWN:  level.move(Direction.DOWN);        break;
-			case RIGHT: level.move(Direction.RIGHT);       break;
-			case LEFT:  level.move(Direction.LEFT);        break;
-			case D:     level.dropBomb();                  break;
-			case A:     if (player.hasItem(new Arrow())) {
-							firingArrow = true;
-						}                                  break;
-			default:                                       break;
+			if (k == upKey) {
+				level.move(Direction.UP);
+			} else if (k == downKey) {
+				level.move(Direction.DOWN);
+			} else if (k == rightKey) {
+				level.move(Direction.RIGHT);
+			} else if (k == leftKey) {
+				level.move(Direction.LEFT);
+			} else if (k == dropBombKey) {
+				level.dropBomb();
+			} else if (k == fireArrowKey) {
+				if (player.hasItem(new Arrow())) {
+					firingArrow = true;
+				}
 			}
 		}
 		
 		if (level.hasEnded()) {
 			if (level.isComplete()) {
 				playDungeon.gameWon();
-
 			} else {
 				playDungeon.gameOver(player.getCauseOfDeath());
 			}
@@ -106,14 +109,23 @@ public class PlayDungeonController extends Controller {
 	}
 	
 	private void fireArrow(KeyCode k) {
-		switch (k) {
-		case UP:    level.fireArrow(Direction.UP);    firingArrow = false; break;
-		case DOWN:  level.fireArrow(Direction.DOWN);  firingArrow = false; break;
-		case RIGHT: level.fireArrow(Direction.RIGHT); firingArrow = false; break;
-		case LEFT:  level.fireArrow(Direction.LEFT);  firingArrow = false; break;
-		default:                                                           break;
+		if (k == upKey) {
+			level.fireArrow(Direction.UP);
+			firingArrow = false;
+		} else if (k == downKey) {
+			level.fireArrow(Direction.DOWN);
+			firingArrow = false;
+		} else if (k == rightKey) {
+			level.fireArrow(Direction.RIGHT);
+			firingArrow = false;
+		} else if (k == leftKey) {
+			level.fireArrow(Direction.LEFT);
+			firingArrow = false;
 		}
 	}
+	
+	////////////////////////////////////////////////////////////////////////////
+	// Drawing the frame
 	
 	private void drawFrame() {
 		clearFrame();
@@ -184,7 +196,7 @@ public class PlayDungeonController extends Controller {
 	}
 	
 	private void drawInventory() {
-		////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////
 		// Weapon
 		ctx.save();
 		
@@ -211,7 +223,7 @@ public class PlayDungeonController extends Controller {
 		
 		ctx.restore();
 		
-		////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////
 		// Other Items
 		ctx.save();
 		
@@ -233,25 +245,27 @@ public class PlayDungeonController extends Controller {
 			ctx.setFill(Color.WHITE);
 			ctx.setStroke(Color.WHITE);
 			ctx.drawImage(new Image(getImagePath(i)), posX + 10, 30);
-			ctx.strokeText(quantity > 9 ? "9+" : String.valueOf(quantity),
-				           posX + 38, 70);
-			ctx.fillText(quantity > 9 ? "9+" : String.valueOf(quantity),
-					     posX + 38, 70);
+			if (!(i instanceof Key)) {
+				ctx.strokeText(quantity > 9 ? "9+" : String.valueOf(quantity),
+					           posX + 38, 70);
+				ctx.fillText(quantity > 9 ? "9+" : String.valueOf(quantity),
+						     posX + 38, 70);
+			}
 			posX += 76;
 		}
 		
 		ctx.restore();
 		
-		////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////
 		// Active Effects
 		ctx.save();
 		
 		if (player.isFlying()) {
-			ctx.drawImage(new Image("sprites/wings.png"), posX + 10, 30);
-			posX += 84;
+			ctx.drawImage(new Image("sprites/wings.png"), posX, 30);
+			posX += 74;
 		}
 		if (player.isInvincible()) {
-			ctx.drawImage(new Image("sprites/invincibilitypotion.png"), posX + 10, 30);
+			ctx.drawImage(new Image("sprites/invincibilitypotion.png"), posX, 30);
 		}
 		
 		ctx.restore();
@@ -264,17 +278,22 @@ public class PlayDungeonController extends Controller {
 		
 		HashMap<String, Integer> values = new HashMap<>();
 		level.getProgress(values);
-		int posY = 30;
-		for (String objective: values.keySet()) {
-			if (objective.equals("treasure")) {
-				ctx.fillText("Treasures remaining: ", 640, posY);
-			} else if (objective.equals("switches")) {
-				ctx.fillText("Switches remaining: ", 640, posY);
-			} else if (objective.equals("enemies")) {
-				ctx.fillText("Enemies remaining: ", 640, posY);
+		ctx.fillText("Objectives: ", 600, 30);
+		int posY = 60;
+		if (values.size() == 0) {
+			ctx.fillText("Reach the exit!", 600, posY);
+		} else {
+			for (String objective: values.keySet()) {
+				if (objective.equals("treasure")) {
+					ctx.fillText("Collect all treasure!", 600, posY);
+				} else if (objective.equals("switches")) {
+					ctx.fillText("Trigger all switches!", 600, posY);
+				} else if (objective.equals("enemies")) {
+					ctx.fillText("Destroy all enemies!", 600, posY);
+				}
+				ctx.fillText("(" + String.valueOf(values.get(objective)) + " left)", 800, posY);
+				posY += 30;
 			}
-			ctx.fillText(String.valueOf(values.get(objective)), 850, posY);
-			posY += 30;
 		}
 		
 		ctx.restore();
@@ -292,4 +311,34 @@ public class PlayDungeonController extends Controller {
 		return "sprites/" + e.getImageName() + ".png";
 	}
 	
+	////////////////////////////////////////////////////////////////////////////
+	// Reading in key bindings
+	
+	private void readKeyBindings() {
+		Scanner sc = null;
+		try {
+			sc = new Scanner(new File("src/game_files/bindings.txt"));
+			while (sc.hasNextLine()) {
+				readKeyBinding(sc.nextLine());
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		} finally {
+			if (sc != null) sc.close();
+		}
+	}
+	
+	private void readKeyBinding(String line) {
+		String[] pair = line.split(" ");
+		KeyCode k = KeyCode.valueOf(pair[1]);
+		switch (pair[0]) {
+		case "Up":        upKey = k;        break;
+		case "Down":      downKey = k;      break;
+		case "Right":     rightKey = k;     break;
+		case "Left":      leftKey = k;      break;
+		case "DropBomb":  dropBombKey = k;  break;
+		case "FireArrow": fireArrowKey = k; break;
+		}
+	}
 }
