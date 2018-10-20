@@ -261,11 +261,11 @@ public class PlayDungeonController extends Controller {
 		ctx.save();
 		
 		if (player.isFlying()) {
-			ctx.drawImage(new Image("sprites/wings.png"), posX, 30);
+			ctx.drawImage(new Image("game_files/sprites/wings.png"), posX, 30);
 			posX += 74;
 		}
 		if (player.isInvincible()) {
-			ctx.drawImage(new Image("sprites/invincibilitypotion.png"), posX, 30);
+			ctx.drawImage(new Image("game_files/sprites/invincibilitypotion.png"), posX, 30);
 		}
 		
 		ctx.restore();
@@ -308,7 +308,7 @@ public class PlayDungeonController extends Controller {
 	}
 	
 	private String getImagePath(Entity e) {
-		return "sprites/" + e.getImageName() + ".png";
+		return "game_files/sprites/" + e.getImageName() + ".png";
 	}
 	
 	////////////////////////////////////////////////////////////////////////////

@@ -518,6 +518,6 @@ public class LevelDesignerController extends Controller {
 	}
 	
 	private String getImagePath(Entity e) {
-		return "sprites/" + e.getImageName() + ".png";
+		return "game_files/sprites/" + e.getImageName() + ".png";
 	}
 }

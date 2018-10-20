@@ -80,7 +80,7 @@ public class Zone3SelectMenuController extends DungeonSelectMenuController {
 			
 		} else if (k.equals(KeyCode.ENTER)) {
 			menus.switchToPlayingDungeon(0,
-					"./src/resources/levels/zone3/" +
+					"./src/game_files/levels/zone3/" +
 					files[cursorY][cursorX]);
 			
 		} else if (k.equals(KeyCode.UP)) {
@@ -107,7 +107,7 @@ public class Zone3SelectMenuController extends DungeonSelectMenuController {
 			cursorY++;
 		}
 		buttons[cursorY][cursorX].requestFocus();
-		return "./src/resources/levels/zone3/" +
+		return "./src/game_files/levels/zone3/" +
 		       files[cursorY][cursorX];
 	}
 	

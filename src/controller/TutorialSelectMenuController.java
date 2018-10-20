@@ -80,7 +80,7 @@ public class TutorialSelectMenuController extends DungeonSelectMenuController {
 			
 		} else if (k.equals(KeyCode.ENTER)) {
 			menus.switchToPlayingDungeon(0,
-					"./src/resources/levels/tutorial/" +
+					"./src/game_files/levels/tutorial/" +
 					files[cursorY][cursorX]);
 			
 		} else if (k.equals(KeyCode.UP)) {
@@ -107,7 +107,7 @@ public class TutorialSelectMenuController extends DungeonSelectMenuController {
 			cursorY++;
 		}
 		buttons[cursorY][cursorX].requestFocus();
-		return "./src/resources/levels/tutorial/" +
+		return "./src/game_files/levels/tutorial/" +
 		       files[cursorY][cursorX];
 	}
 	
