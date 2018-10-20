@@ -16,4 +16,6 @@ public interface PlayerState {
 	public void hitByProjectile();
 	
 	public boolean isInvincible();
+	
+	public String getImageName();
 }

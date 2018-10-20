@@ -29,6 +29,16 @@ public abstract class Enemy extends LivingEntity {
 		die();
 	}
 	
+	@Override
+	public void hitByProjectile() {
+		die();
+	}
+	
+	@Override
+	public void fall() {
+		die();
+	}
+	
 	public void setMovementPattern(MovementPattern pattern) {
 		this.pattern = pattern;
 	}

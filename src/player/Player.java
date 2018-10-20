@@ -15,6 +15,7 @@ public class Player extends LivingEntity {
 	private ArrayList<LitBomb> bombs;
 	private boolean isFlying;
 	private boolean onExit;
+	private String causeOfDeath;
 	
 	public Player(Maze maze) {
 		super(maze.getStartSquare());
@@ -38,8 +39,11 @@ public class Player extends LivingEntity {
 	}
 	
 	public void setFlying() {
-		System.out.println("You can fly now!");
 		isFlying = true;
+	}
+	
+	public void setCauseOfDeath(String cause) {
+		causeOfDeath = cause;
 	}
 	
 	public boolean isInvincible() {
@@ -50,8 +54,16 @@ public class Player extends LivingEntity {
 		return onExit;
 	}
 	
+	public boolean isFlying() {
+		return isFlying;
+	}
+	
 	public void setOnExit() {
 		onExit = true;
+	}
+	
+	public String getCauseOfDeath() {
+		return causeOfDeath;
 	}
 	
 	////////////////////////////////////////////////////////////////////
@@ -70,8 +82,13 @@ public class Player extends LivingEntity {
 	@Override
 	public void fall() {
 		if (!this.isFlying) {
-			die();
+			die("Pit");
 		}
+	}
+	
+	public void die(String cause) {
+		causeOfDeath = cause;
+		super.die();
 	}
 	
 	@Override
@@ -117,6 +134,14 @@ public class Player extends LivingEntity {
 	////////////////////////////////////////////////////////////////////
 	// Inventory
 	
+	public Inventory getInventory() {
+		return inventory;
+	}
+	
+	public ArrayList<Item> getItems() {
+		return inventory.getItems();
+	}
+	
 	public boolean hasItem(Item i) {
 		return inventory.hasItem(i);
 	}
@@ -161,7 +186,7 @@ public class Player extends LivingEntity {
 
 	@Override
 	public String getImageName() {
-		return "player";
+		return state.getImageName();
 	}
 	
 }

@@ -46,8 +46,8 @@ public class PlayDungeon {
 		menus.restartLevel();
 	}
 	
-	public void gameOver() {
-		Controller c = new GameOverMenuController(stage, this);
+	public void gameOver(String cause) {
+		Controller c = new GameOverMenuController(stage, this, cause);
 		Screen s = new GameOverMenuScreen(stage);
 		s.display(c);
 	}

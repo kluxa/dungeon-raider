@@ -1,7 +1,10 @@
 package game;
 
+import java.util.HashMap;
+
 import dungeon.Direction;
 import dungeon.Maze;
+import player.Player;
 
 public abstract class LevelDecorator implements Level {
 	protected Level level;
@@ -14,6 +17,11 @@ public abstract class LevelDecorator implements Level {
 	@Override
 	public Maze getMaze() {
 		return level.getMaze();
+	}
+	
+	@Override
+	public Player getPlayer() {
+		return level.getPlayer();
 	}
 	
 	/**
@@ -38,6 +46,17 @@ public abstract class LevelDecorator implements Level {
 	}
 	
 	/**
+	 * Stores the progress value of each objective
+	 * in a hashmap. For example {"treasure" => 3}
+	 * indicates that there are three treasures
+	 * remaining in the level.
+	 */
+	@Override
+	public void getProgress(HashMap<String, Integer> values) {
+		
+	}
+	
+	/**
 	 * Check if the player has completed the level
 	 * @return a boolean to indicate if the player
 	 *         has completed the level
@@ -52,6 +71,7 @@ public abstract class LevelDecorator implements Level {
 	 * to false, indicating that the level has
 	 * special objectives.
 	 */
+	@Override
 	public void setNotSimple() {
 		level.setNotSimple();
 	}
@@ -63,6 +83,7 @@ public abstract class LevelDecorator implements Level {
 	 * Plays out a turn with the given player move
 	 * @param the direction for the player to move
 	 */
+	@Override
 	public void move(Direction move) {
 		level.move(move);
 	}
@@ -71,6 +92,7 @@ public abstract class LevelDecorator implements Level {
 	 * Plays out a turn with the player dropping a
 	 * bomb.
 	 */
+	@Override
 	public void dropBomb() {
 		level.dropBomb();
 	}
@@ -80,6 +102,7 @@ public abstract class LevelDecorator implements Level {
 	 * arrow in the given direction.
 	 * @param move
 	 */
+	@Override
 	public void fireArrow(Direction move) {
 		level.fireArrow(move);
 	}

@@ -19,7 +19,7 @@ public class NormalState implements PlayerState {
 	@Override
 	public void collide(SolidEntity e) {
 		if (e instanceof Enemy) {
-			player.die();
+			player.die(e.getClass().getSimpleName());
 		}
 	}
 	
@@ -29,22 +29,27 @@ public class NormalState implements PlayerState {
 			player.useWeapon();
 			e.die();
 		} else {
-			player.die();
+			player.die(e.getClass().getSimpleName());
 		}
 	}
 	
 	@Override
 	public void getBlownUp() {
-		player.die();
+		player.die("Explosion");
 	}
 	
 	@Override
 	public void hitByProjectile() {
-		player.die();
+		player.die("Arrow");
 	}
 	
 	@Override
 	public boolean isInvincible() {
 		return false;
+	}
+	
+	@Override
+	public String getImageName() {
+		return "player_normal";
 	}
 }

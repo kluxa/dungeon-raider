@@ -19,8 +19,8 @@
 
 <StackPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" />
       <Button fx:id="nothing" mnemonicParsing="false" onKeyPressed="#handleKeyPress" text="Button" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" />
       <HBox fx:id="display" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleKeyPress" prefHeight="600.0" prefWidth="900.0" stylesheets="@level-builder.css">
          <children>
             <VBox>

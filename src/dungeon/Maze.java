@@ -131,10 +131,10 @@ public class Maze {
 		return count;
 	}
 	
-	public int getNumTriggeredSwitches() {
+	public int getNumUntriggeredSwitches() {
 		int count = 0;
 		for (FloorSwitch f: switches) {
-			if (f.isTriggered()) {
+			if (!f.isTriggered()) {
 				count++;
 			}
 		}
@@ -156,7 +156,7 @@ public class Maze {
 	}
 	
 	public boolean allSwitchesTriggered() {
-		return (getNumTriggeredSwitches() == switches.size());
+		return (getNumUntriggeredSwitches() == 0);
 	}
 	
 	public boolean allEnemiesDefeated() {

@@ -424,6 +424,11 @@
 				(18, 12)
 			]
 		}
+		InvincibilityPotion: {
+			location: [
+				(14, 6)
+			]
+		}
 	}
 	tileentities: {
 		Pit: {

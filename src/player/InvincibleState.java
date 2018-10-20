@@ -53,4 +53,8 @@ public class InvincibleState implements PlayerState {
 		return true;
 	}
 	
+	@Override
+	public String getImageName() {
+		return "player_invincible";
+	}
 }

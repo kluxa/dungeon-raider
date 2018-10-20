@@ -11,6 +11,10 @@ public class Inventory {
 		this.items = new ArrayList<Item>();
 	}
 	
+	public ArrayList<Item> getItems() {
+		return new ArrayList<>(items);
+	}
+	
 	public void addItem(Item i) {
 		items.add(i);
 	}
@@ -42,22 +46,24 @@ public class Inventory {
 		return null;
 	}
 	
-	public boolean hasWeapon() {
-		for (Item heldItem: items) {
-			if (heldItem instanceof Sword) {
-				return true;
+	////////////////////////////////////////////////////////////////////
+	// Weapon
+	
+	public Sword getWeapon() {
+		for (Item i: items) {
+			if (i instanceof Sword) {
+				return (Sword)i;
 			}
 		}
-		return false;
+		return null;
+	}
+	
+	public boolean hasWeapon() {
+		return getWeapon() != null;
 	}
 	
 	public void useWeapon() {
-		Sword s = null;
-		for (Item heldItem: items) {
-			if (heldItem instanceof Sword) {
-				s = (Sword)heldItem;
-			}
-		}
+		Sword s = getWeapon();
 		if (s != null) {
 			s.use();
 			if (s.getUsesLeft() == 0) {
@@ -65,6 +71,9 @@ public class Inventory {
 			}
 		}
 	}
+	
+	////////////////////////////////////////////////////////////////////
+	// 
 	
 	@Override
 	public String toString() {
