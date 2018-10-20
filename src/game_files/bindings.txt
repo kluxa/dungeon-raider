@@ -1,0 +1,6 @@
+Up UP
+Down DOWN
+Right RIGHT
+Left LEFT
+DropBomb D
+FireArrow A

@@ -1,4 +1,4 @@
-package designer;
+package designer_controller;
 
 import controller.Controller;
 
