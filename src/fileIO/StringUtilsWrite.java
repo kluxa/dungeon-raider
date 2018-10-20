@@ -7,6 +7,7 @@ import dungeon.Entity;
 import dungeon.Maze;
 import dungeon.SolidEntity;
 import dungeon.Square;
+import dungeon.Tile;
 import game.Level;
 import items.Item;
 
@@ -26,13 +27,17 @@ public class StringUtilsWrite {
 		tmp.remove(0);
 		tmp.add(formatCoords(maze.getStartSquare().getY(), maze.getStartSquare().getX()));
 		mazeMap.put("start", tmp);
-		//completion objectives
-		
-		System.out.println(mazeMap.toString());
+		//maze obj's
 		
 		return null;
 	}
 	
+	/**
+	 * Makes a hashmap of all the entities in the maze (collidable) according to a strict format
+	 * @param fileMap
+	 * @param level
+	 * @return
+	 */
 	public static LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> hasapafyEnts (LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> fileMap, Level level) {
 		//Gets the entity and converts it and its location to a string
 		//If the entMap already has atleast one of that type already, the coords only will be added to the hashmap
@@ -42,23 +47,18 @@ public class StringUtilsWrite {
 		for (int i = 0; i < maze.getHeight(); i++) {
 			for (int j = 0; j < maze.getWidth(); j++) {
 				Square sq = maze.getSquare(i, j);
-				SolidEntity solEnt = sq.getCollidableOccupant();
-				
+				SolidEntity solEnt = sq.getCollidableOccupant();			
 				if (solEnt != null) {
-					System.out.println(solEnt.getClass().getSimpleName());
-					ArrayList<String> tmp = new ArrayList<String>();
+					ArrayList<String> locData = new ArrayList<String>();
 					if (entMap.get(solEnt.getClass().getSimpleName()) == null) {
-						System.out.println("Start with null");
-						
-						tmp.add(formatCoords(i, j));
-						entMap.put(solEnt.getClass().getSimpleName(), tmp);
-						System.out.println("End with null");
+						//add first thing
+						locData.add(formatCoords(i, j));
+						entMap.put(solEnt.getClass().getSimpleName(), locData);
 					} else {
-						System.out.println("Start with stuff");
-						tmp = entMap.get(solEnt.getClass().getSimpleName());
-						tmp.add(formatCoords(i, j));
-						entMap.put(solEnt.getClass().getSimpleName(), tmp);
-						System.out.println("End with stuff");
+						//Add any after first by getting arraylist, adding to it and putting it back in
+						locData = entMap.get(solEnt.getClass().getSimpleName());
+						locData.add(formatCoords(i, j));
+						entMap.put(solEnt.getClass().getSimpleName(), locData);
 					}
 				}
 			}
@@ -67,17 +67,73 @@ public class StringUtilsWrite {
 		
 		return fileMap;
 	}
-	
-	private static String classToString(SolidEntity collOcc) {
-		switch(collOcc.getClass().getName()) {
-			
-		
-		}
-		
-		
-		return null;
-	}
 
+	/**
+	 * Creates a hashmap of all the items in the maze in accordance with a strict file format
+	 * @param fileMap
+	 * @param level
+	 * @return
+	 */
+	public static LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> hasapafyItems (LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> fileMap, Level level) {
+		Maze maze = level.getMaze();
+		
+		LinkedHashMap<String, ArrayList<String>> itemMap = new LinkedHashMap<String, ArrayList<String>>();
+		for (int i = 0; i < maze.getHeight(); i++) {
+			for (int j = 0; j < maze.getWidth(); j++) {
+				Square sq = maze.getSquare(i, j);
+				ArrayList<Item> itemList = sq.getItems();			
+				if (itemList != null) {
+					for (Item item : itemList) {
+						ArrayList<String> locData = new ArrayList<String>();
+						if (itemMap.get(item.getClass().getSimpleName()) == null) {
+							locData.add(formatCoords(i, j));
+							itemMap.put(item.getClass().getSimpleName(), locData);
+						} else {
+							locData = itemMap.get(item.getClass().getSimpleName());
+							locData.add(formatCoords(i, j));
+							itemMap.put(item.getClass().getSimpleName(), locData);
+						}
+					}
+				}
+			}
+		}
+		fileMap.put("Items", itemMap);
+		
+		return fileMap;
+	}
+	
+	/**
+	 * Makes a hashmap of all the tiles in the maze according to a strict format
+	 * @param fileMap
+	 * @param level
+	 * @return
+	 */
+	public static LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> hasapafyTiles (LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> fileMap, Level level) {
+		Maze maze = level.getMaze();
+		
+		LinkedHashMap<String, ArrayList<String>> tileMap = new LinkedHashMap<String, ArrayList<String>>();
+		for (int i = 0; i < maze.getHeight(); i++) {
+			for (int j = 0; j < maze.getWidth(); j++) {
+				Square sq = maze.getSquare(i, j);
+				Tile tile = sq.getTile();			
+				if (tile != null) {
+					ArrayList<String> locData = new ArrayList<String>();
+					if (tileMap.get(tile.getClass().getSimpleName()) == null) {
+						locData.add(formatCoords(i, j));
+						tileMap.put(tile.getClass().getSimpleName(), locData);
+					} else {
+						locData = tileMap.get(tile.getClass().getSimpleName());
+						locData.add(formatCoords(i, j));
+						tileMap.put(tile.getClass().getSimpleName(), locData);
+					}
+				}
+			}
+		}
+		fileMap.put("TileEntities", tileMap);
+		
+		return fileMap;
+	}
+	
 	/**
 	 * Turns two ints into a "[x, y]" format
 	 * @param x
@@ -94,5 +150,8 @@ public class StringUtilsWrite {
 		hasapafyMaze (level);
 		LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> tmp = new LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>>();
 		tmp = hasapafyEnts (tmp, level);
+		tmp = hasapafyItems(tmp, level);
+		tmp = hasapafyTiles (tmp, level);
+		System.out.println(tmp.toString());
 	}
 }
