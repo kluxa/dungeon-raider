@@ -31,19 +31,14 @@ public abstract class LivingEntity extends SolidEntity {
 	 * causes the entity to die
 	 */
 	public void die() {
-		System.out.println(this.getClass().getSimpleName() + " died");
 		getLocation().depart(this);
 		isAlive = false;
 	}
 	
 	@Override
-	public void hitByProjectile() {
-		die();
-	}
+	public abstract void hitByProjectile();
 	
 	@Override
-	public void fall() {
-		die();
-	}
+	public abstract void fall();
 	
 }

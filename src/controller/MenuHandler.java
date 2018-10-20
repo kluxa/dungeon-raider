@@ -1,6 +1,8 @@
 package controller;
 
+import designer_controller.DesignerHandler;
 import dungeon.Maze;
+import fileIO.LevelBuilder;
 import game.Level;
 import game.MazeLoader;
 import game.SimpleLevel;
@@ -17,15 +19,17 @@ import javafx.stage.Stage;
  * - Level selection menu
  */
 public class MenuHandler {
-	Stage stage;
+	private Stage stage;
 	
-	Screen mainMenu;
-	Screen zoneSelectMenu;
-	Screen dungeonSelectMenu;
+	private Screen mainMenu;
+	private Screen zoneSelectMenu;
+	private Screen dungeonSelectMenu;
 	
-	MainMenuController mainMenuController;
-	ZoneSelectMenuController zoneSelectMenuController;
-	DungeonSelectMenuController dungeonSelectMenuController;
+	private MainMenuController mainMenuController;
+	private ZoneSelectMenuController zoneSelectMenuController;
+	private DungeonSelectMenuController dungeonSelectMenuController;
+	
+	private String currLevel;
 	
 	public MenuHandler(Stage stage) {
 		this.stage = stage;
@@ -57,11 +61,49 @@ public class MenuHandler {
 		dungeonSelectMenu.display(dungeonSelectMenuController);
 	}
 	
-	public void switchToPlayingDungeon(int zone, String name) {
+	public void restartLevel() {
+		switchToPlayingDungeon(0, currLevel);
+	}
+	
+	public boolean hasNextLevel() {
+		return dungeonSelectMenuController.hasNextLevel();
+	}
+	
+	public void playNextLevel() {
+		currLevel = dungeonSelectMenuController.nextLevel();
+		switchToPlayingDungeon(0, currLevel);
+	}
+	
+	public void switchToPlayingDungeon(int zone, String pathName) {
+		currLevel = pathName;
+		Level level = LevelBuilder.makeLevel(pathName);
+		PlayDungeon playing = new PlayDungeon(stage, this, level);
+		playing.beginGame();
+		
+		/*
 		MazeLoader reader = new MazeLoader();
 		Maze maze = reader.readMaze(TestMaze.LEVEL06);
 		Level level = new SimpleLevel.LevelBuilder(maze).collectTreasure(true).triggerSwitches(true).build();
 		PlayDungeon playing = new PlayDungeon(stage, this, level);
 		playing.beginGame();
+		*/
 	}
+	
+	public void switchToLevelDesigner() {
+		DesignerHandler designerHandler = new DesignerHandler(stage, this);
+		designerHandler.initialize();
+	}
+	
+	public void switchToOptionsMenu() {
+		Screen optionsMenuScreen = new OptionsMenuScreen(stage);
+		Controller optionsMenuController = new OptionsMenuController(stage, this);
+		optionsMenuScreen.display(optionsMenuController);
+	}
+	
+	public void switchToKeyRebindMenu() {
+		Screen keyRebindMenuScreen = new KeyRebindMenuScreen(stage);
+		Controller optionsMenuController = new KeyRebindMenuController(stage, this);
+		keyRebindMenuScreen.display(optionsMenuController);
+	}
+	
 }

@@ -46,7 +46,6 @@ public class LitBomb extends NonLivingEntity {
 	}
 	
 	public void explode() {
-		System.out.println("Kaboom!");
 		Square s = getLocation();
 		setLocation(null);
 		s.depart(this);
@@ -60,7 +59,7 @@ public class LitBomb extends NonLivingEntity {
 
 	@Override
 	public String getImageName() {
-		return "litbomb" + String.valueOf(countdown);
+		return "litbomb_" + String.valueOf(countdown);
 	}
 	
 }

@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="nothing" mnemonicParsing="false" onKeyPressed="#handleKeyPress" text="Button" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" />
+      <HBox fx:id="display" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleKeyPress" prefHeight="600.0" prefWidth="900.0" stylesheets="@level-builder.css">
+         <children>
+            <VBox>
+               <children>
+                  <Canvas fx:id="canvas" height="560.0" width="650.0" />
+                  <Label fx:id="helpMessage" alignment="CENTER" prefHeight="40.0" prefWidth="650.0" style="-fx-background-color: black;" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Power Red and Green" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <AnchorPane fx:id="selectPane" prefHeight="600.0" prefWidth="250.0" style="-fx-background-color: black;">
+               <children>
+                  <Button fx:id="button01" alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="9.0" maxHeight="50.0" maxWidth="50.0" mnemonicParsing="false" onAction="#handleButton01" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../game_files/sprites/designer/pit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button02" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleButton02" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../game_files/sprites/designer/floorswitch.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button03" alignment="CENTER" contentDisplay="CENTER" layoutX="186.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleButton03" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../game_files/sprites/exit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button12" alignment="CENTER" contentDisplay="CENTER" layoutX="128.0" layoutY="68.0" mnemonicParsing="false" onAction="#handleButton12" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../game_files/sprites/boulder.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button13" alignment="CENTER" contentDisplay="CENTER" layoutX="186.0" layoutY="68.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button21" alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="127.0" mnemonicParsing="false" onAction="#handleButton21" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../game_files/sprites/strategist.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button22" alignment="CENTER" contentDisplay="CENTER" layoutX="128.0" layoutY="127.0" mnemonicParsing="false" onAction="#handleButton22" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../game_files/sprites/hound.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button23" alignment="CENTER" contentDisplay="CENTER" layoutX="186.0" layoutY="127.0" mnemonicParsing="false" onAction="#handleButton23" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../game_files/sprites/coward.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button32" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="186.0" mnemonicParsing="false" onAction="#handleButton32" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../game_files/sprites/unlitbomb.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button33" alignment="CENTER" contentDisplay="CENTER" layoutX="186.0" layoutY="186.0" mnemonicParsing="false" onAction="#handleButton33" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../game_files/sprites/sword.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button41" alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleButton41" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../game_files/sprites/hoverpotion.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button42" alignment="CENTER" contentDisplay="CENTER" layoutX="128.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleButton42" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../game_files/sprites/invincibilitypotion.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button43" alignment="CENTER" contentDisplay="CENTER" layoutX="186.0" layoutY="245.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button52" alignment="CENTER" contentDisplay="CENTER" layoutX="128.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleButton52" prefHeight="50.0" prefWidth="109.0" text="Delete" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Power Red and Green" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="button00" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleButton00" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../game_files/sprites/designer/path.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button82" alignment="CENTER" contentDisplay="CENTER" layoutX="128.0" layoutY="481.0" mnemonicParsing="false" onAction="#handleButton82" prefHeight="50.0" prefWidth="109.0" text="Save" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Power Red and Green" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="button10" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="68.0" mnemonicParsing="false" onAction="#handleButton10" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../game_files/sprites/wall.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button20" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="127.0" mnemonicParsing="false" onAction="#handleButton20" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../game_files/sprites/hunter.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button30" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="186.0" mnemonicParsing="false" onAction="#handleButton30" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../game_files/sprites/treasure.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button40" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleButton40" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../game_files/sprites/arrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button50" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleButton50" prefHeight="50.0" prefWidth="110.0" text="Move" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Power Red and Green" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="button80" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="481.0" mnemonicParsing="false" onAction="#handleButton80" prefHeight="50.0" prefWidth="110.0" text="Load" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Power Red and Green" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="button70" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="422.0" mnemonicParsing="false" onAction="#handleButton70" prefHeight="50.0" prefWidth="228.0" text="Test Level" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Power Red and Green" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="button90" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="540.0" mnemonicParsing="false" onAction="#handleButton90" prefHeight="50.0" prefWidth="228.0" text="Exit" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Power Red and Green" size="24.0" />
+                     </font>
+                  </Button>
+                  <MenuButton fx:id="button11" layoutX="68.0" layoutY="68.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
+                     <items>
+                        <MenuItem fx:id="button110" mnemonicParsing="false" onAction="#handleButton110" style="-fx-max-width: 50px;">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
+                                 <image>
+                                    <Image url="@../game_files/sprites/door_closed_red.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem fx:id="button111" mnemonicParsing="false" onAction="#handleButton111" style="-fx-max-width: 50px;">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
+                                 <image>
+                                    <Image url="@../game_files/sprites/door_closed_yellow.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem fx:id="button112" mnemonicParsing="false" onAction="#handleButton112" style="-fx-max-width: 50px;">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
+                                 <image>
+                                    <Image url="@../game_files/sprites/door_closed_green.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem fx:id="button113" mnemonicParsing="false" onAction="#handleButton113" style="-fx-max-width: 50px;">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
+                                 <image>
+                                    <Image url="@../game_files/sprites/door_closed_blue.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                     </items>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" onKeyPressed="#handleKeyPress" pickOnBounds="true" preserveRatio="true" translateX="8.0">
+                           <image>
+                              <Image url="@../game_files/sprites/door_closed.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </MenuButton>
+                  <MenuButton fx:id="button31" layoutX="68.0" layoutY="186.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
+                     <items>
+                        <MenuItem fx:id="button310" mnemonicParsing="false" onAction="#handleButton310">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
+                                 <image>
+                                    <Image url="@../game_files/sprites/key_red.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem fx:id="button311" mnemonicParsing="false" onAction="#handleButton311">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
+                                 <image>
+                                    <Image url="@../game_files/sprites/key_yellow.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem fx:id="button312" mnemonicParsing="false" onAction="#handleButton312">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
+                                 <image>
+                                    <Image url="@../game_files/sprites/key_green.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem fx:id="button313" mnemonicParsing="false" onAction="#handleButton313">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
+                                 <image>
+                                    <Image url="@../game_files/sprites/key_blue.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                     </items>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" onKeyPressed="#handleKeyPress" pickOnBounds="true" preserveRatio="true" translateX="8.0">
+                           <image>
+                              <Image url="@../game_files/sprites/key.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                     </padding>
+                  </MenuButton>
+                  <MenuButton fx:id="button60" alignment="CENTER" layoutX="9.0" layoutY="363.0" mnemonicParsing="false" onKeyPressed="#handleKeyPress" prefHeight="50.0" prefWidth="228.0" text="Special Objectives" textFill="WHITE">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Collect Treasure">
+                           <graphic>
+                              <CheckBox fx:id="collectTreasure" mnemonicParsing="false" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" text="Trigger Switches">
+                           <graphic>
+                              <CheckBox fx:id="triggerSwitches" mnemonicParsing="false" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" text="Defeat Enemies">
+                           <graphic>
+                              <CheckBox fx:id="defeatEnemies" mnemonicParsing="false" />
+                           </graphic>
+                        </MenuItem>
+                     </items>
+                     <font>
+                        <Font name="Power Red and Green" size="24.0" />
+                     </font>
+                  </MenuButton>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+</StackPane>

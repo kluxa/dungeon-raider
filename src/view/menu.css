@@ -1,6 +1,6 @@
 #main-menu-pane, #zone-select-menu-pane, #dungeon-select-menu-pane {
 	-fx-focus-color: transparent;
-	-fx-background-image: url("/resources/images/backgrounds/main-menu.jpg");
+	-fx-background-image: url("/game_files/images/main-menu.jpg");
 	-fx-background-repeat: stretch;
 	-fx-background-size: 900 600;
 	-fx-background-position: center center;

@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import enemies.*;
 import dungeon.*;
@@ -38,7 +39,7 @@ public class SimpleLevel implements Level {
 		maze.markObstacles();
 		maze.updateEnemies();
 		player.updateState();
-		System.out.println(showLevel());
+		// System.out.println(showLevel());
 	}
 	
 	
@@ -58,8 +59,15 @@ public class SimpleLevel implements Level {
 	 * @return a boolean to indicate if the player
 	 *         is alive.
 	 */
+	@Override
 	public boolean playerIsAlive() {
 		return player.isAlive();
+	}
+	
+	
+	@Override
+	public void getProgress(HashMap<String, Integer> values) {
+		// Do nothing
 	}
 	
 	/**
@@ -113,6 +121,7 @@ public class SimpleLevel implements Level {
 	* Plays out a turn with the given player move
 	* @param the direction for the player to move
 	*/
+	@Override
 	public void move(Direction move) {
 		System.out.printf("Moving %s\n",
 		move.toString());
@@ -120,6 +129,7 @@ public class SimpleLevel implements Level {
 		update();
 	}
 	
+	@Override
 	public void dropBomb() {
 		if (player.hasItem(new UnlitBomb())) {
 			System.out.println("Fire in the hole!");
@@ -131,10 +141,11 @@ public class SimpleLevel implements Level {
 		}
 	}
 	
+	@Override
 	public void fireArrow(Direction move) {
 		if (player.hasItem(new Arrow())) {
 			System.out.printf("Firing an arrow %s\n",
-			move.toString());
+			                  move.toString());
 			player.fireArrow(move);
 			update();
 		} else {

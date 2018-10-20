@@ -49,6 +49,11 @@ public class Maze {
 				Square s = new Square(i, j);
 				s.setTile(new Path());
 				squares[i][j] = s;
+				
+				if (i == 0 || i == height - 1 ||
+						j == 0 || j == width  - 1) {
+					placeEntity(i, j, new Wall());
+				}
 			}
 		}
 	}
@@ -126,10 +131,10 @@ public class Maze {
 		return count;
 	}
 	
-	public int getNumTriggeredSwitches() {
+	public int getNumUntriggeredSwitches() {
 		int count = 0;
 		for (FloorSwitch f: switches) {
-			if (f.isTriggered()) {
+			if (!f.isTriggered()) {
 				count++;
 			}
 		}
@@ -151,7 +156,7 @@ public class Maze {
 	}
 	
 	public boolean allSwitchesTriggered() {
-		return (getNumTriggeredSwitches() == switches.size());
+		return (getNumUntriggeredSwitches() == 0);
 	}
 	
 	public boolean allEnemiesDefeated() {
@@ -340,7 +345,7 @@ public class Maze {
 		
 		Wall w = new Wall();
 		Boulder b = new Boulder();
-		Door d = new Door();
+		Door d = new Door("any");
 		for (int row = 0; row < height; row++) {
 			for (int col = 0; col < width; col++) {
 				Entity e = squares[row][col].getCollidableOccupant();

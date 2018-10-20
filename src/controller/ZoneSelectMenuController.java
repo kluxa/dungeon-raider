@@ -88,13 +88,14 @@ public class ZoneSelectMenuController extends Controller {
 	}
 	
 	private void exitToMainMenu() {
-//		FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), display);
-//		fadeOut.setFromValue(1.0);
-//		fadeOut.setToValue(0.0);
-//		fadeOut.play();
-//		fadeOut.setOnFinished(e -> {
+		FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), display);
+		fadeOut.setFromValue(1.0);
+		fadeOut.setToValue(0.0);
+		fadeOut.play();
+		fadeOut.setOnFinished(e -> {
 			menus.switchToMainMenu();
-//		});
+			display.setOpacity(1.0);
+		});
 	}
 	
 }

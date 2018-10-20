@@ -1,13 +1,17 @@
 package game;
 
+import java.util.HashMap;
+
 import dungeon.Direction;
 import dungeon.Maze;
 import items.Arrow;
 import items.UnlitBomb;
+import player.Player;
 
 public interface Level {
 	
 	public Maze getMaze();
+	public Player getPlayer();
 	
 	/**
 	 * Checks if the level has ended
@@ -22,6 +26,14 @@ public interface Level {
 	 *         is alive.
 	 */
 	public boolean playerIsAlive();
+	
+	/**
+	 * Stores the progress value of each objective
+	 * in a hashmap. For example {"treasure" => 3}
+	 * indicates that there are three treasures
+	 * remaining in the level.
+	 */
+	public void getProgress(HashMap<String, Integer> values);
 	
 	/**
 	 * Checks if the player has complete the level

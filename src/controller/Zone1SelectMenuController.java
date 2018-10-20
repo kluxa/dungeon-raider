@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Zone1SelectMenuController extends DungeonSelectMenuController {
-	private MenuHandler menus;
 	
 	@FXML
 	private AnchorPane display;
@@ -42,8 +41,8 @@ public class Zone1SelectMenuController extends DungeonSelectMenuController {
 	private Button[][] buttons;
 	
 	private String[][] files = {
-			{ "zone1/01", "zone1/02", "zone1/03", "zone1/04", "zone1/05" },
-			{ "zone1/06", "zone1/07", "zone1/08", "zone1/09", "zone1/10" }
+			{ "01.txt", "02.txt", "03.txt", "04.txt", "05.txt" },
+			{ "06.txt", "07.txt", "08.txt", "09.txt", "10.txt" }
 	};
 	
 	private int height  = 2;
@@ -54,6 +53,9 @@ public class Zone1SelectMenuController extends DungeonSelectMenuController {
 	
 	public Zone1SelectMenuController(Stage s, MenuHandler menus) {
 		super(s, menus);
+		
+		cursorX = 0;
+		cursorY = 0;
 	}
 	
 	@FXML
@@ -61,9 +63,6 @@ public class Zone1SelectMenuController extends DungeonSelectMenuController {
 		display.addEventFilter(MouseEvent.ANY, e -> {
 			e.consume();
 		});
-		
-		cursorX = 0;
-		cursorY = 0;
 		
 		Button[][] buttons = {
 				{ dungeon01Button, dungeon02Button, dungeon03Button, dungeon04Button, dungeon05Button },
@@ -81,6 +80,7 @@ public class Zone1SelectMenuController extends DungeonSelectMenuController {
 			
 		} else if (k.equals(KeyCode.ENTER)) {
 			menus.switchToPlayingDungeon(0,
+					"./src/game_files/levels/zone1/" +
 					files[cursorY][cursorX]);
 			
 		} else if (k.equals(KeyCode.UP)) {
@@ -93,6 +93,22 @@ public class Zone1SelectMenuController extends DungeonSelectMenuController {
 			moveCursorLeft();
 			
 		}
+	}
+	
+	public boolean hasNextLevel() {
+		return !(cursorX == (width - 1) &&
+				 cursorY == (height - 1));
+	}
+	
+	public String nextLevel() {
+		cursorX++;
+		if (cursorX == width) {
+			cursorX = 0;
+			cursorY++;
+		}
+		buttons[cursorY][cursorX].requestFocus();
+		return "./src/game_files/levels/zone1/" +
+		       files[cursorY][cursorX];
 	}
 	
 	private void moveCursorUp() {
@@ -128,12 +144,13 @@ public class Zone1SelectMenuController extends DungeonSelectMenuController {
 	}
 	
 	private void goToPreviousScreen() {
-//		FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), display);
-//		fadeOut.setFromValue(1.0);
-//		fadeOut.setToValue(0.0);
-//		fadeOut.play();
-//		fadeOut.setOnFinished(e -> {
+		FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), display);
+		fadeOut.setFromValue(1.0);
+		fadeOut.setToValue(0.0);
+		fadeOut.play();
+		fadeOut.setOnFinished(e -> {
 			menus.switchToZoneSelectMenu();
-//		});
+			display.setOpacity(1.0);
+		});
 	}
 }

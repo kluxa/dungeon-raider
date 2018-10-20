@@ -8,6 +8,9 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		System.out.println("Working Directory = " +
+	              System.getProperty("user.dir"));
+		
 		primaryStage.setTitle("Dungeon Raider");
 		MenuHandler intro = new MenuHandler(primaryStage);
 		intro.initiate();

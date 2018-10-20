@@ -41,8 +41,8 @@ public class TutorialSelectMenuController extends DungeonSelectMenuController {
 	private Button[][] buttons;
 	
 	private String[][] files = {
-			{ "tutorials/01", "tutorials/02", "tutorials/03", "tutorials/04", "tutorials/05" },
-			{ "tutorials/06", "tutorials/07", "tutorials/08", "tutorials/09", "tutorials/10" }
+			{ "01.txt", "02.txt", "03.txt", "04.txt", "05.txt" },
+			{ "06.txt", "07.txt", "08.txt", "09.txt", "10.txt" }
 	};
 	
 	private int height  = 2;
@@ -53,6 +53,9 @@ public class TutorialSelectMenuController extends DungeonSelectMenuController {
 	
 	public TutorialSelectMenuController(Stage s, MenuHandler menus) {
 		super(s, menus);
+		
+		cursorX = 0;
+		cursorY = 0;
 	}
 	
 	@FXML
@@ -60,9 +63,6 @@ public class TutorialSelectMenuController extends DungeonSelectMenuController {
 		display.addEventFilter(MouseEvent.ANY, e -> {
 			e.consume();
 		});
-		
-		cursorX = 0;
-		cursorY = 0;
 		
 		Button[][] buttons = {
 				{ tutorial01Button, tutorial02Button, tutorial03Button, tutorial04Button, tutorial05Button },
@@ -80,6 +80,7 @@ public class TutorialSelectMenuController extends DungeonSelectMenuController {
 			
 		} else if (k.equals(KeyCode.ENTER)) {
 			menus.switchToPlayingDungeon(0,
+					"./src/game_files/levels/tutorial/" +
 					files[cursorY][cursorX]);
 			
 		} else if (k.equals(KeyCode.UP)) {
@@ -92,6 +93,22 @@ public class TutorialSelectMenuController extends DungeonSelectMenuController {
 			moveCursorLeft();
 			
 		}
+	}
+	
+	public boolean hasNextLevel() {
+		return !(cursorX == (width - 1) &&
+				 cursorY == (height - 1));
+	}
+	
+	public String nextLevel() {
+		cursorX++;
+		if (cursorX == width) {
+			cursorX = 0;
+			cursorY++;
+		}
+		buttons[cursorY][cursorX].requestFocus();
+		return "./src/game_files/levels/tutorial/" +
+		       files[cursorY][cursorX];
 	}
 	
 	private void moveCursorUp() {
@@ -127,12 +144,13 @@ public class TutorialSelectMenuController extends DungeonSelectMenuController {
 	}
 	
 	private void goToPreviousScreen() {
-//		FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), display);
-//		fadeOut.setFromValue(1.0);
-//		fadeOut.setToValue(0.0);
-//		fadeOut.play();
-//		fadeOut.setOnFinished(e -> {
+		FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), display);
+		fadeOut.setFromValue(1.0);
+		fadeOut.setToValue(0.0);
+		fadeOut.play();
+		fadeOut.setOnFinished(e -> {
 			menus.switchToZoneSelectMenu();
-//		});
+			display.setOpacity(1.0);
+		});
 	}
 }

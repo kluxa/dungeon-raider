@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class MainMenuController extends Controller {
 	MenuHandler menus;
@@ -48,21 +49,27 @@ public class MainMenuController extends Controller {
 	private void handleLevelDesignerButton(KeyEvent e) {
 		KeyCode k = e.getCode();
 		if (k.equals(KeyCode.ENTER)) {
-			System.out.println("Level Designer button pressed");			
+			menus.switchToLevelDesigner();
 		}
 	}
 	
 	@FXML
 	private void handleOptionsButton(KeyEvent e) {
 		if (e.getCode().equals(KeyCode.ENTER)) {
-			System.out.println("Options button pressed");			
+			menus.switchToOptionsMenu();
 		}
 	}
 	
 	@FXML
 	private void handleQuitButton(KeyEvent e) {
 		if (e.getCode().equals(KeyCode.ENTER)) {
-			System.exit(0);		
+			FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), display);
+			fadeOut.setFromValue(1.0);
+			fadeOut.setToValue(0.0);
+			fadeOut.play();
+			fadeOut.setOnFinished(finished -> {
+				System.exit(0);
+			});
 		}
 	}
 }
