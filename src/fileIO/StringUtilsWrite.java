@@ -29,7 +29,7 @@ public class StringUtilsWrite {
 		mazeMap.put("start", tmp);
 		//maze obj's
 		
-		return null;
+		return mazeMap;
 	}
 	
 	/**
@@ -115,8 +115,8 @@ public class StringUtilsWrite {
 		for (int i = 0; i < maze.getHeight(); i++) {
 			for (int j = 0; j < maze.getWidth(); j++) {
 				Square sq = maze.getSquare(i, j);
-				Tile tile = sq.getTile();			
-				if (tile != null) {
+				Tile tile = sq.getTile();
+				if (!tile.getClass().getSimpleName().equals("Path")) {
 					ArrayList<String> locData = new ArrayList<String>();
 					if (tileMap.get(tile.getClass().getSimpleName()) == null) {
 						locData.add(formatCoords(i, j));
@@ -152,6 +152,6 @@ public class StringUtilsWrite {
 		tmp = hasapafyEnts (tmp, level);
 		tmp = hasapafyItems(tmp, level);
 		tmp = hasapafyTiles (tmp, level);
-		System.out.println(tmp.toString());
+		System.out.println(tmp.get("TileEntities").toString());
 	}
 }

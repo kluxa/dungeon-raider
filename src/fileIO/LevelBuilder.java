@@ -41,9 +41,9 @@ public class LevelBuilder {
 			ArrayList<String> locData = tileMap.get(key).get("location");
 			for (String loc : locData) {
 				Integer[] coords = StringUtilsRead.getCoords(loc);
-				Square pos = new Square (coords[1], coords[0]);
-				Item e = stringToItem (key);
-				maze.placeEntity(pos.getY(), pos.getX(), e);
+				Square pos = new Square (coords[0], coords[1]);
+				Tile t = stringToTile (key);
+				maze.placeEntity(pos.getY(), pos.getX(), t);
 			}
 		}
 		return maze;
@@ -145,6 +145,15 @@ public class LevelBuilder {
 		case "greenKey": return new Key("green");
 		case "blueKey": return new Key("blue");
 		default:  return null;
+		}
+	}
+	
+	private static Tile stringToTile(String code) {
+		switch (code) {
+		case "Pit": return new Pit();
+		case "Switch": return new FloorSwitch();
+		case "Exit": return new Exit();
+		default:  return new Path();
 		}
 	}
 	
