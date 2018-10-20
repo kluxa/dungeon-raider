@@ -39,7 +39,9 @@ public class LevelDesignerSizeController extends Controller {
 	private void initialize() {
 		display.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
 			if (e.getCode() == KeyCode.ESCAPE) {
-				designerHandler.quit();
+				returnToPreviousMenu();
+			} else if (e.getCode() == KeyCode.TAB) {
+				e.consume();
 			}
 		});
 	}
@@ -73,7 +75,11 @@ public class LevelDesignerSizeController extends Controller {
 	@FXML
 	private void handleCancelButton(KeyEvent e) {
 		if (e.getCode() == KeyCode.ENTER) {
-			designerHandler.quit();
+			returnToPreviousMenu();
 		}
+	}
+	
+	private void returnToPreviousMenu() {
+		designerHandler.switchToInitScreen();
 	}
 }

@@ -11,7 +11,7 @@ public abstract class LivingEntity extends SolidEntity {
 	private boolean isAlive;
 	
 	public LivingEntity() {
-		
+		this(null);
 	}
 	
 	public LivingEntity(Square s) {

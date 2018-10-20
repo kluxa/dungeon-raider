@@ -1,5 +1,6 @@
 package game;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import items.Treasure;
@@ -8,6 +9,12 @@ public class TriggerSwitchesLevel extends LevelDecorator {
 	
 	public TriggerSwitchesLevel(Level level) {
 		super(level);
+	}
+	
+	@Override
+	public void getObjective(ArrayList<String> objs) {
+		level.getObjective(objs);
+		objs.add("switches");
 	}
 	
 	@Override

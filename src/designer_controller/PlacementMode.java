@@ -7,10 +7,10 @@ import items.*;
 import game.*;
 
 public abstract class PlacementMode {
-	protected LevelDesignerController controller;	
+	protected LevelDesignerMainController controller;	
 	private Maze maze;
 	
-	public PlacementMode(LevelDesignerController controller) {
+	public PlacementMode(LevelDesignerMainController controller) {
 		this.controller = controller;
 		this.maze = controller.getMaze();
 	}

@@ -10,7 +10,7 @@ import game.*;
 public class PlacementModePlace extends PlacementMode {
 	private EntityFactory factory;
 	
-	public PlacementModePlace(LevelDesignerController controller,
+	public PlacementModePlace(LevelDesignerMainController controller,
 			                  EntityFactory factory) {
 		super(controller);
 		this.factory = factory;

@@ -25,7 +25,7 @@ public class PlacementModeMove extends PlacementMode {
 	private int selectedY;
 	private int selectedX;
 	
-	public PlacementModeMove(LevelDesignerController controller) {
+	public PlacementModeMove(LevelDesignerMainController controller) {
 		super(controller);
 	}
 	

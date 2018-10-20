@@ -9,7 +9,6 @@ import items.*;
 import game.*;
 
 public class Player extends LivingEntity {
-	private Maze maze;
 	private Inventory inventory;
 	private PlayerState state;
 	private ArrayList<LitBomb> bombs;
@@ -17,22 +16,16 @@ public class Player extends LivingEntity {
 	private boolean onExit;
 	private String causeOfDeath;
 	
-	public Player(Maze maze) {
-		super(maze.getStartSquare());
+	public Player() {
 		inventory = new Inventory();
 		state = new NormalState(this);
 		bombs = new ArrayList<>();
 		this.isFlying = false;
 		onExit = false;
-		this.maze = maze;
 	}
 	
 	////////////////////////////////////////////////////////////////////
 	// Getters/Setters
-	
-	public Maze getMaze() {
-		return maze;
-	}
 	
 	public void setState(PlayerState state) {
 		this.state = state;

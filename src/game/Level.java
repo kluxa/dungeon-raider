@@ -1,5 +1,6 @@
 package game;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import dungeon.Direction;
@@ -26,6 +27,12 @@ public interface Level {
 	 *         is alive.
 	 */
 	public boolean playerIsAlive();
+	
+	/**
+	 * Adds the objectives for a given  level into
+	 * an ArrayList.
+	 */
+	public void getObjective(ArrayList<String> objs);
 	
 	/**
 	 * Stores the progress value of each objective

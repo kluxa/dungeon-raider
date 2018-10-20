@@ -10,7 +10,7 @@
 <StackPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" />
-      <AnchorPane fx:id="display" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@key-rebind-menu.css">
+      <AnchorPane fx:id="display" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@borderless-menu.css">
          <children>
             <Label alignment="CENTER" layoutX="188.0" layoutY="42.0" prefHeight="68.0" prefWidth="525.0" text="Rebind Keys" textFill="WHITE">
                <font>

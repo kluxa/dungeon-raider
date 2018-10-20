@@ -1,3 +1,4 @@
+
 #main-menu-pane, #zone-select-menu-pane, #dungeon-select-menu-pane {
 	-fx-focus-color: transparent;
 	-fx-background-image: url("/game_files/images/main-menu.jpg");
@@ -19,4 +20,3 @@
 .button:focused {
 	-fx-border-color: rgb(208,214,18);
 }
-

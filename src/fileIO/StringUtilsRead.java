@@ -111,7 +111,7 @@ public class StringUtilsRead {
 	 */
 	public static boolean isBalanced (ArrayList<String> input) {
 		//traverse until stack is empty or incorrect brackets are found
-		Stack<Character> stack = new Stack();
+		Stack<Character> stack = new Stack<>();
 		for (String line : input) {
 			char[] brackets = line.toCharArray();
 			for (char bracket : brackets) {

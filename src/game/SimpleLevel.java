@@ -17,7 +17,7 @@ public class SimpleLevel implements Level {
 	private SimpleLevel(Maze maze) {
 		this.maze = maze;
 		maze.prepMaze();
-		player = new Player(maze);
+		player = new Player();
 		maze.setPlayer(player);
 		isSimpleLevel = true;
 	}
@@ -64,6 +64,10 @@ public class SimpleLevel implements Level {
 		return player.isAlive();
 	}
 	
+	@Override
+	public void getObjective(ArrayList<String> objs) {
+		// Do nothing	
+	}
 	
 	@Override
 	public void getProgress(HashMap<String, Integer> values) {

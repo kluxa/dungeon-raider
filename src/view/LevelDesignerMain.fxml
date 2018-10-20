@@ -197,7 +197,7 @@
                         <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="button82" alignment="CENTER" contentDisplay="CENTER" layoutX="128.0" layoutY="481.0" mnemonicParsing="false" onAction="#handleButton82" prefHeight="50.0" prefWidth="109.0" text="Save" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="button80" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="481.0" mnemonicParsing="false" onAction="#handleButton80" prefHeight="50.0" prefWidth="228.0" text="Save Level" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Power Red and Green" size="24.0" />
                      </font>
@@ -251,11 +251,6 @@
                      </padding>
                   </Button>
                   <Button fx:id="button50" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleButton50" prefHeight="50.0" prefWidth="110.0" text="Move" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Power Red and Green" size="24.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="button80" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="481.0" mnemonicParsing="false" onAction="#handleButton80" prefHeight="50.0" prefWidth="110.0" text="Load" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Power Red and Green" size="24.0" />
                      </font>

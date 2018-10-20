@@ -3,6 +3,7 @@ package controller;
 import designer_controller.DesignerHandler;
 import dungeon.Maze;
 import fileIO.LevelBuilder;
+import fileIO.MazeToFileWriter;
 import game.Level;
 import game.MazeLoader;
 import game.SimpleLevel;
@@ -78,6 +79,9 @@ public class MenuHandler {
 		currLevel = pathName;
 		Level level = LevelBuilder.makeLevel(pathName);
 		PlayDungeon playing = new PlayDungeon(stage, this, level);
+		
+		MazeToFileWriter.writeMazeToFile("out.txt", level);
+		
 		playing.beginGame();
 		
 		/*

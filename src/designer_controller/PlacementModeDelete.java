@@ -13,7 +13,7 @@ import game.*;
  */
 public class PlacementModeDelete extends PlacementMode {
 	
-	public PlacementModeDelete(LevelDesignerController controller) {
+	public PlacementModeDelete(LevelDesignerMainController controller) {
 		super(controller);
 	}
 	

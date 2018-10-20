@@ -35,7 +35,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import player.Player;
 
-public class LevelDesignerController extends Controller {
+public class LevelDesignerMainController extends Controller {
 	private DesignerHandler designerHandler;
 	private PlacementMode placementMode;
 	
@@ -66,19 +66,19 @@ public class LevelDesignerController extends Controller {
 	
 	private boolean inPlacementMode;
 	
-	public LevelDesignerController(Stage s, Level level) {
+	public LevelDesignerMainController(Stage s, Level level) {
 		super(s);
 		// TODO
 	}
 	
-	public LevelDesignerController(Stage s, DesignerHandler designerHandler,
+	public LevelDesignerMainController(Stage s, DesignerHandler designerHandler,
 			                       int height, int width) {
 		super(s);
 		this.designerHandler = designerHandler;
 		maze = new Maze(height, width);
 		maze.setStart(height / 2, width / 2);
 		
-		maze.setPlayer(new Player(maze));
+		maze.setPlayer(new Player());
 		
 		mazeCursorY = height / 2;
 		mazeCursorX = width  / 2;
@@ -95,8 +95,6 @@ public class LevelDesignerController extends Controller {
 		helpMessage.setText("Choose an entity to place by clicking on it");
 		
 		selectPane.setMouseTransparent(false);
-		
-		// nothing.setVisible(false);
 		
 		drawFrame();
 		
@@ -396,18 +394,12 @@ public class LevelDesignerController extends Controller {
 	
 	@FXML
 	private void handleButton70() {
-		System.out.println("Testing a level");
+		System.out.println("Testing the level");
 		// TODO
 	}
 	
 	@FXML
 	private void handleButton80() {
-		System.out.println("Loading a level");
-		// TODO
-	}
-	
-	@FXML
-	private void handleButton82() {
 		System.out.println("Saving the level");
 		// TODO
 	}
@@ -468,8 +460,6 @@ public class LevelDesignerController extends Controller {
 	private Button button70;
 	@FXML
 	private Button button80;
-	@FXML
-	private Button button82;
 	@FXML
 	private Button button90;
 	

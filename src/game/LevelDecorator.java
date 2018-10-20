@@ -46,17 +46,6 @@ public abstract class LevelDecorator implements Level {
 	}
 	
 	/**
-	 * Stores the progress value of each objective
-	 * in a hashmap. For example {"treasure" => 3}
-	 * indicates that there are three treasures
-	 * remaining in the level.
-	 */
-	@Override
-	public void getProgress(HashMap<String, Integer> values) {
-		
-	}
-	
-	/**
 	 * Check if the player has completed the level
 	 * @return a boolean to indicate if the player
 	 *         has completed the level

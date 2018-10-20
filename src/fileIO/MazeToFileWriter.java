@@ -104,8 +104,10 @@ public class MazeToFileWriter {
 		return nonUniqRep;
 	}
 	
+	/*
 	public static void main (String[] args) {
 		Level lvl = LevelBuilder.makeLevel("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\testDung.txt");
 		writeMazeToFile ("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\testWrite.txt", lvl);
 	}
+	*/
 }
