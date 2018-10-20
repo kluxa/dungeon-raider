@@ -125,26 +125,26 @@ public class LevelBuilder {
 		case "Strategist": return new Strategist();
 		case "Hound": return new Hound();
 		case "Coward": return new Coward();
-		case "redDoor": return new Door("red");
-		case "yellowDoor": return new Door("yellow");
-		case "greenDoor": return new Door("green");
-		case "blueDoor": return new Door("blue");
+		case "RedDoor": return new Door("red");
+		case "YellowDoor": return new Door("yellow");
+		case "GreenDoor": return new Door("green");
+		case "BlueDoor": return new Door("blue");
 		default: return null;
 		}
 	}
 	
 	private static Item stringToItem(String code) {
 		switch (code) {
-		case "Hoverpotion": return new HoverPotion();
-		case "Invincibilitypotion": return new InvincibilityPotion();
+		case "HoverPotion": return new HoverPotion();
+		case "InvincibilityPotion": return new InvincibilityPotion();
 		case "Sword": return new Sword();
 		case "Treasure": return new Treasure();
-		case "Unlitbomb": return new UnlitBomb();
+		case "UnlitBomb": return new UnlitBomb();
 		case "Arrow": return new Arrow();
-		case "redKey": return new Key("red");
-		case "yellowKey": return new Key("yellow");
-		case "greenKey": return new Key("green");
-		case "blueKey": return new Key("blue");
+		case "RedKey": return new Key("red");
+		case "YellowKey": return new Key("yellow");
+		case "GreenKey": return new Key("green");
+		case "BlueKey": return new Key("blue");
 		default: return null;
 		}
 	}

@@ -19,14 +19,9 @@ public class GameOverMenuController extends Controller {
 	}
 	
 	@FXML
-	private void initialize() {
-		
-	}
-	
-	@FXML
 	private void handleRestartButton(KeyEvent e) {
 		if (e.getCode().equals(KeyCode.ENTER)) {
-			System.out.println("Restarting");
+			playDungeon.restartLevel();
 		}
 	}
 	

@@ -19,15 +19,17 @@ import javafx.stage.Stage;
  * - Level selection menu
  */
 public class MenuHandler {
-	Stage stage;
+	private Stage stage;
 	
-	Screen mainMenu;
-	Screen zoneSelectMenu;
-	Screen dungeonSelectMenu;
+	private Screen mainMenu;
+	private Screen zoneSelectMenu;
+	private Screen dungeonSelectMenu;
 	
-	MainMenuController mainMenuController;
-	ZoneSelectMenuController zoneSelectMenuController;
-	DungeonSelectMenuController dungeonSelectMenuController;
+	private MainMenuController mainMenuController;
+	private ZoneSelectMenuController zoneSelectMenuController;
+	private DungeonSelectMenuController dungeonSelectMenuController;
+	
+	private String currLevel;
 	
 	public MenuHandler(Stage stage) {
 		this.stage = stage;
@@ -59,7 +61,21 @@ public class MenuHandler {
 		dungeonSelectMenu.display(dungeonSelectMenuController);
 	}
 	
+	public void restartLevel() {
+		switchToPlayingDungeon(0, currLevel);
+	}
+	
+	public boolean hasNextLevel() {
+		return dungeonSelectMenuController.hasNextLevel();
+	}
+	
+	public void playNextLevel() {
+		currLevel = dungeonSelectMenuController.nextLevel();
+		switchToPlayingDungeon(0, currLevel);
+	}
+	
 	public void switchToPlayingDungeon(int zone, String pathName) {
+		currLevel = pathName;
 		Level level = LevelBuilder.makeLevel(pathName);
 		PlayDungeon playing = new PlayDungeon(stage, this, level);
 		playing.beginGame();

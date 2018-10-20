@@ -42,6 +42,10 @@ public class PlayDungeon {
 		playDungeonScreen.display(c);
 	}
 	
+	public void restartLevel() {
+		menus.restartLevel();
+	}
+	
 	public void gameOver() {
 		Controller c = new GameOverMenuController(stage, this);
 		Screen s = new GameOverMenuScreen(stage);
@@ -49,7 +53,8 @@ public class PlayDungeon {
 	}
 	
 	public void gameWon() {
-		Controller c = new DungeonCompleteMenuController(stage, this);
+		boolean hasNextLevel = menus.hasNextLevel();
+		Controller c = new DungeonCompleteMenuController(stage, this, hasNextLevel);
 		Screen s = new DungeonCompleteMenuScreen(stage);
 		s.display(c);
 	}
@@ -57,6 +62,10 @@ public class PlayDungeon {
 	public void beginGame() {
 		Controller c = new PlayDungeonController(stage, this);
 		playDungeonScreen.display(c);
+	}
+	
+	public void nextLevel() {
+		menus.playNextLevel();
 	}
 	
 	public void returnToPrevious() {

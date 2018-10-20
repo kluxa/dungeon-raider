@@ -21,8 +21,25 @@ public class DesignerHandler {
 	}
 	
 	public void initialize() {
+		switchToSizeScreen();
+//		Screen initScreen = new LevelDesignerInitScreen(stage);
+//		Controller c = new LevelDesignerInitController(stage, this);
+//		initScreen.display(c);
+	}
+	
+	public void switchToSizeScreen() {
+		Screen sizeScreen = new LevelDesignerSizeScreen(stage);
+		Controller c = new LevelDesignerSizeController(stage, this);
+		sizeScreen.display(c);
+	}
+	
+	public void newCustomLevel(int height, int width) {
 		designerScreen = new LevelDesignerMainScreen(stage);
-		designerController = new LevelDesignerController(stage, this);
+		designerController = new LevelDesignerController(stage, this, height, width);
+		switchToMainScreen();
+	}
+	
+	public void switchToMainScreen() {
 		designerScreen.display(designerController);
 	}
 	

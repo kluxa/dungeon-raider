@@ -13,6 +13,7 @@ import dungeon.Tile;
 import factory.*;
 import game.Level;
 import items.Item;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
@@ -26,10 +27,12 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import player.Player;
 
 public class LevelDesignerController extends Controller {
@@ -43,7 +46,7 @@ public class LevelDesignerController extends Controller {
 	@FXML
 	private Canvas canvas;
 	@FXML
-	private StackPane display;
+	private HBox display;
 	@FXML
 	private Button nothing;
 	
@@ -68,16 +71,17 @@ public class LevelDesignerController extends Controller {
 		// TODO
 	}
 	
-	public LevelDesignerController(Stage s, DesignerHandler designerHandler) {
+	public LevelDesignerController(Stage s, DesignerHandler designerHandler,
+			                       int height, int width) {
 		super(s);
 		this.designerHandler = designerHandler;
-		maze = new Maze(15, 15);
-		maze.setStart(7, 7);
+		maze = new Maze(height, width);
+		maze.setStart(height / 2, width / 2);
 		
 		maze.setPlayer(new Player(maze));
 		
-		mazeCursorY = 7;
-		mazeCursorX = 7;
+		mazeCursorY = height / 2;
+		mazeCursorX = width  / 2;
 	}
 	
 	public Maze getMaze() {
@@ -92,7 +96,7 @@ public class LevelDesignerController extends Controller {
 		
 		selectPane.setMouseTransparent(false);
 		
-		nothing.setVisible(false);
+		// nothing.setVisible(false);
 		
 		drawFrame();
 		
@@ -166,7 +170,15 @@ public class LevelDesignerController extends Controller {
 	}
 	
 	public void quit() {
-		designerHandler.quit();
+		nothing.setVisible(false);
+		FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), display);
+		fadeOut.setFromValue(1.0);
+		fadeOut.setToValue(0.0);
+		fadeOut.play();
+		fadeOut.setOnFinished(e -> {
+			designerHandler.quit();
+			display.setOpacity(1.0);
+		});
 	}
 	
 	private void highlightButton(Node button) {

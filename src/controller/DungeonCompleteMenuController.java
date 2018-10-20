@@ -15,27 +15,34 @@ public class DungeonCompleteMenuController extends Controller {
 	@FXML
 	private Button returnButton;
 	
-	public DungeonCompleteMenuController(Stage s, PlayDungeon playDungeon) {
+	private boolean hasNextLevel;
+	
+	public DungeonCompleteMenuController(Stage s,
+			                             PlayDungeon playDungeon,
+			                             boolean hasNextLevel) {
 		super(s);
 		this.playDungeon = playDungeon;
+		this.hasNextLevel = hasNextLevel;
 	}
 	
 	@FXML
 	private void initialize() {
-		
+		if (!hasNextLevel) {
+			nextLevelButton.setVisible(false);
+		}
 	}
 	
 	@FXML
 	private void handleNextLevelButton(KeyEvent e) {
 		if (e.getCode().equals(KeyCode.ENTER)) {
-			System.out.println("Next level");
+			playDungeon.nextLevel();
 		}
 	}
 	
 	@FXML
 	private void handleRestartButton(KeyEvent e) {
 		if (e.getCode().equals(KeyCode.ENTER)) {
-			System.out.println("Restarting");
+			playDungeon.restartLevel();
 		}
 	}
 	

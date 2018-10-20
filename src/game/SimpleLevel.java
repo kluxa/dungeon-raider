@@ -38,7 +38,7 @@ public class SimpleLevel implements Level {
 		maze.markObstacles();
 		maze.updateEnemies();
 		player.updateState();
-		System.out.println(showLevel());
+		// System.out.println(showLevel());
 	}
 	
 	

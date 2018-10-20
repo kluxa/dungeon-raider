@@ -53,6 +53,9 @@ public class Zone1SelectMenuController extends DungeonSelectMenuController {
 	
 	public Zone1SelectMenuController(Stage s, MenuHandler menus) {
 		super(s, menus);
+		
+		cursorX = 0;
+		cursorY = 0;
 	}
 	
 	@FXML
@@ -60,9 +63,6 @@ public class Zone1SelectMenuController extends DungeonSelectMenuController {
 		display.addEventFilter(MouseEvent.ANY, e -> {
 			e.consume();
 		});
-		
-		cursorX = 0;
-		cursorY = 0;
 		
 		Button[][] buttons = {
 				{ dungeon01Button, dungeon02Button, dungeon03Button, dungeon04Button, dungeon05Button },
@@ -93,6 +93,22 @@ public class Zone1SelectMenuController extends DungeonSelectMenuController {
 			moveCursorLeft();
 			
 		}
+	}
+	
+	public boolean hasNextLevel() {
+		return !(cursorX == (width - 1) &&
+				 cursorY == (height - 1));
+	}
+	
+	public String nextLevel() {
+		cursorX++;
+		if (cursorX == width) {
+			cursorX = 0;
+			cursorY++;
+		}
+		buttons[cursorY][cursorX].requestFocus();
+		return "./src/resources/levels/zone1/" +
+		       files[cursorY][cursorX];
 	}
 	
 	private void moveCursorUp() {
@@ -128,12 +144,13 @@ public class Zone1SelectMenuController extends DungeonSelectMenuController {
 	}
 	
 	private void goToPreviousScreen() {
-//		FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), display);
-//		fadeOut.setFromValue(1.0);
-//		fadeOut.setToValue(0.0);
-//		fadeOut.play();
-//		fadeOut.setOnFinished(e -> {
+		FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), display);
+		fadeOut.setFromValue(1.0);
+		fadeOut.setToValue(0.0);
+		fadeOut.play();
+		fadeOut.setOnFinished(e -> {
 			menus.switchToZoneSelectMenu();
-//		});
+			display.setOpacity(1.0);
+		});
 	}
 }

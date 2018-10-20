@@ -5,7 +5,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-public class DungeonSelectMenuController extends Controller {
+public abstract class DungeonSelectMenuController extends Controller {
 	protected MenuHandler menus;
 	
 	public DungeonSelectMenuController(Stage s, MenuHandler menus) {
@@ -13,4 +13,7 @@ public class DungeonSelectMenuController extends Controller {
 		this.menus = menus;
 	}
 	
+	public abstract boolean hasNextLevel();
+	
+	public abstract String nextLevel();
 }

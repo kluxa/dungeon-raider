@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="display" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Slider fx:id="heightSlider" blockIncrement="1.0" layoutX="372.0" layoutY="217.0" max="40.0" min="5.0" mouseTransparent="true" onKeyPressed="#handleHeightSlider" prefHeight="42.0" prefWidth="251.0" value="15.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="144.0" layoutY="86.0" prefHeight="68.0" prefWidth="615.0" text="Set dungeon size" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Power Red and Green" size="72.0" />
+         </font>
+      </Label>
+      <Label layoutX="196.0" layoutY="217.0" text="Height" textFill="WHITE">
+         <font>
+            <Font name="Power Red and Green" size="48.0" />
+         </font>
+      </Label>
+      <Label contentDisplay="CENTER" layoutX="196.0" layoutY="300.0" prefHeight="34.0" prefWidth="128.0" text="Width" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Power Red and Green" size="48.0" />
+         </font>
+      </Label>
+      <Slider fx:id="widthSlider" blockIncrement="1.0" layoutX="372.0" layoutY="300.0" max="40.0" min="5.0" mouseTransparent="true" onKeyPressed="#handleWidthSlider" prefHeight="42.0" prefWidth="251.0" value="15.0" />
+      <Button fx:id="okButton" layoutX="357.0" layoutY="376.0" mnemonicParsing="false" onKeyPressed="#handleOkButton" prefHeight="68.0" prefWidth="187.0" style="-fx-background-color: black;" stylesheets="@level-builder-size.css" text="OK" textFill="WHITE">
+         <font>
+            <Font name="Power Red and Green" size="64.0" />
+         </font>
+      </Button>
+      <Label fx:id="height" alignment="CENTER_RIGHT" layoutX="646.0" layoutY="209.0" prefHeight="59.0" prefWidth="59.0" style="-fx-background-color: black;" text="15" textFill="WHITE">
+         <font>
+            <Font name="Power Red and Green" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="width" alignment="CENTER_RIGHT" layoutX="646.0" layoutY="292.0" prefHeight="59.0" prefWidth="59.0" style="-fx-background-color: black;" text="15" textFill="WHITE">
+         <font>
+            <Font name="Power Red and Green" size="48.0" />
+         </font>
+      </Label>
+      <Button fx:id="cancelButton" layoutX="316.0" layoutY="465.0" mnemonicParsing="false" onKeyPressed="#handleCancelButton" prefHeight="89.0" prefWidth="272.0" style="-fx-background-color: black;" stylesheets="@level-builder-size.css" text="Cancel" textFill="WHITE">
+         <font>
+            <Font name="Power Red and Green" size="64.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

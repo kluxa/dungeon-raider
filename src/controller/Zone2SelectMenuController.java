@@ -41,8 +41,8 @@ public class Zone2SelectMenuController extends DungeonSelectMenuController {
 	private Button[][] buttons;
 	
 	private String[][] files = {
-			{ "zone2/01", "zone2/02", "zone2/03", "zone2/04", "zone2/05" },
-			{ "zone2/06", "zone2/07", "zone2/08", "zone2/09", "zone2/10" }
+			{ "01.txt", "02.txt", "03.txt", "04.txt", "05.txt" },
+			{ "06.txt", "07.txt", "08.txt", "09.txt", "10.txt" }
 	};
 	
 	private int height  = 2;
@@ -53,6 +53,9 @@ public class Zone2SelectMenuController extends DungeonSelectMenuController {
 	
 	public Zone2SelectMenuController(Stage s, MenuHandler menus) {
 		super(s, menus);
+		
+		cursorX = 0;
+		cursorY = 0;
 	}
 	
 	@FXML
@@ -60,9 +63,6 @@ public class Zone2SelectMenuController extends DungeonSelectMenuController {
 		display.addEventFilter(MouseEvent.ANY, e -> {
 			e.consume();
 		});
-		
-		cursorX = 0;
-		cursorY = 0;
 		
 		Button[][] buttons = {
 				{ dungeon01Button, dungeon02Button, dungeon03Button, dungeon04Button, dungeon05Button },
@@ -80,6 +80,7 @@ public class Zone2SelectMenuController extends DungeonSelectMenuController {
 			
 		} else if (k.equals(KeyCode.ENTER)) {
 			menus.switchToPlayingDungeon(0,
+					"./src/resources/levels/zone2/" +
 					files[cursorY][cursorX]);
 			
 		} else if (k.equals(KeyCode.UP)) {
@@ -92,6 +93,22 @@ public class Zone2SelectMenuController extends DungeonSelectMenuController {
 			moveCursorLeft();
 			
 		}
+	}
+	
+	public boolean hasNextLevel() {
+		return !(cursorX == (width - 1) &&
+				 cursorY == (height - 1));
+	}
+	
+	public String nextLevel() {
+		cursorX++;
+		if (cursorX == width) {
+			cursorX = 0;
+			cursorY++;
+		}
+		buttons[cursorY][cursorX].requestFocus();
+		return "./src/resources/levels/zone2/" +
+		       files[cursorY][cursorX];
 	}
 	
 	private void moveCursorUp() {
@@ -127,12 +144,13 @@ public class Zone2SelectMenuController extends DungeonSelectMenuController {
 	}
 	
 	private void goToPreviousScreen() {
-//		FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), display);
-//		fadeOut.setFromValue(1.0);
-//		fadeOut.setToValue(0.0);
-//		fadeOut.play();
-//		fadeOut.setOnFinished(e -> {
+		FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), display);
+		fadeOut.setFromValue(1.0);
+		fadeOut.setToValue(0.0);
+		fadeOut.play();
+		fadeOut.setOnFinished(e -> {
 			menus.switchToZoneSelectMenu();
-//		});
+			display.setOpacity(1.0);
+		});
 	}
 }
