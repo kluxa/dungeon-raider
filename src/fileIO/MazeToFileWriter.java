@@ -26,6 +26,14 @@ public class MazeToFileWriter {
 	        	allLines.add(line);
 	        }
 	        
+			LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> fileMap = new LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>>();
+			fileMap.put("SolidEntities", null);
+			fileMap.put("TileEntities", null);
+			fileMap.put("Items", null);
+			
+			fileMap = StringUtilsWrite.hasapafyEnts (fileMap, level);
+			LinkedHashMap<String, ArrayList<String>> mazeMap = StringUtilsWrite.hasapafyMaze(level);
+	        
 	        
         } catch (IOException e) {
             e.printStackTrace();

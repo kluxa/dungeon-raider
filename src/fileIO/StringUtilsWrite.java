@@ -20,34 +20,52 @@ public class StringUtilsWrite {
 	
 		Maze maze = level.getMaze();
 		
-		mazeMap.put("dims", formatCoords(maze.getHeight(), maze.getWidth()));
-		mazeMap.put("start", formatCoords(maze.getStartSquare().getY(), maze.getStartSquare().getX()));
+		ArrayList<String> tmp = new ArrayList<String>();
+		tmp.add(formatCoords(maze.getHeight(), maze.getWidth()));
+		mazeMap.put("dims", tmp);
+		tmp.remove(0);
+		tmp.add(formatCoords(maze.getStartSquare().getY(), maze.getStartSquare().getX()));
+		mazeMap.put("start", tmp);
 		//completion objectives
-		
 		
 		System.out.println(mazeMap.toString());
 		
 		return null;
 	}
 	
-	public static LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> hasapafyEnts (Level level) {
+	public static LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> hasapafyEnts (LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> fileMap, Level level) {
+		//Gets the entity and converts it and its location to a string
+		//If the entMap already has atleast one of that type already, the coords only will be added to the hashmap
 		Maze maze = level.getMaze();
-		LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> entMap = new LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>>();
-		LinkedHashMap<String, ArrayList<String>> locMap = new LinkedHashMap<String, ArrayList<String>>();
-		ArrayList<SolidEntity> entities = new ArrayList<>();
-		for (int row = 0; row < maze.getHeight(); row++) {
-			for (int col = 0; col < maze.getWidth(); col++) {
-				ArrayList<String> coords = formatCoords(row, col);
-				SolidEntity collOcc = maze.getSquare(row, col).getCollidableOccupant();
-				if (collOcc != null) {
-					String className = collOcc.getClass().getSimpleName();
-					locMap.put("location", coords);
-					entMap.put("className", locMap); //TODO make different linkedhashmap per time or?
+		
+		LinkedHashMap<String, ArrayList<String>> entMap = new LinkedHashMap<String, ArrayList<String>>();
+		for (int i = 0; i < maze.getHeight(); i++) {
+			for (int j = 0; j < maze.getWidth(); j++) {
+				Square sq = maze.getSquare(i, j);
+				SolidEntity solEnt = sq.getCollidableOccupant();
+				
+				if (solEnt != null) {
+					System.out.println(solEnt.getClass().getSimpleName());
+					ArrayList<String> tmp = new ArrayList<String>();
+					if (entMap.get(solEnt.getClass().getSimpleName()) == null) {
+						System.out.println("Start with null");
+						
+						tmp.add(formatCoords(i, j));
+						entMap.put(solEnt.getClass().getSimpleName(), tmp);
+						System.out.println("End with null");
+					} else {
+						System.out.println("Start with stuff");
+						tmp = entMap.get(solEnt.getClass().getSimpleName());
+						tmp.add(formatCoords(i, j));
+						entMap.put(solEnt.getClass().getSimpleName(), tmp);
+						System.out.println("End with stuff");
+					}
 				}
 			}
 		}
+		fileMap.put("SolidEntities", entMap);
 		
-		return null;
+		return fileMap;
 	}
 	
 	private static String classToString(SolidEntity collOcc) {
@@ -66,16 +84,15 @@ public class StringUtilsWrite {
 	 * @param y
 	 * @return
 	 */
-	public static ArrayList<String> formatCoords (int y, int x) {
+	public static String formatCoords (int y, int x) {
 		String coString = "(" + y + ", " + x + ")";
-		ArrayList<String> coords = new ArrayList<String>();
-		coords.add(coString);
-		return coords;
+		return coString;
 	}
 	
 	public static void main (String[] args) {
 		Level level = LevelBuilder.makeLevel("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\testDung.txt");
 		hasapafyMaze (level);
-		hasapafyEnts (level);
+		LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> tmp = new LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>>();
+		tmp = hasapafyEnts (tmp, level);
 	}
 }
