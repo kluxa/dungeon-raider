@@ -19,6 +19,7 @@ public class LevelBuilder {
 	 * @param fileLoc
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public static Level makeLevel (String fileLoc) {
 		LinkedHashMap<String, Object> mazeInfo = MazeFileReader.getMazeInfo(fileLoc);
 		Maze maze = createMazeFromHashMap ((LinkedHashMap<String, ArrayList<String>>) mazeInfo.get("Map"));
@@ -39,6 +40,7 @@ public class LevelBuilder {
 			Maze maze) {
 		for (String key : tileMap.keySet()) {
 			ArrayList<String> locData = tileMap.get(key).get("location");
+			if (locData == null) break;
 			for (String loc : locData) {
 				Integer[] coords = StringUtilsRead.getCoords(loc);
 				Square pos = new Square (coords[0], coords[1]);
@@ -53,9 +55,10 @@ public class LevelBuilder {
 			Maze maze) {
 		for (String key : itemMap.keySet()) {
 			ArrayList<String> locData = itemMap.get(key).get("location");
+			if (locData == null) break;
 			for (String loc : locData) {
 				Integer[] coords = StringUtilsRead.getCoords(loc);
-				Square pos = new Square (coords[1], coords[0]);
+				Square pos = new Square (coords[0], coords[1]);
 				Item e = stringToItem (key);
 				maze.placeEntity(pos.getY(), pos.getX(), e);
 			}
@@ -66,9 +69,10 @@ public class LevelBuilder {
 	private static Maze placeSolidEntities(LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> entityMap, Maze maze) {
 		for (String key : entityMap.keySet()) {
 			ArrayList<String> locData = entityMap.get(key).get("location");
+			if (locData == null) break;
 			for (String loc : locData) {
 				Integer[] coords = StringUtilsRead.getCoords(loc);
-				Square pos = new Square (coords[1], coords[0]);
+				Square pos = new Square (coords[0], coords[1]);
 				SolidEntity e = stringToSolidEntity (key);
 				maze.placeEntity(pos.getY(), pos.getX(), e);
 			}
@@ -134,17 +138,17 @@ public class LevelBuilder {
 	
 	private static Item stringToItem(String code) {
 		switch (code) {
-		case "Hoverpotion": return new HoverPotion();
-		case "Invincibilitypotion": return new InvincibilityPotion();
+		case "HoverPotion": return new HoverPotion();
+		case "InvincibilityPotion": return new InvincibilityPotion();
 		case "Sword": return new Sword();
 		case "Treasure": return new Treasure();
-		case "Unlitbomb": return new UnlitBomb();
+		case "UnlitBomb": return new UnlitBomb();
 		case "Arrow": return new Arrow();
-		case "redKey": return new Key("red");
-		case "yellowKey": return new Key("yellow");
-		case "greenKey": return new Key("green");
-		case "blueKey": return new Key("blue");
-		default:  return null;
+		case "RedKey": return new Key("red");
+		case "YellowKey": return new Key("yellow");
+		case "GreenKey": return new Key("green");
+		case "BlueKey": return new Key("blue");
+		default: return null;
 		}
 	}
 	
@@ -153,13 +157,7 @@ public class LevelBuilder {
 		case "Pit": return new Pit();
 		case "FloorSwitch": return new FloorSwitch();
 		case "Exit": return new Exit();
-		default:  return new Path();
+		default: return new Path();
 		}
-	}
-	
-	public static void main (String[] args) {
-		Level maze = makeLevel("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\testDung.txt");
-		
-		System.out.println(maze.toString());		
 	}
 }
