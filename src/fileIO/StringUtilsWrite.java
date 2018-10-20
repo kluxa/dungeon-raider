@@ -27,7 +27,7 @@ public class StringUtilsWrite {
 		tmp.remove(0);
 		tmp.add(formatCoords(maze.getStartSquare().getY(), maze.getStartSquare().getX()));
 		mazeMap.put("start", tmp);
-		//maze obj's
+		//TODO maze obj's
 		
 		return mazeMap;
 	}

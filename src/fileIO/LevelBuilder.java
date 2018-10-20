@@ -151,7 +151,7 @@ public class LevelBuilder {
 	private static Tile stringToTile(String code) {
 		switch (code) {
 		case "Pit": return new Pit();
-		case "Switch": return new FloorSwitch();
+		case "FloorSwitch": return new FloorSwitch();
 		case "Exit": return new Exit();
 		default:  return new Path();
 		}
