@@ -91,7 +91,6 @@ public class TutorialSelectMenuController extends DungeonSelectMenuController {
 			moveCursorRight();
 		} else if (k.equals(KeyCode.LEFT)) {
 			moveCursorLeft();
-			
 		}
 	}
 	

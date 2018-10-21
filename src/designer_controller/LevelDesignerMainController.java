@@ -11,7 +11,9 @@ import dungeon.SolidEntity;
 import dungeon.Square;
 import dungeon.Tile;
 import factory.*;
+import fileIO.MazeToFileWriter;
 import game.Level;
+import game.SimpleLevel;
 import items.Item;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
@@ -51,12 +53,17 @@ public class LevelDesignerMainController extends Controller {
 	private Button nothing;
 	
 	@FXML
-	private CheckBox collectTreasure;
+	private CheckBox collectTreasureCheckBox;
 	@FXML
-	private CheckBox triggerSwitches;
+	private CheckBox triggerSwitchesCheckBox;
 	@FXML
-	private CheckBox defeatEnemies;
+	private CheckBox defeatEnemiesCheckBox;
 	
+	private boolean collectTreasure;
+	private boolean triggerSwitches;
+	private boolean defeatEnemies;
+	
+	private String levelName;
 	private Node selectedButton;
 	private GraphicsContext ctx;
 	private Maze maze;
@@ -70,16 +77,24 @@ public class LevelDesignerMainController extends Controller {
 			                           String levelName, Level level) {
 		super(s);
 		this.designerHandler = designerHandler;
+		this.levelName = levelName;
 		maze = level.getMaze();
 		
 		mazeCursorY = maze.getHeight() / 2;
 		mazeCursorX = maze.getWidth()  / 2;
+		
+		ArrayList<String> objectives = new ArrayList<>();
+		level.getObjective(objectives);
+		collectTreasure = (objectives.contains("treasure"));
+		triggerSwitches = (objectives.contains("switches"));
+		defeatEnemies =   (objectives.contains("enemies"));
 	}
 	
 	public LevelDesignerMainController(Stage s, DesignerHandler designerHandler,
 			                           int height, int width) {
 		super(s);
 		this.designerHandler = designerHandler;
+		this.levelName = null;
 		maze = new Maze(height, width);
 		maze.setStart(height / 2, width / 2);
 		
@@ -88,7 +103,7 @@ public class LevelDesignerMainController extends Controller {
 		mazeCursorY = height / 2;
 		mazeCursorX = width  / 2;
 	}
-
+	
 	public Maze getMaze() {
 		return maze;
 	}
@@ -100,6 +115,10 @@ public class LevelDesignerMainController extends Controller {
 		helpMessage.setText("Choose an entity to place by clicking on it");
 		
 		selectPane.setMouseTransparent(false);
+		
+		if (collectTreasure) collectTreasureCheckBox.setSelected(true);
+		if (triggerSwitches) triggerSwitchesCheckBox.setSelected(true);
+		if (defeatEnemies)   defeatEnemiesCheckBox.setSelected(true);
 		
 		drawFrame();
 		
@@ -405,8 +424,31 @@ public class LevelDesignerMainController extends Controller {
 	
 	@FXML
 	private void handleButton80() {
-		System.out.println("Saving the level");
-		// TODO
+		saveLevel();
+	}
+	
+	private void saveLevel() {
+		Level level = new SimpleLevel.LevelBuilder(maze)
+			          .collectTreasure(collectTreasureCheckBox.isSelected())
+			          .triggerSwitches(triggerSwitchesCheckBox.isSelected())
+			          .defeatEnemies(defeatEnemiesCheckBox.isSelected())
+			          .build();
+		
+		if (levelName != null) {
+			saveExistingLevel(level);
+		} else {
+			saveNewLevel(level);
+		}
+	}
+	
+	private void saveExistingLevel(Level level) {
+		MazeToFileWriter.writeMazeToFile("./src/game_files/levels/custom/" +
+				                         levelName + ".txt", level);
+	}
+	
+	private void saveNewLevel(Level level) {
+		MazeToFileWriter.writeMazeToFile("./src/game_files/levels/custom/" +
+	                                     "temp.txt", level);
 	}
 	
 	@FXML
