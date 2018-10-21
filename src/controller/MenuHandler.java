@@ -60,7 +60,7 @@ public class MenuHandler {
 	
 	public void switchToPlayingDungeon(int zone, String name) {
 		MazeLoader reader = new MazeLoader();
-		Maze maze = reader.readMaze(TestMaze.LEVEL06);
+		Maze maze = reader.readMaze(TestMaze.LEVEL11);
 		Level level = new SimpleLevel.LevelBuilder(maze).collectTreasure(true).triggerSwitches(true).build();
 		PlayDungeon playing = new PlayDungeon(stage, this, level);
 		playing.beginGame();

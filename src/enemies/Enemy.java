@@ -2,17 +2,16 @@ package enemies;
 
 import dungeon.*;
 import player.*;
-import items.*;
-import game.*;
 
 public abstract class Enemy extends LivingEntity {
-	private int awareDistance;
+	private int cowardsDistanceThreshold;
 	private boolean awareOfPlayer;
 	private MovementPattern pattern;
 	
 	public Enemy(Square s) {
 		super(s);
 		awareOfPlayer = false;
+		cowardsDistanceThreshold = 5;
 		pattern = new NoMovement();
 	}
 	

@@ -19,9 +19,9 @@ import game.*;
 public class RunAway implements MovementPattern {
 	
 	@Override
-	public Direction chooseMove(Square s, Maze maze, Direction oldMove) {
-		Square src = maze.getPlayerLocation();
-		int[][] distances = maze.getDistances(src, s);
+	public Direction chooseMove(Square enemySqr, Maze maze, Direction oldMove) {
+		Square playerSqr = maze.getPlayerLocation();
+		int[][] distances = maze.getDistances(playerSqr, enemySqr);
 
 		// Debugging...
 //		for (int i = 0; i < distances.length; i++) {
@@ -32,25 +32,21 @@ public class RunAway implements MovementPattern {
 //			System.out.print("\n");
 //		}
 
-		int y = s.getY();
-		int x = s.getX();
-		int ys[] = {y - 1, y + 1, y + 0, y + 0};
-		int xs[] = {x + 0, x + 0, x + 1, x - 1};
+		int enemy_y = enemySqr.getY();
+		int enemy_x = enemySqr.getX();
+		int ys[] = {enemy_y - 1, enemy_y + 1, enemy_y + 0, enemy_y + 0};
+		int xs[] = {enemy_x + 0, enemy_x + 0, enemy_x + 1, enemy_x - 1};
 
 		int[] adjDistances = new int[4];
-		int maxDist = 1000000;
+		int maxDist = -1;
 		int maxIndex = 0;
 		for (int i = 0; i < 4; i++) {
-			adjDistances[i] = distances[ys[i]][xs[i]] * 10000;
-			adjDistances[i] += ((ys[i] - src.getY()) * (ys[i] - src.getY()) +
-					(xs[i] - src.getX()) * (xs[i] - src.getX()));
+			adjDistances[i] = distances[ys[i]][xs[i]];
 			if (adjDistances[i] > maxDist && adjDistances[i] >= 0) {
 				maxDist = adjDistances[i]; maxIndex = i;
 			}
 		}
-		if (oldMove != null && adjDistances[oldMove.toInt()] == maxDist) {
-			return oldMove;
-		}
+
 		return Direction.intToDirection(maxIndex);
 	}
 
