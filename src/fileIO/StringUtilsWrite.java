@@ -3,6 +3,7 @@ package fileIO;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+import dungeon.Door;
 import dungeon.Entity;
 import dungeon.Maze;
 import dungeon.SolidEntity;
@@ -10,6 +11,7 @@ import dungeon.Square;
 import dungeon.Tile;
 import game.Level;
 import items.Item;
+import items.Key;
 
 public class StringUtilsWrite {
 	/**
@@ -21,13 +23,18 @@ public class StringUtilsWrite {
 	
 		Maze maze = level.getMaze();
 		
-		ArrayList<String> tmp = new ArrayList<String>();
-		tmp.add(formatCoords(maze.getHeight(), maze.getWidth()));
-		mazeMap.put("dims", tmp);
-		tmp.remove(0);
-		tmp.add(formatCoords(maze.getStartSquare().getY(), maze.getStartSquare().getX()));
-		mazeMap.put("start", tmp);
-		//TODO maze obj's
+		ArrayList<String> dimData = new ArrayList<String>();
+		dimData.add(formatCoords(maze.getHeight(), maze.getWidth()));
+		mazeMap.put("dims", dimData);
+		
+		ArrayList<String> startData = new ArrayList<String>();
+		startData.add(formatCoords(maze.getStartSquare().getY(), maze.getStartSquare().getX()));
+		mazeMap.put("start", startData);
+		
+		ArrayList<String> compObj = new ArrayList<String>();
+		level.getObjective(compObj);
+		
+		mazeMap.put("completion", compObj);
 		
 		return mazeMap;
 	}
@@ -50,15 +57,31 @@ public class StringUtilsWrite {
 				SolidEntity solEnt = sq.getCollidableOccupant();			
 				if (solEnt != null) {
 					ArrayList<String> locData = new ArrayList<String>();
-					if (entMap.get(solEnt.getClass().getSimpleName()) == null) {
-						//add first thing
-						locData.add(formatCoords(i, j));
-						entMap.put(solEnt.getClass().getSimpleName(), locData);
+					if (!solEnt.getClass().getSimpleName().equals("Door")) {
+						if (entMap.get(solEnt.getClass().getSimpleName()) == null) {
+							//add first thing
+							locData.add(formatCoords(i, j));
+							entMap.put(solEnt.getClass().getSimpleName(), locData);
+						} else {
+							//Add any after first by getting arraylist, adding to it and putting it back in
+							locData = entMap.get(solEnt.getClass().getSimpleName());
+							locData.add(formatCoords(i, j));
+							entMap.put(solEnt.getClass().getSimpleName(), locData);
+						}
 					} else {
-						//Add any after first by getting arraylist, adding to it and putting it back in
-						locData = entMap.get(solEnt.getClass().getSimpleName());
-						locData.add(formatCoords(i, j));
-						entMap.put(solEnt.getClass().getSimpleName(), locData);
+						Door door = (Door) solEnt;
+						String doorCol = door.getColor();
+						String doorName = doorCol + "Door";
+						if (entMap.get(doorName) == null) {
+							//add first thing
+							locData.add(formatCoords(i, j));
+							entMap.put(doorName, locData);
+						} else {
+							//Add any after first by getting arraylist, adding to it and putting it back in
+							locData = entMap.get(doorName);
+							locData.add(formatCoords(i, j));
+							entMap.put(doorName, locData);
+						}
 					}
 				}
 			}
@@ -85,13 +108,29 @@ public class StringUtilsWrite {
 				if (itemList != null) {
 					for (Item item : itemList) {
 						ArrayList<String> locData = new ArrayList<String>();
-						if (itemMap.get(item.getClass().getSimpleName()) == null) {
-							locData.add(formatCoords(i, j));
-							itemMap.put(item.getClass().getSimpleName(), locData);
+						if (!item.getClass().getSimpleName().equals("Key")) {
+							if (itemMap.get(item.getClass().getSimpleName()) == null) {
+								locData.add(formatCoords(i, j));
+								itemMap.put(item.getClass().getSimpleName(), locData);
+							} else {
+								locData = itemMap.get(item.getClass().getSimpleName());
+								locData.add(formatCoords(i, j));
+								itemMap.put(item.getClass().getSimpleName(), locData);
+							}
 						} else {
-							locData = itemMap.get(item.getClass().getSimpleName());
-							locData.add(formatCoords(i, j));
-							itemMap.put(item.getClass().getSimpleName(), locData);
+							Key key = (Key) item;
+							String keyColo = key.getColor();
+							String keyName = keyColo + "Key";
+							if (itemMap.get(keyName) == null) {
+								//add first thing
+								locData.add(formatCoords(i, j));
+								itemMap.put(keyName, locData);
+							} else {
+								//Add any after first by getting arraylist, adding to it and putting it back in
+								locData = itemMap.get(keyName);
+								locData.add(formatCoords(i, j));
+								itemMap.put(keyName, locData);
+							}
 						}
 					}
 				}
@@ -147,11 +186,12 @@ public class StringUtilsWrite {
 	
 	public static void main (String[] args) {
 		Level level = LevelBuilder.makeLevel("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\testDung.txt");
-		hasapafyMaze (level);
+		LinkedHashMap<String, ArrayList<String>> mazeMap = hasapafyMaze (level);
+		System.out.println(mazeMap.toString());
 		LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> tmp = new LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>>();
 		tmp = hasapafyEnts (tmp, level);
 		tmp = hasapafyItems(tmp, level);
 		tmp = hasapafyTiles (tmp, level);
-		System.out.println(tmp.get("TileEntities").toString());
+		
 	}
 }

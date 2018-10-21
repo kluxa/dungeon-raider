@@ -100,6 +100,7 @@ public class StringUtilsRead {
 		string = string.replace("(", "");
 		string = string.replace(")", "");
 		string = string.replace("{", "");
+		string = string.replace("\n", "");
 		string = string.trim();
 		return string;
 	}

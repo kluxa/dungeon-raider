@@ -37,4 +37,7 @@ public class Key extends LimitedCollectible {
 		return "key_" + color.toLowerCase();
 	}
 	
+	public String getColor () {
+		return this.color;
+	}
 }

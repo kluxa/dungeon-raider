@@ -68,4 +68,8 @@ public class Door extends NonLivingEntity {
 		       color.toLowerCase();
 	}
 	
+	public String getColor () {
+		return this.color;
+	}
+	
 }

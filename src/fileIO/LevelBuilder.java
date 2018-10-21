@@ -88,6 +88,7 @@ public class LevelBuilder {
 	 */
 	private static Maze createMazeFromHashMap(LinkedHashMap<String, ArrayList<String>> mapInfo) {
 		ArrayList<String> dims = mapInfo.get("dims");
+		System.out.println(dims.toString());
 		Integer[] coords = StringUtilsRead.getCoords(dims.get(0));
 		Maze maze = new Maze (coords[0], coords[1]);
 		
