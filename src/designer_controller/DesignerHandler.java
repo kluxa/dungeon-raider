@@ -3,6 +3,7 @@ package designer_controller;
 import controller.Controller;
 import controller.MenuHandler;
 import controller.Screen;
+import fileIO.LevelBuilder;
 import game.Level;
 import javafx.stage.Stage;
 
@@ -10,7 +11,6 @@ public class DesignerHandler {
 	private MenuHandler menus;
 	
 	private Stage stage;
-	private Screen loadScreen;
 	private Screen designerScreen;
 	
 	private Controller designerController;
@@ -40,6 +40,14 @@ public class DesignerHandler {
 		Screen sizeScreen = new LevelDesignerSizeScreen(stage);
 		Controller c = new LevelDesignerSizeController(stage, this);
 		sizeScreen.display(c);
+	}
+	
+	public void loadLevel(String levelName, String pathName) {
+		designerScreen = new LevelDesignerMainScreen(stage);
+		Level level = LevelBuilder.makeLevel(pathName);
+		
+		designerController = new LevelDesignerMainController(stage, this, levelName, level);
+		switchToMainScreen();
 	}
 	
 	public void newCustomLevel(int height, int width) {

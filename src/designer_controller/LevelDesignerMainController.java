@@ -66,13 +66,18 @@ public class LevelDesignerMainController extends Controller {
 	
 	private boolean inPlacementMode;
 	
-	public LevelDesignerMainController(Stage s, Level level) {
+	public LevelDesignerMainController(Stage s, DesignerHandler designerHandler,
+			                           String levelName, Level level) {
 		super(s);
-		// TODO
+		this.designerHandler = designerHandler;
+		maze = level.getMaze();
+		
+		mazeCursorY = maze.getHeight() / 2;
+		mazeCursorX = maze.getWidth()  / 2;
 	}
 	
 	public LevelDesignerMainController(Stage s, DesignerHandler designerHandler,
-			                       int height, int width) {
+			                           int height, int width) {
 		super(s);
 		this.designerHandler = designerHandler;
 		maze = new Maze(height, width);
@@ -83,7 +88,7 @@ public class LevelDesignerMainController extends Controller {
 		mazeCursorY = height / 2;
 		mazeCursorX = width  / 2;
 	}
-	
+
 	public Maze getMaze() {
 		return maze;
 	}

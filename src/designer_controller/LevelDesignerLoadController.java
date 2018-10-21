@@ -49,6 +49,9 @@ public class LevelDesignerLoadController extends Controller {
 		index = 0;
 		File folder = new File("src/game_files/levels/custom");
 		levels = folder.listFiles();
+		for (File f: levels) {
+			System.out.println(f.getName());
+		}
 		
 		Button[] buttons = {
 				button1, button2, button3, button4, button5
@@ -76,7 +79,8 @@ public class LevelDesignerLoadController extends Controller {
 		for (int i = 0; i < 5; i++) {
 			if (index + i < levels.length) {
 				buttons[i].setFocusTraversable(true);
-				buttons[i].setText(levels[index + i].getName());
+				String name = levels[index + i].getName();
+				buttons[i].setText(basename(name));
 			} else {
 				buttons[i].setFocusTraversable(false);
 				buttons[i].setText("");
@@ -85,6 +89,13 @@ public class LevelDesignerLoadController extends Controller {
 		
 		leftArrow.setVisible(index > 0);
 		rightArrow.setVisible(index + 5 < levels.length);
+	}
+	
+	private String basename(String name) {
+		if (name.contains(".")) {
+			return name.substring(0, name.lastIndexOf("."));
+		}
+		return name;
 	}
 	
 	private void handleLeft() {
@@ -103,27 +114,43 @@ public class LevelDesignerLoadController extends Controller {
 	
 	@FXML
 	private void handleButton1(KeyEvent e) {
-		
+		if (button1.isFocusTraversable() && (e.getCode() == KeyCode.ENTER)) {
+			handlePress(button1);
+		}
 	}
 	
 	@FXML
 	private void handleButton2(KeyEvent e) {
-		
+		if (button2.isFocusTraversable() && (e.getCode() == KeyCode.ENTER)) {
+			handlePress(button2);
+		}
 	}
 	
 	@FXML
 	private void handleButton3(KeyEvent e) {
-		
+		if (button3.isFocusTraversable() && (e.getCode() == KeyCode.ENTER)) {
+			handlePress(button3);
+		}
 	}
 	
 	@FXML
 	private void handleButton4(KeyEvent e) {
-		
+		if (button4.isFocusTraversable() && (e.getCode() == KeyCode.ENTER)) {
+			handlePress(button4);
+		}
 	}
 	
 	@FXML
 	private void handleButton5(KeyEvent e) {
-		
+		if (button5.isFocusTraversable() && (e.getCode() == KeyCode.ENTER)) {
+			handlePress(button5);
+		}
+	}
+	
+	private void handlePress(Button button) {
+		designerHandler.loadLevel(button.getText(),
+				                  "./src/game_files/levels/custom/" +
+				                  button.getText() + ".txt");
 	}
 	
 	@FXML
