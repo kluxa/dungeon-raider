@@ -33,6 +33,8 @@ public abstract class SolidEntity extends Entity {
 	public int getY() {
 		return location.getY();
 	}
+
+	public Direction getMove() { return move; }
 	
 	public Square getLocation() {
 		return location;

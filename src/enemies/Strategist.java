@@ -13,6 +13,7 @@ public class Strategist extends Enemy {
 	
 	public Strategist(Square s) {
 		super(s);
+		setMovementPattern(new Strategic());
 	}
 
 	@Override
