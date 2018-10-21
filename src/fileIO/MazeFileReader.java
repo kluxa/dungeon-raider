@@ -57,11 +57,11 @@ public class MazeFileReader {
 			LinkedHashMap<String, ArrayList<String>> mapMap =
 					StringUtilsRead.hasapafy(allLines, "map");
 			LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> solidMap =
-					StringUtilsRead.hasapafyNonUnique(allLines, "solidentities");
+					StringUtilsRead.hasapafyNonUnique(allLines, "SolidEntities");
 			LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> tileMap  =
-					StringUtilsRead.hasapafyNonUnique(allLines, "tileentities");
+					StringUtilsRead.hasapafyNonUnique(allLines, "TileEntities");
 			LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> itemsMap =
-					StringUtilsRead.hasapafyNonUnique(allLines, "items");
+					StringUtilsRead.hasapafyNonUnique(allLines, "Items");
 
 			mazeInfo.put("Map", mapMap);
 			mazeInfo.put("SolidEntities", solidMap);
