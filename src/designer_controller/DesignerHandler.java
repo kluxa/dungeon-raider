@@ -12,6 +12,7 @@ public class DesignerHandler {
 	
 	private Stage stage;
 	private Screen designerScreen;
+	private TestDungeon testHandler;
 	
 	private LevelDesignerMainController designerController;
 	
