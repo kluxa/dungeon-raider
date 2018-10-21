@@ -173,9 +173,4 @@ public class StringUtilsRead {
 		return coords;
 	}
 	
-	public static void main (String[] args) {
-		Integer[] coords = getCoords ("0 0");
-		
-		System.out.println(coords[0] + " " + coords[1]);	
-	}
 }

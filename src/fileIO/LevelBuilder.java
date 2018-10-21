@@ -163,6 +163,9 @@ public class LevelBuilder {
 		case "YellowKey": return new Key("yellow");
 		case "GreenKey": return new Key("green");
 		case "BlueKey": return new Key("blue");
+		case "RedTorch": return new RedTorch();
+		case "YellowTorch": return new YellowTorch();
+		case "BlueTorch": return new BlueTorch();
 		default: return null;
 		}
 	}

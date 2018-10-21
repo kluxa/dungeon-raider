@@ -88,6 +88,10 @@ public class Maze {
 	public Square getPlayerLocation() {
 		return player.getLocation();
 	}
+
+	public Direction getPlayersLastMove() {
+		return player.getMove();
+	}
 	
 	public int getHeight () {
 		return this.height;
@@ -216,7 +220,7 @@ public class Maze {
 	public void updateEnemies() {
 		for (Enemy e: enemies) {
 			if (e.isAlive()) {
-				e.makeMove(this);
+				e.update(player, this);
 			}
 		}
 	}
@@ -361,8 +365,8 @@ public class Maze {
 	
 	/**
 	 * 
-	 * @param start
-	 * @param goal
+	 * @param
+	 * @param
 	 * @return
 	 */
 	public int[][] getDistances(Square src, Square s) {
@@ -380,8 +384,7 @@ public class Maze {
 	 * Tries to prevent 'oppressive' movement, such as the shuffle dance
 	 * @preconditions the goal square should not contain an obstacle and
 	 *                should not be the same as the start square
-	 * @param start the start square
-	 * @param goal the goal square
+	 * 
 	 * @param obstacles an array of booleans indicating which squares contain
 	 *                  obstacles, and hence should not be visited
 	 * @return an array of distances from every square in the maze to the

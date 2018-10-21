@@ -5,13 +5,11 @@ import dungeon.*;
 import java.lang.Math.*;
 
 import player.*;
-import items.*;
-import game.*;
 
 public abstract class Enemy extends LivingEntity {
-	private int awareDistance;
 	private boolean awareOfPlayer;
 	private MovementPattern pattern;
+	private int awareDistance;
 	private int tick = 0;
 	
 	public Enemy(Square s, int awareDist_) {
@@ -61,6 +59,7 @@ public abstract class Enemy extends LivingEntity {
 		selectMove(maze);
 		move(getDirection());
 	}
+	
 	/**
 	 * Causes enemies to make a move based on player location and their awareness of the player
 	 * Enemies make moves once every 2 turns

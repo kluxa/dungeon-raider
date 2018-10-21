@@ -2,26 +2,24 @@ package items;
 
 import player.Player;
 
-public class GreenTorch extends Torch {
-
-	@Override
+public class YellowTorch extends Torch {
+	
 	/**
 	 * sets players sightrange to 9
 	 */
+	@Override
 	public void applyEffect(Player player) {
 		player.setSightRange(9);
 	}
-
+	
 	@Override
 	public char toChar() {
-		// TODO Auto-generated method stub
-		return 0;
+		return '2';
 	}
-
+	
 	@Override
 	public String getImageName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "torch_yellow";
 	}
-
+	
 }

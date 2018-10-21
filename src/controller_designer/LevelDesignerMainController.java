@@ -407,6 +407,27 @@ public class LevelDesignerMainController extends Controller {
 	}
 	
 	@FXML
+	private void handleButton430() {
+		highlightButton(button43);
+		EntityFactory f = new RedTorchFactory();
+		switchToPlacementPlaceMode(f);
+	}
+	
+	@FXML
+	private void handleButton431() {
+		highlightButton(button43);
+		EntityFactory f = new YellowTorchFactory();
+		switchToPlacementPlaceMode(f);
+	}
+	
+	@FXML
+	private void handleButton432() {
+		highlightButton(button43);
+		EntityFactory f = new BlueTorchFactory();
+		switchToPlacementPlaceMode(f);
+	}
+	
+	@FXML
 	private void handleButton50() {
 		highlightButton(button50);
 		switchToPlacementMoveMode();
@@ -524,7 +545,7 @@ public class LevelDesignerMainController extends Controller {
 	@FXML
 	private Button button42;
 	@FXML
-	private Button button43;
+	private MenuButton button43;
 	@FXML
 	private Button button50;
 	@FXML

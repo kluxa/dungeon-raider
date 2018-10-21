@@ -44,7 +44,11 @@ public class Player extends LivingEntity {
 		return state.isInvincible();
 	}
 	
-	public void setSightRange (int range) {
+	public int getSightRange() {
+		return sightRange;
+	}
+	
+	public void setSightRange(int range) {
 		this.sightRange = range;
 	}
 	
