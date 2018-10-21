@@ -36,6 +36,12 @@ public class LevelBuilder {
 		return lvl;
 	}
 
+	/**
+	 * Places tiles on map
+	 * @param tileMap
+	 * @param maze
+	 * @return
+	 */
 	private static Maze placeTiles(LinkedHashMap<String,
 			                       LinkedHashMap<String, ArrayList<String>>> tileMap,
 			                       Maze maze) {
@@ -51,6 +57,12 @@ public class LevelBuilder {
 		return maze;
 	}
 
+	/**
+	 * Places items on the map
+	 * @param itemMap
+	 * @param maze
+	 * @return
+	 */
 	private static Maze placeItems(LinkedHashMap<String,
 			                       LinkedHashMap<String, ArrayList<String>>> itemMap,
 			                       Maze maze) {
@@ -66,6 +78,12 @@ public class LevelBuilder {
 		return maze;
 	}
 
+	/**
+	 * Places solidEntities on the map from hashmap
+	 * @param entityMap
+	 * @param maze
+	 * @return
+	 */
 	private static Maze placeSolidEntities(LinkedHashMap<String,
 			                               LinkedHashMap<String, ArrayList<String>>> entityMap,
 			                               Maze maze) {
@@ -88,6 +106,7 @@ public class LevelBuilder {
 	 */
 	private static Maze createMazeFromHashMap(LinkedHashMap<String, ArrayList<String>> mapInfo) {
 		ArrayList<String> dims = mapInfo.get("dims");
+		System.out.println(dims.toString());
 		Integer[] coords = StringUtilsRead.getCoords(dims.get(0));
 		Maze maze = new Maze (coords[0], coords[1]);
 		

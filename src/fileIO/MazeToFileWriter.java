@@ -15,6 +15,11 @@ import game.*;
 
 public class MazeToFileWriter {
 
+	/**
+	 * Writes maze to fileLoc from level
+	 * @param fileLoc
+	 * @param level
+	 */
 	public static void writeMazeToFile (String fileLoc, Level level) {
 		LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> fileMap = new LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>>();
 		
@@ -35,22 +40,19 @@ public class MazeToFileWriter {
 		fileStrings.addAll(formatNonUnique(fileMap));
 		fileStrings.add("}");
 		
-		System.out.println(fileStrings.toString());
-		
-
-
-
-		
-		FileWriter f;
+	    BufferedWriter writer;
 		try {
-			f = new FileWriter("out.txt", true);
-			for (String line : fileStrings) {
-				f.write(line);
-			}
+			writer = new BufferedWriter(new FileWriter(fileLoc));
+		    for (String line : fileStrings) {
+		    	writer.write(line+"\n");
+		    }
+		     
+		    writer.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 
 		
 	}
@@ -92,7 +94,7 @@ public class MazeToFileWriter {
 			LinkedHashMap<String, ArrayList<String>> specMap = nonUniqMap.get(bigKey);
 			Set<String> smallKeys = specMap.keySet();
 			for (String smallKey : smallKeys) {
-				nonUniqRep.add(smallKey + ":");
+				nonUniqRep.add(smallKey + ": {");
 				nonUniqRep.add("location: [");
 				nonUniqRep.addAll(specMap.get(smallKey));
 				nonUniqRep.add("]");
@@ -104,10 +106,10 @@ public class MazeToFileWriter {
 		return nonUniqRep;
 	}
 	
-	/*
 	public static void main (String[] args) {
-		Level lvl = LevelBuilder.makeLevel("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\testDung.txt");
-		writeMazeToFile ("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\testWrite.txt", lvl);
+		Level lvl1 = LevelBuilder.makeLevel("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\testDung.txt");
+		writeMazeToFile ("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\out.txt", lvl1);
+		Level lvl2 = LevelBuilder.makeLevel("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\out.txt");
 	}
-	*/
+	
 }
