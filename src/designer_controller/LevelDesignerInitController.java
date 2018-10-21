@@ -17,6 +17,8 @@ public class LevelDesignerInitController extends Controller {
 	private Button loadLevelButton;
 	@FXML
 	private Button newLevelButton;
+	@FXML
+	private Button exitButton;
 	
 	public LevelDesignerInitController(Stage s, DesignerHandler handler) {
 		super(s);
@@ -48,6 +50,14 @@ public class LevelDesignerInitController extends Controller {
 		KeyCode k = e.getCode();
 		if (k == KeyCode.ENTER) {
 			designerHandler.switchToSizeScreen();
+		}
+	}
+	
+	@FXML
+	private void handleExitButton(KeyEvent e) {
+		KeyCode k = e.getCode();
+		if (k == KeyCode.ENTER) {
+			designerHandler.quit();
 		}
 	}
 }

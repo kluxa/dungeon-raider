@@ -4,14 +4,14 @@
 			(5, 9)
 		]
 		completion: [
-			treasure
+			treasure,
 			switches
 		]
 		start: [
 			(1, 1)
 		]
 	}
-	solidentities: {
+	SolidEntities: {
 		Wall: {
 			location: [
 				(0, 0),
@@ -48,7 +48,7 @@
 			]
 		}
 	}
-	items: {
+	Items: {
 		Treasure: {
 			location: [
 				(1, 7),

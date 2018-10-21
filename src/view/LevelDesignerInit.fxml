@@ -12,12 +12,12 @@
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" />
       <AnchorPane fx:id="display" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@menu.css">
          <children>
-            <Button fx:id="loadLevelButton" layoutX="202.0" layoutY="252.0" mnemonicParsing="false" onKeyPressed="#handleLoadLevelButton" prefHeight="79.0" prefWidth="497.0" style="-fx-background-color: none;" text="Load Existing Level">
+            <Button fx:id="loadLevelButton" layoutX="202.0" layoutY="221.0" mnemonicParsing="false" onKeyPressed="#handleLoadLevelButton" prefHeight="79.0" prefWidth="497.0" style="-fx-background-color: none;" text="Load Existing Level">
                <font>
                   <Font name="Power Red and Green" size="42.0" />
                </font>
             </Button>
-            <Button fx:id="newLevelButton" layoutX="202.0" layoutY="404.0" mnemonicParsing="false" onKeyPressed="#handleNewLevelButton" prefHeight="79.0" prefWidth="497.0" style="-fx-background-color: none;" text="Create a New Level">
+            <Button fx:id="newLevelButton" layoutX="202.0" layoutY="348.0" mnemonicParsing="false" onKeyPressed="#handleNewLevelButton" prefHeight="79.0" prefWidth="497.0" style="-fx-background-color: none;" text="Create a New Level">
                <font>
                   <Font name="Power Red and Green" size="42.0" />
                </font>
@@ -27,6 +27,11 @@
                   <Font name="Power Red and Green" size="72.0" />
                </font>
             </Label>
+            <Button fx:id="exitButton" layoutX="202.0" layoutY="474.0" mnemonicParsing="false" onKeyPressed="#handleExitButton" prefHeight="79.0" prefWidth="497.0" style="-fx-background-color: none;" text="Exit">
+               <font>
+                  <Font name="Power Red and Green" size="42.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

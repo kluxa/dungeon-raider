@@ -446,20 +446,17 @@ public class LevelDesignerMainController extends Controller {
 	private void saveExistingLevel(Level level) {
 		MazeToFileWriter.writeMazeToFile("./src/game_files/levels/custom/" +
 				                         levelName + ".txt", level);
-		helpMessage.setText("Level saved.");
-		FadeTransition fadeOut = new FadeTransition(Duration.seconds(1.5), helpMessage);
-		fadeOut.setFromValue(1.0);
-		fadeOut.setToValue(0.0);
-		fadeOut.play();
-		fadeOut.setOnFinished(e -> {
-			helpMessage.setText("Choose an entity to place by clicking on it");
-			helpMessage.setOpacity(1.0);
-		});
+		showSavedMessage();
 	}
 	
 	public void saveNewLevel(String levelName) {
+		this.levelName = levelName;
 		MazeToFileWriter.writeMazeToFile("./src/game_files/levels/custom/" +
-                levelName + ".txt", level);
+                                         levelName + ".txt", level);
+		showSavedMessage();
+	}
+	
+	private void showSavedMessage() {
 		helpMessage.setText("Level saved.");
 		FadeTransition fadeOut = new FadeTransition(Duration.seconds(1.5), helpMessage);
 		fadeOut.setFromValue(1.0);
