@@ -79,7 +79,7 @@ public class TutorialSelectMenuController extends DungeonSelectMenuController {
 			goToPreviousScreen();
 			
 		} else if (k.equals(KeyCode.ENTER)) {
-			menus.switchToPlayingDungeon(
+			handler.switchToPlayingDungeon(
 					"./src/game_files/levels/tutorial/" +
 					files[cursorY][cursorX]);
 			
@@ -148,7 +148,7 @@ public class TutorialSelectMenuController extends DungeonSelectMenuController {
 		fadeOut.setToValue(0.0);
 		fadeOut.play();
 		fadeOut.setOnFinished(e -> {
-			menus.switchToZoneSelectMenu();
+			handler.switchToZoneSelectMenu();
 			display.setOpacity(1.0);
 		});
 	}

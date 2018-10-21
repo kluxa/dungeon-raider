@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class PauseMenuController extends Controller {
-	private IngameHandler dungeonPlayer;
+	private IngameHandler handler;
 	
 	@FXML
 	private AnchorPane display;
@@ -24,7 +24,7 @@ public class PauseMenuController extends Controller {
 	
 	public PauseMenuController(Stage s, IngameHandler dungeonPlayer) {
 		super(s);
-		this.dungeonPlayer = dungeonPlayer;
+		this.handler = dungeonPlayer;
 	}
 	
 	@FXML
@@ -35,14 +35,14 @@ public class PauseMenuController extends Controller {
 	@FXML
 	private void handleResumeButton(KeyEvent e) {
 		if (e.getCode().equals(KeyCode.ENTER)) {
-			dungeonPlayer.resumeGame();
+			handler.resumeGame();
 		}
 	}
 	
 	@FXML
 	private void handleRestartButton(KeyEvent e) {
 		if (e.getCode().equals(KeyCode.ENTER)) {
-			dungeonPlayer.restartLevel();
+			handler.restartLevel();
 		}
 	}
 	
@@ -54,7 +54,7 @@ public class PauseMenuController extends Controller {
 			fadeOut.setToValue(0.0);
 			fadeOut.play();
 			fadeOut.setOnFinished(finished -> {
-				dungeonPlayer.returnToPrevious();
+				handler.returnToPrevious();
 			});
 		}
 	}
