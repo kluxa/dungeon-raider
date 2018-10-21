@@ -9,6 +9,7 @@ public abstract class Enemy extends LivingEntity {
 	private int awareDistance;
 	private boolean awareOfPlayer;
 	private MovementPattern pattern;
+	private int tick = 0;
 	
 	public Enemy(Square s) {
 		super(s);
@@ -51,6 +52,27 @@ public abstract class Enemy extends LivingEntity {
 	public void makeMove(Maze maze) {
 		selectMove(maze);
 		move(getDirection());
+	}
+	
+	public void update (Maze maze) {
+		if (awareDistance == -1) {
+			awareOfPlayer = false;
+			tick = 0;
+		} else {
+			awareOfPlayer = true;
+			tick++;
+			if (tick % 2 == 0) {
+				makeMove(maze);
+			}
+		}
+	}
+	
+	public boolean isAwareOfPlayer () {
+		/*if (//player in aware distance) {
+				do stuff
+		}*/
+		
+		return null;
 	}
 	
 }
