@@ -1,0 +1,22 @@
+
+#main-menu-pane, #zone-select-menu-pane, #dungeon-select-menu-pane {
+	-fx-focus-color: transparent;
+	-fx-background-image: url("/game_files/images/main-menu.jpg");
+	-fx-background-repeat: stretch;
+	-fx-background-size: 900 600;
+	-fx-background-position: center center;
+}
+
+.button {
+	-fx-background-radius: 8px;
+	-fx-border-color: white;
+	-fx-border-radius: 4px;
+	-fx-border-width: 4px;
+	-fx-faint-focus-color: transparent;
+	-fx-focus-color: transparent;
+	-fx-text-fill: white;
+}
+
+.button:focused {
+	-fx-border-color: rgb(208,214,18);
+}

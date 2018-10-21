@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane mouseTransparent="true" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" />
+      <AnchorPane fx:id="display" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@menu.css">
+         <children>
+            <Button fx:id="loadLevelButton" layoutX="202.0" layoutY="221.0" mnemonicParsing="false" onKeyPressed="#handleLoadLevelButton" prefHeight="79.0" prefWidth="497.0" style="-fx-background-color: none;" text="Load Existing Level">
+               <font>
+                  <Font name="Power Red and Green" size="42.0" />
+               </font>
+            </Button>
+            <Button fx:id="newLevelButton" layoutX="202.0" layoutY="348.0" mnemonicParsing="false" onKeyPressed="#handleNewLevelButton" prefHeight="79.0" prefWidth="497.0" style="-fx-background-color: none;" text="Create a New Level">
+               <font>
+                  <Font name="Power Red and Green" size="42.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="219.0" layoutY="97.0" prefHeight="72.0" prefWidth="462.0" text="Level Designer" textFill="WHITE">
+               <font>
+                  <Font name="Power Red and Green" size="72.0" />
+               </font>
+            </Label>
+            <Button fx:id="exitButton" layoutX="202.0" layoutY="474.0" mnemonicParsing="false" onKeyPressed="#handleExitButton" prefHeight="79.0" prefWidth="497.0" style="-fx-background-color: none;" text="Exit">
+               <font>
+                  <Font name="Power Red and Green" size="42.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

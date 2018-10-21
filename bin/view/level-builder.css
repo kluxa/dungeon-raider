@@ -1,0 +1,29 @@
+
+.menu-button > .arrow-button {
+    -fx-padding: 0;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+    -fx-background-size: 0;
+}
+
+.menu-button > .arrow-button > .arrow {
+    -fx-padding: 0;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+    -fx-background-size: 0;
+}
+
+.button, .menu-button {
+	-fx-background-color: black;
+	-fx-border-color: white;
+	-fx-border-width: 3px;
+	-fx-border-radius: 3px;
+}
+
+.button:hover, .menu-button:hover {
+	-fx-border-color: rgb(35,194,241);
+}
+
+.selected {
+	-fx-border-color: rgb(208,214,18);
+}
