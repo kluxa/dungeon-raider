@@ -2,6 +2,7 @@ package controller;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import controller_menus.MenuHandler;
 import game.SimpleLevel;
 
 public class Main extends Application {
