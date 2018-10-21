@@ -1,5 +1,6 @@
 package items;
 
+import dungeon.Entity;
 import player.Player;
 
 public abstract class Torch extends LimitedCollectible {
@@ -17,4 +18,8 @@ public abstract class Torch extends LimitedCollectible {
 	
 	public abstract void applyEffect(Player player);
 	
+	@Override
+	public boolean sameType(Entity e) {
+		return (e instanceof Torch);
+	}
 }

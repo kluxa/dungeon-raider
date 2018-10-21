@@ -146,11 +146,12 @@ public class PlayDungeonController extends Controller {
 	
 	private void drawSquares() {
 		Square location = maze.getPlayerLocation();
+		int sightRange = player.getSightRange();
 		int playerY = location.getY();
 		int playerX = location.getX();
 		
-		for (int offsetY = -6; offsetY <= 6; offsetY++) {
-			for (int offsetX = -6; offsetX <= 6; offsetX++) {
+		for (int offsetY = -sightRange; offsetY <= sightRange; offsetY++) {
+			for (int offsetX = -sightRange; offsetX <= sightRange; offsetX++) {
 				int y = playerY + offsetY;
 				int x = playerX + offsetX;
 				drawSquare(y, x, offsetY, offsetX);
@@ -183,10 +184,12 @@ public class PlayDungeonController extends Controller {
 	private void drawFog() {
 		ctx.save();
 		ctx.setFill(Color.BLACK);
+		int range = player.getSightRange();
+		
 		int posY = (int)(canvas.getHeight() / 2);
 		int posX = (int)(canvas.getWidth()  / 2);
-		for (int y = posY - 210; y <= posY + 210; y += 5) {
-			for (int x = posX - 210; x <= posX + 210; x += 5) {
+		for (int y = posY - (range * 32 + 16); y <= posY + (range * 32 + 16); y += 5) {
+			for (int x = posX - (range * 32 + 16); x <= posX + (range * 32 + 16); x += 5) {
 				double distance = Math.sqrt((y - posY) * (y - posY) + (x - posX) * (x - posX));
 				double opacity = Math.min(0.01 * distance - 0.5, 1);
 				ctx.setGlobalAlpha(opacity);

@@ -12,7 +12,9 @@ public abstract class LimitedCollectible extends Collectible {
 	
 	@Override
 	public void pickUp(Player player) {
+		System.out.println("Hello");
 		if (player.numItemsOfType(this) >= carryLimit) {
+			System.out.println("Dropping");
 			Item i = player.getItemOfType(this);
 			player.dropItem(i);
 		}

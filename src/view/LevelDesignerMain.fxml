@@ -397,7 +397,7 @@
                            <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
                                  <image>
-                                    <Image url="@../game_files/sprites/torch_blue.png" />
+                                    <Image url="@../game_files/sprites/torch_yellow.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -406,7 +406,7 @@
                            <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
                                  <image>
-                                    <Image url="@../game_files/sprites/torch_yellow.png" />
+                                    <Image url="@../game_files/sprites/torch_blue.png" />
                                  </image>
                               </ImageView>
                            </graphic>
