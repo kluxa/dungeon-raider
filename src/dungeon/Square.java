@@ -20,6 +20,7 @@ public class Square {
 	private Square down;
 	private Square right;
 	private Square left;
+	private boolean exploding;
 	
 	public Square(int y, int x) {
 		items = new ArrayList<Item>();
@@ -35,6 +36,14 @@ public class Square {
 	
 	public int getX() {
 		return x;
+	}
+	
+	public boolean getExploding () {
+		return this.exploding;
+	}
+	
+	public void setExploding (boolean input) {
+		this.exploding = input;
 	}
 	
 	public void setUp(Square s) { up = s; }
@@ -145,6 +154,7 @@ public class Square {
 	}
 	
 	public void explosion() {
+		exploding = true;
 		ArrayList<SolidEntity> affected = new ArrayList<>();
 		affected.addAll(getOccupants());
 		affected.addAll(up.getOccupants());

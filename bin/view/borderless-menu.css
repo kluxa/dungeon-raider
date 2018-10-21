@@ -1,0 +1,4 @@
+
+.button:focused {
+	-fx-text-fill: rgb(208,214,18);
+}
