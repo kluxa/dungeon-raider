@@ -64,7 +64,6 @@ public class LevelDesignerMainController extends Controller {
 	private boolean defeatEnemies;
 	
 	private Level level;
-	
 	private String levelName;
 	private Node selectedButton;
 	private GraphicsContext ctx;
