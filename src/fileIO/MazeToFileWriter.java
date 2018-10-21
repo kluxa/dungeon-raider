@@ -15,6 +15,11 @@ import game.*;
 
 public class MazeToFileWriter {
 
+	/**
+	 * Writes maze to fileLoc from level
+	 * @param fileLoc
+	 * @param level
+	 */
 	public static void writeMazeToFile (String fileLoc, Level level) {
 		LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> fileMap = new LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>>();
 		
@@ -100,7 +105,6 @@ public class MazeToFileWriter {
 	
 		return nonUniqRep;
 	}
-	
 	
 	public static void main (String[] args) {
 		Level lvl1 = LevelBuilder.makeLevel("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\testDung.txt");
