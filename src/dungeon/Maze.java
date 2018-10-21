@@ -216,7 +216,7 @@ public class Maze {
 	public void updateEnemies() {
 		for (Enemy e: enemies) {
 			if (e.isAlive()) {
-				e.makeMove(this);
+				e.update(player, this);
 			}
 		}
 	}

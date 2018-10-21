@@ -48,10 +48,7 @@ public class LevelDesignerLoadController extends Controller {
 	private void initialize() {
 		index = 0;
 		File folder = new File("src/game_files/levels/custom");
-		levels = folder.listFiles();
-		for (File f: levels) {
-			System.out.println(f.getName());
-		}
+		levels = folder.listFiles(f -> !f.getName().contains(".temp"));
 		
 		Button[] buttons = {
 				button1, button2, button3, button4, button5

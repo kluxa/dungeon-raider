@@ -61,6 +61,7 @@ public abstract class Enemy extends LivingEntity {
 		selectMove(maze);
 		move(getDirection());
 	}
+	
 	/**
 	 * Causes enemies to make a move based on player location and their awareness of the player
 	 * Enemies make moves once every 2 turns

@@ -23,5 +23,5 @@ public class RunAway implements MovementPattern {
 		// TODO Auto-generated method stub
 		return Direction.DOWN;
 	}
-
+	
 }
