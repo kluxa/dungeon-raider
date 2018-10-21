@@ -14,6 +14,7 @@ public class Coward extends Enemy {
 	public Coward(Square s) {
 		super(s);
 		setMovementPattern(new SimpleChase());
+		setMovementPattern(new RunAway());
 	}
 	
 	@Override

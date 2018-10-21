@@ -52,7 +52,11 @@ public abstract class SolidEntity extends Entity {
 	
 	public void move(Direction d) {
 		move = d;
-		getLocation().move(this, d);
+
+		if(d != null){
+			getLocation().move(this, d);
+		}
+
 	}
 	
 	public abstract void hitByProjectile();
