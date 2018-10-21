@@ -16,7 +16,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class MainMenuController extends Controller {
-	MenuHandler menus;
+	private MenuHandler menus;
+	
 	@FXML
 	private AnchorPane display;
 	@FXML
