@@ -179,6 +179,10 @@ public class PlayDungeonController extends Controller {
 		for (Entity e: entities) {
 			ctx.drawImage(new Image(getImagePath(e)), posX, posY);
 		}
+		
+		if (s.getExploding() == true) {
+			ctx.drawImage(new Image("game_files/sprites/explosion.png"), posX, posY);
+		}
 	}
 	
 	private void drawFog() {
@@ -191,6 +195,16 @@ public class PlayDungeonController extends Controller {
 		for (int y = posY - (range * 32 + 16); y <= posY + (range * 32 + 16); y += 5) {
 			for (int x = posX - (range * 32 + 16); x <= posX + (range * 32 + 16); x += 5) {
 				double distance = Math.sqrt((y - posY) * (y - posY) + (x - posX) * (x - posX));
+				RedTorch t = new RedTorch();
+				YellowTorch yT = new YellowTorch();
+				BlueTorch bT = new BlueTorch();
+				if (player.hasItem(t)) {
+					distance *= 0.9;
+				} else if (player.hasItem(yT)) {
+					distance *= 0.8;
+				} else if (player.hasItem(bT)) {
+					distance *= 0.75;
+				}
 				double opacity = Math.min(0.01 * distance - 0.5, 1);
 				ctx.setGlobalAlpha(opacity);
 				ctx.fillRect(x, y, 5, 5);

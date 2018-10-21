@@ -35,10 +35,21 @@ public class SimpleLevel implements Level {
 	 * pleasing to look at...
 	 */
 	private void update() {
+		//Just for exploding bombs
+		Square[][] squares = maze.getSquares();
+		for (Square[] sqRow : squares) {
+			for (Square sq : sqRow) {
+				if (sq.getExploding() == true) {
+					sq.setExploding(false);
+				}
+			}
+		}
 		player.updateBombs();
 		maze.markObstacles();
 		maze.updateEnemies();
 		player.updateState();
+		
+
 		// System.out.println(showLevel());
 	}
 	
