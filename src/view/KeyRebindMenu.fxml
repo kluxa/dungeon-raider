@@ -12,7 +12,7 @@
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" />
       <AnchorPane fx:id="display" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@borderless-menu.css">
          <children>
-            <Label alignment="CENTER" layoutX="188.0" layoutY="42.0" prefHeight="68.0" prefWidth="525.0" text="Rebind Keys" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="188.0" layoutY="42.0" prefHeight="68.0" prefWidth="525.0" text="Edit Key Bindings" textFill="WHITE">
                <font>
                   <Font name="Power Red and Green" size="72.0" />
                </font>

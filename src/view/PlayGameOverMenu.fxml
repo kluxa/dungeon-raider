@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: black;" stylesheets="@bordered-menu.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="271.0" layoutY="82.0" text="You Died!" textFill="WHITE">
+         <font>
+            <Font name="Power Red and Green" size="96.0" />
+         </font>
+      </Label>
+      <Button fx:id="restartButton" layoutX="140.0" layoutY="322.0" mnemonicParsing="false" onKeyPressed="#handleRestartButton" prefHeight="87.0" prefWidth="606.0" style="-fx-background-color: none;" text="Restart Level" textFill="WHITE">
+         <font>
+            <Font name="Power Red and Green" size="48.0" />
+         </font>
+      </Button>
+      <Button fx:id="returnButton" layoutX="140.0" layoutY="438.0" mnemonicParsing="false" onKeyPressed="#handleReturnButton" prefHeight="87.0" prefWidth="606.0" style="-fx-background-color: none;" text="Return to Level Select" textFill="WHITE">
+         <font>
+            <Font name="Power Red and Green" size="48.0" />
+         </font>
+      </Button>
+      <Label fx:id="causeOfDeath" alignment="CENTER" contentDisplay="CENTER" layoutX="91.0" layoutY="206.0" prefHeight="87.0" prefWidth="718.0" text="Killed by: Stupidity" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Power Red and Green" size="48.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

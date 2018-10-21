@@ -369,17 +369,17 @@
                      <items>
                         <MenuItem mnemonicParsing="false" text="Collect Treasure">
                            <graphic>
-                              <CheckBox fx:id="collectTreasure" mnemonicParsing="false" />
+                              <CheckBox fx:id="collectTreasureCheckBox" mnemonicParsing="false" />
                            </graphic>
                         </MenuItem>
                         <MenuItem mnemonicParsing="false" text="Trigger Switches">
                            <graphic>
-                              <CheckBox fx:id="triggerSwitches" mnemonicParsing="false" />
+                              <CheckBox fx:id="triggerSwitchesCheckBox" mnemonicParsing="false" />
                            </graphic>
                         </MenuItem>
                         <MenuItem mnemonicParsing="false" text="Defeat Enemies">
                            <graphic>
-                              <CheckBox fx:id="defeatEnemies" mnemonicParsing="false" />
+                              <CheckBox fx:id="defeatEnemiesCheckBox" mnemonicParsing="false" />
                            </graphic>
                         </MenuItem>
                      </items>

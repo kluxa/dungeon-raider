@@ -71,6 +71,7 @@ public class StringUtilsWrite {
 					} else {
 						Door door = (Door) solEnt;
 						String doorCol = door.getColor();
+						doorCol = doorCol.substring(0, 1).toUpperCase() + doorCol.substring(1);
 						String doorName = doorCol + "Door";
 						if (entMap.get(doorName) == null) {
 							//add first thing
@@ -119,8 +120,9 @@ public class StringUtilsWrite {
 							}
 						} else {
 							Key key = (Key) item;
-							String keyColo = key.getColor();
-							String keyName = keyColo + "Key";
+							String keyCol = key.getColor();
+							keyCol = keyCol.substring(0, 1).toUpperCase() + keyCol.substring(1);
+							String keyName = keyCol + "Key";
 							if (itemMap.get(keyName) == null) {
 								//add first thing
 								locData.add(formatCoords(i, j));
@@ -184,6 +186,7 @@ public class StringUtilsWrite {
 		return coString;
 	}
 	
+	/*
 	public static void main (String[] args) {
 		Level level = LevelBuilder.makeLevel("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\testDung.txt");
 		LinkedHashMap<String, ArrayList<String>> mazeMap = hasapafyMaze (level);
@@ -194,4 +197,5 @@ public class StringUtilsWrite {
 		tmp = hasapafyTiles (tmp, level);
 		
 	}
+	*/
 }

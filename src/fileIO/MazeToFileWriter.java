@@ -44,9 +44,9 @@ public class MazeToFileWriter {
 		try {
 			writer = new BufferedWriter(new FileWriter(fileLoc));
 		    for (String line : fileStrings) {
-		    	writer.write(line+"\n");
+		    	writer.write(line + "\n");
 		    }
-		     
+		    
 		    writer.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -73,7 +73,11 @@ public class MazeToFileWriter {
 		mazeMapRep.add("]");
 		mazeMapRep.add("completion: [");
 		if (mazeMap.get("completion") != null) {
-			mazeMapRep.add(mazeMap.get("completion").get(0));
+			int numObjectives = mazeMap.get("completion").size();
+			for (int i = 0; i < numObjectives; i++) {
+				mazeMapRep.add(mazeMap.get("completion").get(i) +
+						      (i == numObjectives - 1 ? "" : ","));
+			}
 		}
 		mazeMapRep.add("]");
 		mazeMapRep.add("}");
@@ -106,10 +110,12 @@ public class MazeToFileWriter {
 		return nonUniqRep;
 	}
 	
+	/*
 	public static void main (String[] args) {
 		Level lvl1 = LevelBuilder.makeLevel("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\testDung.txt");
 		writeMazeToFile ("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\out.txt", lvl1);
 		Level lvl2 = LevelBuilder.makeLevel("C:\\Users\\Matthew\\eclipse-workspace\\Dungeon\\out.txt");
 	}
+	*/
 	
 }
