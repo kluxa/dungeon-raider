@@ -12,7 +12,7 @@ public class Coward extends Enemy {
 	}
 	
 	public Coward(Square s) {
-		super(s);
+		super(s, 6);
 	}
 	
 	@Override
@@ -25,4 +25,16 @@ public class Coward extends Enemy {
 		return "coward";
 	}
 	
+	@Override
+	public MovementPattern getDefaultAwareMovePattern (Player p) {
+		
+		double dist = getDistance(p.getLocation());
+		MovementPattern pattern = null;
+		if (dist <= 4) { //arbitrarily chosen
+			pattern = new RunAway();
+		} else {
+			pattern = new SimpleChase();
+		}
+		return pattern;
+	}
 }

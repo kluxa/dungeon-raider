@@ -12,7 +12,7 @@ public class Hunter extends Enemy {
 	}
 	
 	public Hunter(Square s) {
-		super(s);
+		super(s, 6);
 		setMovementPattern(new SimpleChase());
 	}
 	
@@ -26,4 +26,8 @@ public class Hunter extends Enemy {
 		return "hunter";
 	}
 	
+	@Override
+	public MovementPattern getDefaultAwareMovePattern (Player p) {
+		return new SimpleChase();
+	}
 }

@@ -12,7 +12,7 @@ public class Strategist extends Enemy {
 	}
 	
 	public Strategist(Square s) {
-		super(s);
+		super(s, 8);
 	}
 
 	@Override
@@ -23,5 +23,10 @@ public class Strategist extends Enemy {
 	@Override
 	public String getImageName() {
 		return "strategist";
+	}
+	
+	@Override
+	public MovementPattern getDefaultAwareMovePattern (Player p) {
+		return new Strategic();
 	}
 }

@@ -12,7 +12,7 @@ public class Hound extends Enemy {
 	}
 	
 	public Hound(Square s) {
-		super(s);
+		super(s, 6);
 	}
 	
 	@Override
@@ -25,4 +25,8 @@ public class Hound extends Enemy {
 		return "hound";
 	}
 	
+	@Override
+	public MovementPattern getDefaultAwareMovePattern (Player p) {
+		return new CornerPlayer();
+	}
 }
