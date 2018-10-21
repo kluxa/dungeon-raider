@@ -5,6 +5,9 @@ import player.Player;
 public class RedTorch extends Torch {
 
 	@Override
+	/**
+	 * sets players sightrange to 8
+	 */
 	public void applyEffect(Player player) {
 		player.setSightRange(8);
 	}
