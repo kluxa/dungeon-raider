@@ -16,8 +16,6 @@ public class DesignerHandler {
 	
 	private LevelDesignerMainController designerController;
 	
-	private String currLevel;
-	
 	public DesignerHandler(Stage stage, MenuHandler menus) {
 		this.stage = stage;
 		this.menus = menus;
