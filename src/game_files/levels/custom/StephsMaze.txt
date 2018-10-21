@@ -93,12 +93,12 @@ location: [
 (11, 1)
 ]
 }
-redDoor: {
+RedDoor: {
 location: [
 (11, 2)
 ]
 }
-yellowDoor: {
+YellowDoor: {
 location: [
 (13, 2)
 ]
@@ -118,22 +118,22 @@ location: [
 (5, 5)
 ]
 }
-redKey: {
+RedKey: {
 location: [
 (5, 9)
 ]
 }
-yellowKey: {
+YellowKey: {
 location: [
 (5, 10)
 ]
 }
-greenKey: {
+GreenKey: {
 location: [
 (5, 11)
 ]
 }
-blueKey: {
+BlueKey: {
 location: [
 (5, 12)
 ]
