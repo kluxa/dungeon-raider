@@ -13,13 +13,14 @@ public class Coward extends Enemy {
 	
 	public Coward(Square s) {
 		super(s, 6);
+		setMovementPattern(new NoMovement());
 	}
 	
 	@Override
 	public char toChar() {
 		return 'C';
 	}
-
+	
 	@Override
 	public String getImageName() {
 		return "coward";
@@ -27,7 +28,6 @@ public class Coward extends Enemy {
 	
 	@Override
 	public MovementPattern getDefaultAwareMovePattern (Player p) {
-		
 		double dist = getDistance(p.getLocation());
 		MovementPattern pattern = null;
 		if (dist <= 4) { //arbitrarily chosen

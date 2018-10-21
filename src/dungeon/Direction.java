@@ -24,6 +24,12 @@ public enum Direction {
 		public int getDX() { return -1; }
 		public int getDY() { return  0; }
 		public String toString() { return "left"; }
+	},
+	NO_MOVE {
+		public int toInt() { return 4; }
+		public int getDX() { return 0; }
+		public int getDY() { return 0; }
+		public String toString() { return "no move"; }
 	};
 	
 	public abstract int toInt();
@@ -38,6 +44,7 @@ public enum Direction {
 		case 1:  return DOWN;
 		case 2:  return RIGHT;
 		case 3:  return LEFT;
+		case 4: return NO_MOVE;
 		default: return null;
 		}
 	}

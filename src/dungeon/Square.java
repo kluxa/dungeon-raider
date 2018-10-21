@@ -178,6 +178,7 @@ public class Square {
 		case DOWN:  return down;
 		case RIGHT: return right;
 		case LEFT:  return left;
+		case NO_MOVE: return this;
 		default:    return null;
 		}
 	}

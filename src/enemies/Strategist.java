@@ -13,13 +13,14 @@ public class Strategist extends Enemy {
 	
 	public Strategist(Square s) {
 		super(s, 8);
+		setMovementPattern(new Strategic());
 	}
-
+	
 	@Override
 	public char toChar() {
 		return 'S';
 	}
-
+	
 	@Override
 	public String getImageName() {
 		return "strategist";

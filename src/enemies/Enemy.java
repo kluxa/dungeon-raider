@@ -5,13 +5,11 @@ import dungeon.*;
 import java.lang.Math.*;
 
 import player.*;
-import items.*;
-import game.*;
 
 public abstract class Enemy extends LivingEntity {
-	private int awareDistance;
 	private boolean awareOfPlayer;
 	private MovementPattern pattern;
+	private int awareDistance;
 	private int tick = 0;
 	
 	public Enemy(Square s, int awareDist_) {
