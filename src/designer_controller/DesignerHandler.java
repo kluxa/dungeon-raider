@@ -13,7 +13,7 @@ public class DesignerHandler {
 	private Stage stage;
 	private Screen designerScreen;
 	
-	private Controller designerController;
+	private LevelDesignerMainController designerController;
 	
 	public DesignerHandler(Stage stage, MenuHandler menus) {
 		this.stage = stage;
@@ -54,6 +54,23 @@ public class DesignerHandler {
 		designerScreen = new LevelDesignerMainScreen(stage);
 		designerController = new LevelDesignerMainController(stage, this, height, width);
 		switchToMainScreen();
+	}
+	
+	public void saveNewLevel(String levelName) {
+		designerController.saveNewLevel(levelName);
+		switchToMainScreen();
+	}
+	
+	public void switchToExitScreen() {
+		Screen exitScreen = new LevelDesignerExitScreen(stage);
+		Controller c = new LevelDesignerExitController(stage, this);
+		exitScreen.display(c);
+	}
+	
+	public void switchToNameScreen() {
+		Screen nameScreen = new LevelDesignerNameScreen(stage);
+		Controller c = new LevelDesignerNameController(stage, this);
+		nameScreen.display(c);
 	}
 	
 	public void switchToMainScreen() {

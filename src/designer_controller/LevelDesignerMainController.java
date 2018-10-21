@@ -63,6 +63,8 @@ public class LevelDesignerMainController extends Controller {
 	private boolean triggerSwitches;
 	private boolean defeatEnemies;
 	
+	private Level level;
+	
 	private String levelName;
 	private Node selectedButton;
 	private GraphicsContext ctx;
@@ -419,7 +421,7 @@ public class LevelDesignerMainController extends Controller {
 	@FXML
 	private void handleButton70() {
 		System.out.println("Testing the level");
-		// TODO
+		
 	}
 	
 	@FXML
@@ -428,16 +430,16 @@ public class LevelDesignerMainController extends Controller {
 	}
 	
 	private void saveLevel() {
-		Level level = new SimpleLevel.LevelBuilder(maze)
-			          .collectTreasure(collectTreasureCheckBox.isSelected())
-			          .triggerSwitches(triggerSwitchesCheckBox.isSelected())
-			          .defeatEnemies(defeatEnemiesCheckBox.isSelected())
-			          .build();
+		level = new SimpleLevel.LevelBuilder(maze)
+			        .collectTreasure(collectTreasureCheckBox.isSelected())
+			        .triggerSwitches(triggerSwitchesCheckBox.isSelected())
+			        .defeatEnemies(defeatEnemiesCheckBox.isSelected())
+			        .build();
 		
 		if (levelName != null) {
 			saveExistingLevel(level);
 		} else {
-			saveNewLevel(level);
+			designerHandler.switchToNameScreen();
 		}
 	}
 	
@@ -455,15 +457,23 @@ public class LevelDesignerMainController extends Controller {
 		});
 	}
 	
-	private void saveNewLevel(Level level) {
+	public void saveNewLevel(String levelName) {
 		MazeToFileWriter.writeMazeToFile("./src/game_files/levels/custom/" +
-	                                     "temp.txt", level);
+                levelName + ".txt", level);
+		helpMessage.setText("Level saved.");
+		FadeTransition fadeOut = new FadeTransition(Duration.seconds(1.5), helpMessage);
+		fadeOut.setFromValue(1.0);
+		fadeOut.setToValue(0.0);
+		fadeOut.play();
+		fadeOut.setOnFinished(e -> {
+			helpMessage.setText("Choose an entity to place by clicking on it");
+			helpMessage.setOpacity(1.0);
+		});
 	}
 	
 	@FXML
 	private void handleButton90() {
-		System.out.println("Exiting the level designer");
-		quit();
+		designerHandler.switchToExitScreen();
 	}
 	
 	@FXML
