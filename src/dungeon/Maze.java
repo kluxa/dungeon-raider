@@ -155,6 +155,15 @@ public class Maze {
 		return count;
 	}
 	
+	public Square getHunterLocation() {
+		for (Enemy e : enemies) {
+			if (e instanceof Hunter) {
+				return e.getLocation();
+			}
+		}
+		return null;
+	}
+	
 	public boolean allTreasuresCollected() {
 		return getNumOfItem(new Treasure()) == 0;
 	}
