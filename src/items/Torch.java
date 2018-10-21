@@ -9,7 +9,9 @@ public abstract class Torch extends LimitedCollectible {
 		super(CARRY_LIMIT);
 	}
 	
+	@Override
 	public void pickUp(Player player) {
+		super.pickUp(player);
 		applyEffect(player);
 	}
 	

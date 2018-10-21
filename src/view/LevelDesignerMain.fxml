@@ -172,11 +172,6 @@
                         <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="button43" alignment="CENTER" contentDisplay="CENTER" layoutX="186.0" layoutY="245.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER">
-                     <padding>
-                        <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
-                     </padding>
-                  </Button>
                   <Button fx:id="button52" alignment="CENTER" contentDisplay="CENTER" layoutX="128.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleButton52" prefHeight="50.0" prefWidth="109.0" text="Delete" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Power Red and Green" size="24.0" />
@@ -386,6 +381,44 @@
                      <font>
                         <Font name="Power Red and Green" size="24.0" />
                      </font>
+                  </MenuButton>
+                  <MenuButton fx:id="button43" layoutX="186.0" layoutY="245.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
+                    <items>
+                      <MenuItem fx:id="button430" mnemonicParsing="false" onAction="#handleButton430">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
+                                 <image>
+                                    <Image url="@../game_files/sprites/torch_red.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                      <MenuItem fx:id="button431" mnemonicParsing="false" onAction="#handleButton431">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
+                                 <image>
+                                    <Image url="@../game_files/sprites/torch_blue.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem fx:id="button432" mnemonicParsing="false" onAction="#handleButton432">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
+                                 <image>
+                                    <Image url="@../game_files/sprites/torch_yellow.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                    </items>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../game_files/sprites/torch_yellow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </MenuButton>
                </children>
             </AnchorPane>

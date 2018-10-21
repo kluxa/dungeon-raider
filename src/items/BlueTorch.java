@@ -3,25 +3,23 @@ package items;
 import player.Player;
 
 public class BlueTorch extends Torch {
-
-	@Override
+	
 	/**
-	 * sets players sightrange to 10
+	 * sets players sightrange to 11
 	 */
+	@Override
 	public void applyEffect(Player player) {
-		player.setSightRange(10);
+		player.setSightRange(11);
 	}
-
+	
 	@Override
 	public char toChar() {
-		// TODO Auto-generated method stub
-		return 0;
+		return '3';
 	}
-
+	
 	@Override
 	public String getImageName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "torch_blue";
 	}
-
+	
 }
