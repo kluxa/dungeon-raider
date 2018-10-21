@@ -15,6 +15,7 @@ public class Player extends LivingEntity {
 	private boolean isFlying;
 	private boolean onExit;
 	private String causeOfDeath;
+	private int sightRange = 6;
 	
 	public Player() {
 		inventory = new Inventory();
@@ -41,6 +42,10 @@ public class Player extends LivingEntity {
 	
 	public boolean isInvincible() {
 		return state.isInvincible();
+	}
+	
+	public void setSightRange (int range) {
+		this.sightRange = range;
 	}
 	
 	public boolean isOnExit() {
