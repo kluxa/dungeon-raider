@@ -47,7 +47,7 @@ public class RunAway implements MovementPattern {
 			}
 		}
 
-		if(distances[enemy_y][enemy_x] >= maxDist) return null;
+		if(distances[enemy_y][enemy_x] >= maxDist) return Direction.NO_MOVE;
 
 		return Direction.intToDirection(maxIndex);
 	}

@@ -9,7 +9,7 @@ public class NoMovement implements MovementPattern {
 
 	@Override
 	public Direction chooseMove(Square s, Maze maze, Direction oldMove) {
-		return null;
+		return Direction.NO_MOVE;
 	}
 
 }
