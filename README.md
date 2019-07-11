@@ -1,5 +1,6 @@
 # dungeon-raider
 
+## Screens
 ### Main Menu
 #### Relevant Keys: W (up), S (down), Enter (select)
 - Game Title
@@ -20,24 +21,25 @@ number at the bottom right corner of the square for that item. Indicators for ac
 effects (such as invincibility/flying) are located to the right of the inventory.
 
 ### Level Complete Menu
-#### Relevant Keys: W, S, Enter
+#### Relevant Keys: Up, Down, Enter
 - Next Level
 - Replay Level
 - Level Select
 
 ### Pause Menu
-#### Relevant Keys: W, S, Enter, P (unpause)
+#### Relevant Keys: Up, Down, Enter, Esc (unpause)
 - Resume
 - Restart Level
 - Level Select
 
 ### Game Over Menu
-#### Relevant Keys: W, S, Enter
+#### Relevant Keys: Up, Down, Enter
 - Restart Level
+- Next Level
 - Level Select
 
 ### Level Editor
-#### Relevant Keys: W, A, S, D, Space, Esc, Del
+#### Relevant Keys: Up, Down, Left, Right, Space (place entity), Esc, Del (delete entity)
 
 ## Possible Extensions
 - Key Rebinding
