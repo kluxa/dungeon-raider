@@ -1,38 +1,11 @@
-# supertryhards-dungeon
-
-## TODO
-### Back-End
-- [x] Level completion checking (KEVIN)
-- [ ] Enemy movement (Strategist, Hound, Coward) (JAMES)
-- [ ] Writing and reading mazes to and from files (MATTHEW)
-
-### Front-End
-Some of these will require changing the back-end,
-NOTIFY everyone if you are about to modify the
-back-end.
-
-- [x] Choosing sprites
-- [x] Main menu (KEVIN)
-- [x] Level selection menu
-- [x] Level playing view
-- [x] Level complete menu
-- [x] Pause menu
-- [x] Game over menu
-- [x] Level editor
-  - [x] Designing the level
-  - [ ] Loading a saved level
-  - [ ] Saving a custom level
-
-## Details
-### Maze File Format
-See examples
+# dungeon-raider
 
 ### Main Menu
 #### Relevant Keys: W (up), S (down), Enter (select)
 - Game Title
 - Play
 - Level Editor
-- Options (optional)
+- Options
 - Quit
 
 ### Level Selection Menu
@@ -76,5 +49,6 @@ effects (such as invincibility/flying) are located to the right of the inventory
 - Scores
 - Music
 - Sound FX
-- Animations (TOO HARD)
+- Animations
+- Multiplayer
 
